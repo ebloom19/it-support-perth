@@ -109,7 +109,7 @@ export default function SolutionsPage() {
   )
 }
 
-function SolutionCard({ title, description, icon: Icon, href }) {
+function SolutionCard({ title, description, icon: Icon, href }: { icon: any, title: string, description: string, href: string }) {
   return (
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <Link href={href}>

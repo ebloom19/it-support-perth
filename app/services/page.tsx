@@ -97,7 +97,7 @@ export default function ServicesPage() {
   );
 }
 
-function ServiceCard({ title, icon: Icon, href }) {
+function ServiceCard({ title, icon: Icon, href }: { icon: any, title: string, href: string }) {
   return (
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <Link href={href}>

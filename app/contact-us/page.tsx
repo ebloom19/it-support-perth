@@ -16,35 +16,35 @@ export default function ContactUsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast()
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setIsSubmitting(true);
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+  //   try {
+  //     const response = await fetch('/api/contact', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
 
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Your message has been sent successfully!",
-        })
-        reset();
-      } else {
-        throw new Error('Failed to submit form');
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false);
-    }
+  //     if (response.ok) {
+  //       toast({
+  //         title: "Success",
+  //         description: "Your message has been sent successfully!",
+  //       })
+  //       reset();
+  //     } else {
+  //       throw new Error('Failed to submit form');
+  //     }
+  //   } catch (error) {
+  //     toast({
+  //       title: "Error",
+  //       description: "Failed to send message. Please try again.",
+  //       variant: "destructive",
+  //     })
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
   };
 
   return (
@@ -91,7 +91,7 @@ export default function ContactUsPage() {
                 {...register("name", { required: "Name is required" })}
                 className={errors.name ? "border-red-500" : ""}
               />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
+              {/* {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>} */}
             </div>
             <div>
               <label htmlFor="email" className="block mb-1">Your Email (required)</label>
@@ -107,7 +107,7 @@ export default function ContactUsPage() {
                 })}
                 className={errors.email ? "border-red-500" : ""}
               />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+              {/* {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>} */}
             </div>
             <div>
               <label htmlFor="subject" className="block mb-1">Subject</label>
@@ -121,7 +121,7 @@ export default function ContactUsPage() {
                 rows={5}
                 className={errors.message ? "border-red-500" : ""}
               />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
+              {/* {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>} */}
             </div>
             <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white" disabled={isSubmitting}>
               {isSubmitting ? 'Sending...' : 'Submit'}
@@ -166,7 +166,7 @@ export default function ContactUsPage() {
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen=""
+                // allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
