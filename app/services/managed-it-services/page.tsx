@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Wifi, AlertTriangle, Usb, Shield, StickyNote, Flame, Lock, Mail, ChevronsLeftRightEllipsis, Phone } from 'lucide-react'
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types'
 
 export default function ManagedITServices() {
   return (
