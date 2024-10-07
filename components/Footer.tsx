@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8 text-gray-700">
+    <footer className="bg-secondary p-8 flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h4 className="font-bold mb-4 text-gray-900">IT Support Perth</h4>
+            <h4 className="font-bold mb-4 text-foreground">IT Support Perth</h4>
             <p>75B Brewer Street</p>
             <p>Perth, 6000</p>
             <p>
@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="font-bold mb-4 text-gray-900">Quick Links</h4>
+            <h4 className="font-bold mb-4 text-foreground">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="hover:text-gray-900">
@@ -61,7 +61,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-4 text-gray-900">Our Services</h4>
+            <h4 className="font-bold mb-4 text-foreground">Our Services</h4>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -90,7 +90,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-4 text-gray-900">Our Location</h4>
+            <h4 className="font-bold mb-4 text-foreground">Our Location</h4>
             <img
               src="/images/map.png"
               alt="IT Support Perth Location"
@@ -98,7 +98,7 @@ export default function Footer() {
             />
           </div>
         </div>
-        <div className="mt-8 text-center text-gray-600">
+        <div className="mt-8 text-center text-foreground">
           <p>
             &copy; 2024 IT Support Perth - Managed IT Support for Small and
             Medium Businesses

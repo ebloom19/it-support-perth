@@ -18,7 +18,7 @@ export default function Home() {
       <div className="relative h-[calc(40vh-4rem)] bg-black">
         <Image
           src="/images/landing.webp"
-          alt="Japanese tuned car"
+          alt="Computer Mechanics"
           layout="fill"
           objectFit="cover"
           className="opacity-50"
@@ -101,12 +101,12 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="bg-gray-100 py-16">
+      <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800">
+          <h2 className="text-3xl font-bold mb-8 text-foreground">
             What makes us different?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-foreground">
             <div>
               <p className="mb-4">
                 As a business, as a culture, we're all about efficient use of

@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Fire, Wifi, AlertTriangle, Usb, Shield, StickyNote, Flame, Lock, Mail, ChevronsLeftRightEllipsis } from 'lucide-react'
+import { Wifi, AlertTriangle, Usb, Shield, StickyNote, Flame, Lock, Mail, ChevronsLeftRightEllipsis, Phone } from 'lucide-react'
+import { Icon } from 'next/dist/lib/metadata/types/metadata-types'
 
 export default function ManagedITServices() {
   return (
@@ -26,7 +27,7 @@ export default function ManagedITServices() {
           
           <Button className="mt-6 bg-blue-600 hover:bg-blue-700">
             <Link href="tel:0893251196" className="flex items-center">
-              <Mail className="mr-2" />
+              <Phone className="mr-2" />
               Call us on (08) 9325 1196
             </Link>
           </Button>
@@ -96,7 +97,7 @@ export default function ManagedITServices() {
         <p className="text-center mb-4"><strong>You should allow 20 minutes for a kick-off conversation - we do that at no cost.</strong></p>
         <Button className="w-full bg-blue-600 hover:bg-blue-700">
           <Link href="tel:0893251196" className="flex items-center justify-center text-white">
-            <Mail className="mr-2" />
+            <Phone className="mr-2" />
             Call us while it's top of mind: (08) 9325 1196
           </Link>
         </Button>
@@ -105,7 +106,7 @@ export default function ManagedITServices() {
   )
 }
 
-function ServiceFeature({ icon: Icon, title, description }) {
+function ServiceFeature({ icon: Icon, title, description }: { icon: any, title: string, description: string }) {
   return (
     <Card className="mb-6">
       <CardHeader>
