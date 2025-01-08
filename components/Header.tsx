@@ -1,30 +1,34 @@
-"use client"
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Facebook, Menu } from 'lucide-react';
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Facebook, Menu } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ModeToggle } from '@/components/mode-toggle';
-import { useState } from 'react';
+} from "@/components/ui/dropdown-menu";
+import { ModeToggle } from "@/components/mode-toggle";
+import { useState } from "react";
+import ITSupportPerthLogo from "@/svgs/1.1.svg";
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'News/Blog', href: '/news' },
-  { name: 'Magazines', href: '/magazines' },
-  { name: 'eBay Store', href: 'http://stores.ebay.com.au/C-Red-Tuning', external: true },
-  { name: 'About Us', href: '/about-us' },
-]
+  { name: "Home", href: "/" },
+  { name: "News/Blog", href: "/news" },
+  { name: "Magazines", href: "/magazines" },
+  {
+    name: "eBay Store",
+    href: "http://stores.ebay.com.au/C-Red-Tuning",
+    external: true,
+  },
+  { name: "About Us", href: "/about-us" },
+];
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-
+  const [isOpen, setIsOpen] = useState(false);
 
   const AllLinks = () => {
     return (
@@ -41,26 +45,17 @@ export default function Header() {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>
-              <Link
-                href="/services/managed-it-services"
-                className="w-full"
-              >
+              <Link href="/services/managed-it-services" className="w-full">
                 Managed IT Services
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link
-                href="/services/ad-hoc-it-support"
-                className="w-full"
-              >
+              <Link href="/services/ad-hoc-it-support" className="w-full">
                 Adhoc IT Support
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link
-                href="/services/remote-it-support"
-                className="w-full"
-              >
+              <Link href="/services/remote-it-support" className="w-full">
                 Remote IT Support
               </Link>
             </DropdownMenuItem>
@@ -80,10 +75,7 @@ export default function Header() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link
-                href="/solutions/cloud-solutions"
-                className="w-full"
-              >
+              <Link href="/solutions/cloud-solutions" className="w-full">
                 Cloud Solutions
               </Link>
             </DropdownMenuItem>
@@ -101,10 +93,7 @@ export default function Header() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link
-                href="/solutions/voip-phone-systems"
-                className="w-full"
-              >
+              <Link href="/solutions/voip-phone-systems" className="w-full">
                 VoIP Phone Systems
               </Link>
             </DropdownMenuItem>
@@ -130,36 +119,35 @@ export default function Header() {
         </Link>
         <ModeToggle />
       </>
-    )
-  }
+    );
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex flex-col items-center justify-center">
       <div className="container flex h-25 items-center justify-between">
         <div className="flex flex-row items-center space-x-4">
-          <Link href="/" className="flex items-center space-x-2 pl-2 pt-3">
-          <Image
-              width={180}
-              height={250}
-              src="/images/logo.png"
+          <Link href="/" className="flex items-center space-x-2 pt-3 pr-4">
+            <ITSupportPerthLogo
+              width={90}
+              height={125}
               alt="IT Support Perth"
+              fill="#fff"
             />
-            {/* <span className="hidden font-bold sm:inline-block">C-Red Tuning</span> */}
           </Link>
           <a
-              href="tel:0893251196"
-              className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              (08) 9325 1196
-            </a>
-            <a
-              href="https://www.facebook.com/computermechanicsperth/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              <Facebook className="w-5 h-5 mr-3" />
-            </a>
+            href="tel:0893251196"
+            className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            (08) 9325 1196
+          </a>
+          <a
+            href="https://www.facebook.com/computermechanicsperth/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            <Facebook className="w-5 h-5 mr-3" />
+          </a>
         </div>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           <AllLinks />
