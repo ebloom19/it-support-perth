@@ -130,8 +130,8 @@ export default function Header() {
             <ITSupportPerthLogo
               width={90}
               height={125}
-              alt="IT Support Perth"
               fill="#fff"
+              alt="IT Support Perth"
             />
           </Link>
           <a
