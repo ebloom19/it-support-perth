@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from "@/components/theme-provider"
 import { ToastProvider } from "@/components/ui/toast"
+import ChatwootWidget from '@/components/ChatwootWidget'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <ToastProvider />
+          <ChatwootWidget />
         </ThemeProvider>
       </body>
     </html>
