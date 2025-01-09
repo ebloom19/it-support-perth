@@ -16,19 +16,6 @@ import { useState } from "react";
 import ITSupportPerthLogo from "@/svgs/1.1.svg";
 import ITSupportPerthText from "@/svgs/it-support-perth-text.svg";
 
-
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "News/Blog", href: "/news" },
-  { name: "Magazines", href: "/magazines" },
-  {
-    name: "eBay Store",
-    href: "http://stores.ebay.com.au/C-Red-Tuning",
-    external: true,
-  },
-  { name: "About Us", href: "/about-us" },
-];
-
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
