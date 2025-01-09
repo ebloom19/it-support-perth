@@ -7,7 +7,7 @@ import Script from 'next/script';
 import BlogLayout from '@/components/BlogLayout';
 import { MDXContent } from '@/components/mdx-components';
 import { siteConfig } from '@/config/site';
-import { posts } from '#site/content';
+import { posts } from '@/.velite';
 
 import { generateJsonLd } from './jsonLd';
 

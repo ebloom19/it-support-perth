@@ -1,10 +1,8 @@
-import { sendGTMEvent } from '@next/third-parties/google';
-import { track } from '@vercel/analytics';
 import { type ClassValue, clsx } from 'clsx';
 import { slug } from 'github-slugger';
 import { twMerge } from 'tailwind-merge';
 
-import { Post } from '#site/content';
+import { Post } from '@/.velite';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

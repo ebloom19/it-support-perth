@@ -1,7 +1,7 @@
 import { BlogPosting, WithContext } from 'schema-dts';
 
 import { type SiteConfig } from '@/config/site';
-import { type Post } from '#site/content';
+import { type Post } from '@/.velite';
 
 export function generateJsonLd(
   post: Post,

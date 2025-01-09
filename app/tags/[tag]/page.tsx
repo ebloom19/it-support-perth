@@ -5,7 +5,7 @@ import { PostItem } from '@/components/PostItem';
 import { Tag } from '@/components/Tag';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllTags, getPostsByTagSlug, sortTagsByCount } from '@/lib/utils';
-import { posts } from '#site/content';
+import { posts } from '@/.velite';
 
 interface TagPageProps {
   params: {

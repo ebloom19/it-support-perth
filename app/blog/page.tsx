@@ -5,7 +5,7 @@ import { QueryPagination } from '@/components/QueryPagination';
 import { Tag } from '@/components/Tag';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllTags, sortPosts, sortTagsByCount } from '@/lib/utils';
-import { posts } from '#site/content';
+import { posts } from '@/.velite';
 
 export const metadata: Metadata = {
   title: 'IT Support Perth | Blog',

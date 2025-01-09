@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 import { sortPosts } from '@/lib/utils';
-import { posts } from '#site/content';
+import { posts } from '@/.velite';
 
 export const BlogsSection = () => {
   const sortedPosts = sortPosts(posts.filter((post) => post.published));

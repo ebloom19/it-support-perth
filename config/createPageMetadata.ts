@@ -21,9 +21,9 @@ export function createPageMetadata({
     alternates: {
       canonical: url,
     },
-    verification: {
-      google: 'g3yfMG-G5hfGp_XMK8AH33evZ49iMDDeVVs0Z9KMc4w',
-    },
+    // verification: {
+    //   google: 'g3yfMG-G5hfGp_XMK8AH33evZ49iMDDeVVs0Z9KMc4w',
+    // },
     openGraph: {
       title,
       description,
@@ -44,12 +44,6 @@ export function createPageMetadata({
         height: 1080,
         type: 'video/mp4',
       })),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [`/api/og?title=${encodeURIComponent(title)}&type=${type}`],
     },
   };
 }

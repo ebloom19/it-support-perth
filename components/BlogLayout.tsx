@@ -17,7 +17,7 @@ import React from 'react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { getAllTags, sortPosts } from '@/lib/utils';
-import { posts } from '#site/content';
+import { posts } from '@/.velite';
 
 import { Tag } from './Tag';
 
