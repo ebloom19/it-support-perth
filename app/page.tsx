@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Shield, Phone, Cloud, Flame, Laptop } from 'lucide-react';
 import { SecurityAssessmentCTA } from '@/components/ui/security-assessment-cta';
+import { BlogsSection } from '@/components/blogs-section';
 
 export default function Home() {
   return (
@@ -114,7 +115,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-foreground">
             <div>
               <p className="mb-4">
-                As a business, as a culture, we're all about efficient use of
+                As a business, as a culture, we&apos;re all about efficient use of
                 time.
               </p>
               <p className="mb-4">
@@ -130,15 +131,15 @@ export default function Home() {
             <div>
               <p className="mb-4">
                 We offer flexible Managed IT where you can change the service
-                offering as you go. And you can walk away with a month's notice.
+                offering as you go. And you can walk away with a month&apos;s notice.
               </p>
               <p className="mb-4">
                 The real value here is anticipating problems so that your
                 systems become resilient with absolutely minimal downtime.
               </p>
               <p>
-                Give us a call if you'd like to talk over a specific problem or
-                decision. That's a pretty good way to check us out.
+                Give us a call if you&apos;d like to talk over a specific problem or
+                decision. That&apos;s a pretty good way to check us out.
               </p>
             </div>
           </div>
@@ -201,6 +202,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BlogsSection />
     </div>
   );
 }

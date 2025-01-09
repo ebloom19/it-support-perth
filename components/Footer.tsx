@@ -1,12 +1,38 @@
+'use client';
+
 import Link from 'next/link';
+import { posts } from '@/.velite';
+import { sortPosts } from '@/lib/utils';
+
+const quickLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' },
+  { name: 'Solutions', path: '/solutions' },
+  { name: 'Reviews', path: '/reviews' },
+  { name: 'About Us', path: '/about-us' },
+  { name: 'Contact Us', path: '/contact-us' },
+];
+
+const services = [
+  { name: 'Managed IT Services', path: '/services/managed-it-services' },
+  { name: 'Adhoc IT Support', path: '/services/ad-hoc-it-support' },
+  { name: 'Remote IT Support', path: '/services/remote-it-support' },
+  { name: 'Free Security Assessment', path: '/services-and-solutions/it-security-solutions#free-security-assessment' },
+];
 
 export default function Footer() {
+  const sortedPosts = sortPosts(posts.filter((post) => post.published));
+  const displayPosts = sortedPosts.slice(0, 4);
+
   return (
-    <footer className="bg-secondary p-8 flex flex-col items-center justify-center">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h4 className="font-bold mb-4 text-foreground">IT Support Perth</h4>
+    <footer className="bg-secondary p-8">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 text-foreground gap-6">
+          {/* Contact Information */}
+          <div className="flex flex-col gap-2 min-w-[200px]">
+            <h6 className="text-lg md:text-xl font-semibold mb-2">
+              IT Support Perth
+            </h6>
             <p>75B Brewer Street</p>
             <p>Perth, 6000</p>
             <p>
@@ -25,93 +51,80 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          <div>
-            <h4 className="font-bold mb-4 text-foreground">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="hover:text-gray-900">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-gray-900">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions" className="hover:text-gray-900">
-                  Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-gray-900">
-                  Reviews
-                </Link>
-              </li>
-              <li>
-                <Link href="/about-us" className="hover:text-gray-900">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact-us" className="hover:text-gray-900">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
+
+          {/* Quick Links */}
+          <div className="flex flex-col gap-2">
+            <h6 className="text-lg md:text-xl font-semibold mb-2">
+              Quick Links
+            </h6>
+            {quickLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.path}
+                className="text-sm md:text-base hover:underline"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
-          <div>
-            <h4 className="font-bold mb-4 text-foreground">Our Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/services/managed-it-services"
-                  className="hover:text-gray-900"
-                >
-                  Managed IT Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/ad-hoc-it-support"
-                  className="hover:text-gray-900"
-                >
-                  Adhoc IT Support
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/remote-it-support"
-                  className="hover:text-gray-900"
-                >
-                  Remote IT Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/services-and-solutions/it-security-solutions#free-security-assessment" className="hover:text-gray-900">
-                  Free Security Assessment
-                </Link>
-              </li>
-            </ul>
+
+          {/* Services */}
+          <div className="flex flex-col gap-2">
+            <h6 className="text-lg md:text-xl font-semibold mb-2">
+              Our Services
+            </h6>
+            {services.map((service, index) => (
+              <Link
+                key={index}
+                href={service.path}
+                className="text-sm md:text-base hover:underline"
+              >
+                {service.name}
+              </Link>
+            ))}
           </div>
-          <div>
-            <h4 className="font-bold mb-4 text-foreground">Our Location</h4>
+
+          {/* Blog Posts */}
+          <div className="flex flex-col gap-2">
+            <Link href="/blog">
+              <h6 className="text-lg md:text-xl font-semibold mb-2 hover:underline">
+                Blog
+              </h6>
+            </Link>
+            {displayPosts.map((post, index) => (
+              <Link
+                key={index}
+                href={`/blog/${post.slugAsParams}`}
+                className="text-sm md:text-base hover:underline"
+              >
+                {post.title}
+              </Link>
+            ))}
+          </div>
+
+          {/* Map */}
+          <div className="flex flex-col gap-2 min-w-[200px]">
+            <h6 className="text-lg md:text-xl font-semibold mb-2">
+              Our Location
+            </h6>
             <div className="w-full h-[200px] rounded-lg overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.4562893188!2d115.86185731532598!3d-31.94945798122047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32bad5f8a2c9f7%3A0x5e9b5e4cee2f0f0!2s75B%20Brewer%20St%2C%20Perth%20WA%206000%2C%20Australia!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  // allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.4562893188!2d115.86185731532598!3d-31.94945798122047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32bad5f8a2c9f7%3A0x5e9b5e4cee2f0f0!2s75B%20Brewer%20St%2C%20Perth%20WA%206000%2C%20Australia!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
-        <div className="mt-8 text-center text-foreground">
+
+        <hr className="my-6 border-foreground/20" />
+        
+        <div className="text-center text-foreground">
           <p>
-            &copy; 2024 IT Support Perth - Managed IT Support for Small and
+            © 2024 IT Support Perth - Managed IT Support for Small and
             Medium Businesses
           </p>
         </div>
