@@ -52,18 +52,3 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
   });
 }
 
-export const handleChromeWebstoreClick = () => {
-  track('Add to Chrome Button Clicked');
-
-  sendGTMEvent({
-    event: 'conversion',
-    value: {
-      send_to: 'AW-11533266587/3O8GCN2I_YAaEJvdvvsq',
-    },
-  });
-
-  window.open(
-    'https://chromewebstore.google.com/detail/acedit/capgbfgnklakdedfbjkacmjpkebanifk',
-    '_blank',
-  );
-};

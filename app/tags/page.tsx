@@ -5,10 +5,10 @@ import { getAllTags, sortTagsByCount } from '@/lib/utils';
 import { posts } from '#site/content';
 
 export const metadata: Metadata = {
-  title: 'Acedit: Interview with AI | Privacy Policy',
+  title: 'IT Support Perth | Tags',
   description: "Browse our blog's tags.",
   alternates: {
-    canonical: 'https://www.acedit.ai/tags',
+    canonical: 'https://www.itsupportperth.net.au/tags',
   },
 };
 

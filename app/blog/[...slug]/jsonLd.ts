@@ -24,15 +24,8 @@ export function generateJsonLd(
       name: siteConfig.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/images/acedit-logo.png`,
+        url: `${siteConfig.url}/images/logo.png`,
       },
-      sameAs: [
-        'https://www.facebook.com/profile.php?id=61563536566709',
-        'https://www.instagram.com/acedit.ai',
-        'https://www.linkedin.com/company/acedit-ai',
-        'https://www.youtube.com/channel/UCwYiM58a6D3_rhE-6EshtlA',
-        //   'https://twitter.com/acedit',
-      ],
     },
     mainEntityOfPage: {
       '@type': 'WebPage',

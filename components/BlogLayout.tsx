@@ -38,7 +38,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
 }) => {
   const latestPosts = sortPosts(posts).slice(0, 5);
   const allTags = getAllTags(posts);
-  const shareUrl = `https://www.acedit.ai/${slug}`;
+  const shareUrl = `https://www.itsupportperth.net.au/${slug}`;
 
   return (
     <div className="container mx-auto px-4 md:px-20 py-8">

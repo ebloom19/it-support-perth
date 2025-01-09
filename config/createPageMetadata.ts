@@ -28,7 +28,7 @@ export function createPageMetadata({
       title,
       description,
       url,
-      siteName: 'Acedit',
+      siteName: 'IT Support Perth',
       type: 'website',
       images: [
         {

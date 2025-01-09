@@ -41,7 +41,7 @@ export async function generateMetadata({
     description: post.description,
     authors: { name: siteConfig.author },
     alternates: {
-      canonical: `https://www.acedit.ai/${post.slug}`,
+      canonical: `https://www.itsupportperth.net.au/${post.slug}`,
     },
     openGraph: {
       title: post.title,

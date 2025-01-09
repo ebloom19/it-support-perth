@@ -21,7 +21,7 @@ export async function generateMetadata({
     title: tag,
     description: `Posts on the topic of ${tag}`,
     alternates: {
-      canonical: `https://www.acedit.ai/tags/${tag}`,
+      canonical: `https://www.itsupportperth.net.au/tags/${tag}`,
     },
   };
 }

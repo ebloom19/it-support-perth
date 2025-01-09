@@ -50,11 +50,7 @@ export async function GET(req: NextRequest) {
               </svg>
             )}
             <p tw="ml-2 font-bold text-2xl">
-              {type === "feature"
-                ? "Acedit Feature"
-                : type === "home"
-                ? "Acedit"
-                : "Acedit Blog"}
+              {"IT Support Perth"}
             </p>
           </div>
           <div tw="flex flex-col flex-1 py-10">
@@ -73,7 +69,7 @@ export async function GET(req: NextRequest) {
             </div>
           </div>
           <div tw="flex items-center w-full justify-between">
-            <div tw="flex text-xl">{"acedit.ai"}</div>
+            <div tw="flex text-xl">{"itsupportperth.net.au"}</div>
           </div>
           <svg
             id="Layer_1"
