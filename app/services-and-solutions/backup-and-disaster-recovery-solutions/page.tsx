@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function BackupAndDisasterRecovery() {
   const statistics = [
@@ -117,6 +118,20 @@ export default function BackupAndDisasterRecovery() {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section className="mb-16">
+        <Card className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <h3 className="text-xl font-semibold mb-4">Security First Recovery Planning</h3>
+              <p className="mb-6">
+                Ensure your disaster recovery plan includes robust security measures. Take our assessment today.
+              </p>
+              <SecurityAssessmentCTA />
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       <section className="mb-16">

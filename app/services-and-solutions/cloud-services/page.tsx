@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function CloudServices() {
   const cloudBenefits = [
@@ -153,6 +154,20 @@ export default function CloudServices() {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section className="mb-16">
+        <Card className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <h3 className="text-xl font-semibold mb-4">Cloud Security Assessment</h3>
+              <p className="mb-6">
+                Moving to the cloud? Ensure your migration is secure with our free security assessment.
+              </p>
+              <SecurityAssessmentCTA />
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       <section className="mb-16">

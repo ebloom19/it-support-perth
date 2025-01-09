@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Shield, Phone, Cloud, Flame, Laptop } from 'lucide-react';
+import { SecurityAssessmentCTA } from '@/components/ui/security-assessment-cta';
 
 export default function Home() {
   return (
@@ -30,9 +31,12 @@ export default function Home() {
           <p className="text-xl mb-8">
             23 years of straight advice, quick turnarounds and trouble-shooting
           </p>
-          <Button asChild>
-            <Link href="/contact-us">Get Started</Link>
-          </Button>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -66,15 +70,16 @@ export default function Home() {
                 <CardTitle>IT Security</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>
+                <p className="mb-4">
                   Protect your business with our comprehensive IT security
                   solutions.
                 </p>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="gap-4">
                 <Button asChild>
                   <Link href="/solutions/it-security">Learn More</Link>
                 </Button>
+                <SecurityAssessmentCTA />
               </CardFooter>
             </Card>
             <Card>
