@@ -17,14 +17,23 @@ export const metadata: Metadata = {
 
 const POSTS_PER_PAGE = 5;
 
-interface BlogPageProps {
-  searchParams: {
-    page?: string;
-  };
+// Add static params generation
+export function generateStaticParams() {
+  const sortedPosts = sortPosts(posts.filter((post) => post.published));
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+  
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }));
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams?.page) || 1;
+interface PageProps {
+  params: { page?: string[] }
+}
+
+export default function BlogPage({ params }: PageProps) {
+  // Get page number from params instead of searchParams
+  const currentPage = params?.page ? Number(params.page[0]) : 1;
   const sortedPosts = sortPosts(posts.filter((post) => post.published));
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 
