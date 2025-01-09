@@ -162,6 +162,45 @@ export default function ITSecuritySolutions() {
         </Accordion>
       </section>
 
+      <section className="my-16" id="free-security-assessment">
+        <Card className="max-w-4xl mx-auto">
+          <CardContent className="pt-6">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Free Security Assessment</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Take our comprehensive security assessment to evaluate your organization&apos;s security posture
+              </p>
+            </div>
+
+            <div className="bg-secondary/50 rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold mb-4">Why Take This Assessment?</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Identify potential security vulnerabilities in your systems</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Get personalized recommendations for improvement</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Understand your compliance with security best practices</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="aspect-[4/3] w-full bg-card rounded-lg overflow-hidden">
+              <iframe 
+                src="https://forms.office.com/Pages/ResponsePage.aspx?id=QuKxWHZ-AEWJ-NIJQSYA07MbXfU3rFVIhNmb98Pd1GFUNU9QS1dBTkNXMUM2QUFWQ0ZRVFNCQlFGUS4u&embed=true"
+                className="w-full h-full border-0"
+                allowFullScreen
+              />
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       <section className="mb-16">
         <Card className="max-w-3xl mx-auto">
           <CardContent className="pt-6">

@@ -87,6 +87,11 @@ export default function Footer() {
                   Remote IT Support
                 </Link>
               </li>
+              <li>
+                <Link href="/services-and-solutions/it-security-solutions#free-security-assessment" className="hover:text-gray-900">
+                  Free Security Assessment
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

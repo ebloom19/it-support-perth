@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function ManagedITServicesProvider() {
   const services = [
@@ -93,6 +94,20 @@ export default function ManagedITServicesProvider() {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section className="mb-16">
+        <Card className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <h3 className="text-xl font-semibold mb-4">Evaluate Your IT Security</h3>
+              <p className="mb-6">
+                Not sure about your current security posture? Take our comprehensive security assessment.
+              </p>
+              <SecurityAssessmentCTA />
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       <section className="mb-16">
