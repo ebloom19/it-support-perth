@@ -3,9 +3,6 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const runtime = 'edge';
-export const dynamic = 'force-dynamic';
-
 export async function POST(req: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
@@ -18,9 +15,9 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, subject, message } = body;
 
-    await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>',
-      to: 'info@itsupportperth.net',
+    const { data, error } = await resend.emails.send({
+      from: 'IT Support Perth <info@itsupportperth.net.au>',
+      to: ['info@itsupportperth.net'],
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -33,11 +30,19 @@ export async function POST(req: Request) {
       replyTo: email,
     });
 
-    return NextResponse.json({ message: 'Form submitted successfully' });
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
+    return NextResponse.json({ 
+      success: true,
+      message: 'Email sent successfully',
+      id: data?.id 
+    });
+
   } catch (error) {
-    console.error('Email error:', error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
