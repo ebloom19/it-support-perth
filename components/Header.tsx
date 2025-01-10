@@ -118,8 +118,8 @@ export default function Header() {
             <ITSupportPerthText
               width={140}
               height={70}
-              className="w-[110px] h-[70px] md:w-[200px] md:h-[100px]"
-              fill="#000"
+              className="w-[110px] h-[70px] md:w-[200px] md:h-[100px] text-foreground"
+              fill="currentColor"
               alt="IT Support Perth"
             />
           </Link>

@@ -16,7 +16,7 @@ export const BlogsSection = () => {
   );
   const displayPosts = targetPost
     ? [targetPost, ...otherPosts.slice(0, 3)]
-    : sortedPosts.slice(0, 4);
+    : sortedPosts.slice(0, 5);
 
   const PostHeader = ({ date, image }: { date: string; image?: string }) => {
     const formattedDate = format(new Date(date), 'MMMM dd, yyyy');
@@ -45,12 +45,6 @@ export const BlogsSection = () => {
   return (
     <section className="relative bg-secondary px-8 py-8 md:px-28 lg:px-40 md:py-16 bg-background bg-opacity-80 overflow-hidden flex flex-row w-100">
       <BentoGrid className="max-w-7xl mx-auto mb-8">
-        <BentoGridItem
-          className="col-span-full md:col-span-1 text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"
-          title="Blogs"
-          description="Our news insights for your daily joyful life. Take best advantage and don't waste your time."
-          href="/blog"
-        />
         {displayPosts?.length > 0 ? (
           displayPosts.map((post, i) => {
             const blogUrl = post.slug.startsWith('/')
