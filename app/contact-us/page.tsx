@@ -35,6 +35,7 @@ export default function ContactUsPage() {
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.")
+      console.error('Email error:', error);
     } finally {
       setIsSubmitting(false);
     }
