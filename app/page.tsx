@@ -9,11 +9,87 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Shield, Phone, Cloud, Flame, Laptop } from 'lucide-react';
+import { 
+  Shield, 
+  Server, 
+  Cloud, 
+  Bot, 
+  Database, 
+  Mail, 
+  Flame,
+  Headset,
+  Wrench 
+} from 'lucide-react';
 import { SecurityAssessmentCTA } from '@/components/ui/security-assessment-cta';
 import { BlogsSection } from '@/components/blogs-section';
 
 export default function Home() {
+  const services = [
+    {
+      title: "Managed IT Services",
+      description: "Comprehensive IT management and support for your business",
+      icon: Server,
+      color: "text-blue-600",
+      href: "/services-and-solutions/managed-it-services-provider"
+    },
+    {
+      title: "IT Security",
+      description: "Protect your business with FortiGate firewall solutions",
+      icon: Shield,
+      color: "text-red-600",
+      href: "/services-and-solutions/firewall-service"
+    },
+    {
+      title: "Cloud Services",
+      description: "Scalable cloud solutions for modern businesses",
+      icon: Cloud,
+      color: "text-sky-500",
+      href: "/services-and-solutions/cloud-services"
+    },
+    {
+      title: "AI-Enhanced Support",
+      description: "Next-generation IT support powered by AI",
+      icon: Bot,
+      color: "text-purple-600",
+      href: "/services-and-solutions/ai-enhanced-it-support"
+    },
+    {
+      title: "On-Premises Servers",
+      description: "Expert management of your on-site infrastructure",
+      icon: Database,
+      color: "text-emerald-600",
+      href: "/services-and-solutions/on-premises-server-management"
+    },
+    {
+      title: "Email Protection",
+      description: "Advanced email security and spam protection",
+      icon: Mail,
+      color: "text-amber-600",
+      href: "/services-and-solutions/email-protection-service"
+    },
+    {
+      title: "Backup & Recovery",
+      description: "Reliable backup and disaster recovery solutions",
+      icon: Flame,
+      color: "text-orange-600",
+      href: "/services-and-solutions/backup-and-disaster-recovery-solutions"
+    },
+    {
+      title: "Remote IT Support",
+      description: "Quick and efficient remote technical assistance",
+      icon: Headset,
+      color: "text-indigo-600",
+      href: "/services-and-solutions/remote-support"
+    },
+    {
+      title: "IT Consulting",
+      description: "Strategic IT guidance and technology consulting",
+      icon: Wrench,
+      color: "text-teal-600",
+      href: "/services-and-solutions/it-consulting"
+    }
+  ];
+
   return (
     <div>
       {/* Hero Section */}
@@ -42,72 +118,34 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <section className="py-16">
+      <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Services</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Our Services & Solutions</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <Laptop className="w-12 h-12 text-blue-600 mb-4" />
-                <CardTitle>IT Support & Consulting</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Expert IT support and consulting services for your business
-                  needs.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button asChild>
-                  <Link href="/solutions/it-support-and-consulting">
-                    Learn More
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Shield className="w-12 h-12 text-orange-600 mb-4" />
-                <CardTitle>IT Security</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  Protect your business with our comprehensive IT security
-                  solutions.
-                </p>
-              </CardContent>
-              <CardFooter className="gap-4">
-                <Button asChild>
-                  <Link href="/solutions/it-security">Learn More</Link>
-                </Button>
-                <SecurityAssessmentCTA />
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Flame className="w-12 h-12 text-red-600 mb-4" />
-                <CardTitle>Backup and Disaster Recovery</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Ensure business continuity with our backup and disaster
-                  recovery services.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Button asChild>
-                  <Link href="/solutions/backup-and-disaster-recovery">
-                    Learn More
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
+            {services.map((service, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <service.icon className={`w-12 h-12 ${service.color} mb-4`} />
+                  <CardTitle>{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {service.description}
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild>
+                    <Link href={service.href}>Learn More</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="bg-secondary py-16">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-foreground">
             What makes us different?
@@ -146,64 +184,42 @@ export default function Home() {
         </div>
       </section>
 
+      <BlogsSection />
+
       {/* Partners Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Partners</h2>
-          <div className="flex flex-row items-center justify-center gap-5 flex-wrap">
-            <Image
-              src="/images/partners/HP.png"
-              alt="HP"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/Dell.png"
-              alt="Dell"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/M365.png"
-              alt="Microsoft 365"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/webroot.png"
-              alt="Webroot"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/3cx.png"
-              alt="3CX"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/veeam.png"
-              alt="Veeam"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/VMWARE.png"
-              alt="VMware"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/images/partners/linux.png"
-              alt="Linux"
-              width={150}
-              height={80}
-            />
+          <h2 className="text-3xl font-bold mb-12 text-center">Our Partners</h2>
+          <div className="flex flex-row items-center justify-center gap-8 flex-wrap">
+            {[
+              { src: "/images/partners/microsoft.svg", alt: "Microsoft" },
+              { src: "/images/partners/synnex.svg", alt: "Synnex" },
+              { src: "/images/partners/leader.png", alt: "Leader Computer" },
+              { src: "/images/partners/veeam.svg", alt: "Veeam" },
+              { src: "/images/partners/ingram-micro.svg", alt: "Ingram Micro" },
+              { src: "/images/partners/acronis.svg", alt: "Acronis" },
+              { src: "/images/partners/webroot.svg", alt: "Webroot" }
+            ].map((partner, index) => (
+              <div 
+                key={index}
+                className="relative group"
+              >
+                <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-primary/0 rounded-lg blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                <div className="relative transform group-hover:scale-110 transition-all duration-300">
+                  <Image
+                    src={partner.src}
+                    alt={partner.alt}
+                    width={150}
+                    height={80}
+                    className="grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <BlogsSection />
     </div>
   );
 }

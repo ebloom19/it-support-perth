@@ -6,18 +6,49 @@ import { sortPosts } from '@/lib/utils';
 
 const quickLinks = [
   { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'Solutions', path: '/solutions' },
+  { name: 'Services and Solutions', path: '/services-and-solutions' },
   { name: 'Reviews', path: '/reviews' },
   { name: 'About Us', path: '/about-us' },
   { name: 'Contact Us', path: '/contact-us' },
 ];
 
-const services = [
-  { name: 'Managed IT Services', path: '/services/managed-it-services' },
-  { name: 'Adhoc IT Support', path: '/services/ad-hoc-it-support' },
-  { name: 'Remote IT Support', path: '/services/remote-it-support' },
-  { name: 'Free Security Assessment', path: '/services-and-solutions/it-security-solutions#free-security-assessment' },
+const servicesAndSolutions = [
+  { 
+    name: 'Managed IT Services', 
+    path: '/services-and-solutions/managed-it-services-provider' 
+  },
+  { 
+    name: 'IT Security', 
+    path: '/services-and-solutions/firewall-service' 
+  },
+  { 
+    name: 'Cloud Services', 
+    path: '/services-and-solutions/cloud-services' 
+  },
+  { 
+    name: 'AI-Enhanced Support', 
+    path: '/services-and-solutions/ai-enhanced-it-support' 
+  },
+  { 
+    name: 'On-Premises Servers', 
+    path: '/services-and-solutions/on-premises-server-management' 
+  },
+  { 
+    name: 'Email Protection', 
+    path: '/services-and-solutions/email-protection-service' 
+  },
+  { 
+    name: 'Backup & Recovery', 
+    path: '/services-and-solutions/backup-and-disaster-recovery-solutions' 
+  },
+  { 
+    name: 'Remote IT Support', 
+    path: '/services-and-solutions/remote-support' 
+  },
+  { 
+    name: 'IT Consulting', 
+    path: '/services-and-solutions/it-consulting' 
+  }
 ];
 
 export default function Footer() {
@@ -25,7 +56,7 @@ export default function Footer() {
   const displayPosts = sortedPosts.slice(0, 4);
 
   return (
-    <footer className="bg-secondary p-8">
+    <footer className="bg-secondary p-8 border-t">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 text-foreground gap-6">
           {/* Contact Information */}
@@ -70,10 +101,12 @@ export default function Footer() {
 
           {/* Services */}
           <div className="flex flex-col gap-2">
-            <h6 className="text-lg md:text-xl font-semibold mb-2">
-              Our Services
-            </h6>
-            {services.map((service, index) => (
+            <Link href="/services-and-solutions">
+              <h6 className="text-lg md:text-xl font-semibold mb-2">
+                Our Services & Solutions
+              </h6>
+            </Link>
+            {servicesAndSolutions.map((service, index) => (
               <Link
                 key={index}
                 href={service.path}

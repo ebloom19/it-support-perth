@@ -43,7 +43,7 @@ export const BlogsSection = () => {
   };
 
   return (
-    <section className="relative px-8 py-8 md:px-28 lg:px-40 md:py-16 bg-background bg-opacity-80 overflow-hidden flex flex-row w-100">
+    <section className="relative bg-secondary px-8 py-8 md:px-28 lg:px-40 md:py-16 bg-background bg-opacity-80 overflow-hidden flex flex-row w-100">
       <BentoGrid className="max-w-7xl mx-auto mb-8">
         <BentoGridItem
           className="col-span-full md:col-span-1 text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md"

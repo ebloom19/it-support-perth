@@ -46,14 +46,14 @@ export default function BlogPage({ params }: PageProps) {
   const sortedTags = sortTagsByCount(tags);
 
   return (
-    <div className="container pt-24 md:pt-32 mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black lg:text-5xl">Blog</h1>
         <p className="text-xl text-muted-foreground mt-2">
           Welcome to our blog.
         </p>
       </div>
-      <div className="flex flex-wrap justify-center gap-5">
+      <div className="flex flex-wrap justify-center gap-6">
         {displayPosts?.length > 0 ? (
           displayPosts.map((post) => {
             const { slug, date, title, description, tags } = post;
