@@ -3,7 +3,17 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { error: 'Resend API key not configured' },
+      { status: 500 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { name, email, subject, message } = body;
@@ -20,6 +30,7 @@ export async function POST(req: Request) {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
+      replyTo: email,
     });
 
     return NextResponse.json({ message: 'Form submitted successfully' });
