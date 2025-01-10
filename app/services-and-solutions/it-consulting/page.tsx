@@ -64,88 +64,107 @@ export default function ITConsulting() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="flex flex-col items-center text-center mb-16">
-        <h1 className="text-4xl font-bold mb-6">IT Consulting</h1>
-        <p className="text-2xl text-muted-foreground mb-8">
-          Strategic IT Guidance for Small and Medium Businesses
-        </p>
-        <div className="relative w-full h-[300px] rounded-lg overflow-hidden mb-8">
-          <Image
-            src="/images/close-up-smiling-person-conference-room.webp"
-            alt="Close up on smiling person in conference room"
-            fill
-            className="object-cover"
-            priority
-          />
+    <div>
+      {/* Hero Section */}
+      <div className="relative h-[calc(40vh-4rem)] bg-black">
+        <Image
+          src="/images/close-up-smiling-person-conference-room.webp"
+          alt="Close up on smiling person in conference room"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-50"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">IT Consulting</h1>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Strategic IT Guidance for Small and Medium Businesses
+          </p>
         </div>
-        <p className="max-w-3xl text-lg text-muted-foreground">
-          Navigating the fast-paced world of technology can be overwhelming,
-          especially for small and medium businesses. Our IT Consulting Services
-          provide the expertise you need to align your IT infrastructure with your
-          business goals, ensuring long-term success.
-        </p>
       </div>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Core Services</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {coreServices.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span className="text-2xl">{service.icon}</span>
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{service.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      {/* Intro Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
+            Navigating the fast-paced world of technology can be overwhelming,
+            especially for small and medium businesses. Our IT Consulting Services
+            provide the expertise you need to align your IT infrastructure with your
+            business goals, ensuring long-term success.
+          </p>
         </div>
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          How IT Consulting Helps Your Business
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle>{benefit.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      {/* Core Services Section - Secondary */}
+      <section className="bg-secondary py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Core Services</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {coreServices.map((service, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <span className="text-2xl">{service.icon}</span>
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-        <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-          {features.map((feature, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger>{feature.title}</AccordionTrigger>
-              <AccordionContent>{feature.description}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+      {/* Benefits Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            How IT Consulting Helps Your Business
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle>{benefit.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="mt-16 text-center">
-        <Card className="max-w-3xl mx-auto bg-primary/5">
-          <CardContent className="pt-6">
-            <p className="text-lg">
-              Simplify your IT and focus on your core objectives with the right
-              technology strategy. Let us guide you to smarter decisions and better
-              outcomes.
-            </p>
-          </CardContent>
-        </Card>
+      {/* Features Section - Secondary */}
+      <section className="bg-secondary py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
+          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-background rounded-lg">
+            {features.map((feature, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger>{feature.title}</AccordionTrigger>
+                <AccordionContent>{feature.description}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* CTA Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-3xl mx-auto border-none bg-secondary">
+            <CardContent className="pt-6">
+              <p className="text-lg text-center">
+                Simplify your IT and focus on your core objectives with the right
+                technology strategy. Let us guide you to smarter decisions and better
+                outcomes.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </section>
     </div>
   );

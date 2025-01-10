@@ -62,135 +62,164 @@ export default function CloudServices() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="flex flex-col items-center text-center mb-16">
-        <h1 className="text-4xl font-bold mb-6">Cloud Services</h1>
-        <p className="text-2xl text-muted-foreground mb-8">
-          Secure, Scalable Cloud Solutions Tailored for Your Business
-        </p>
-        
-        <Tabs defaultValue="concept1" className="w-full mb-8">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="concept1">Overview</TabsTrigger>
-            <TabsTrigger value="concept2">Hosting</TabsTrigger>
-            <TabsTrigger value="concept3">Solutions</TabsTrigger>
-          </TabsList>
-          <TabsContent value="concept1">
-            <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src="/images/saas-concept-collage.webp"
-                alt="SaaS concept collage"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </TabsContent>
-          <TabsContent value="concept2">
-            <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src="/images/website-hosting-concept-with-cloud.webp"
-                alt="Website hosting concept with cloud"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </TabsContent>
-          <TabsContent value="concept3">
-            <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src="/images/benefits-of-cloud.png"
-                alt="SaaS concept collage alternative view"
-                fill
-                // className="object-cover"
-              />
-            </div>
-          </TabsContent>
-        </Tabs>
-
-        <p className="max-w-3xl text-lg text-muted-foreground">
-          Cloud technology offers unparalleled flexibility, collaboration, and
-          security for businesses. Our Cloud Services make transitioning to the
-          cloud simple and efficient, empowering small and medium businesses to
-          work smarter, not harder.
-        </p>
+    <div>
+      {/* Hero Section */}
+      <div className="relative h-[calc(40vh-4rem)] bg-black">
+        <Image
+          src="/images/saas-concept-collage.webp"
+          alt="SaaS concept collage"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-50"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Cloud Services</h1>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Secure, Scalable Cloud Solutions Tailored for Your Business
+          </p>
+        </div>
       </div>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Why Cloud?</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {cloudBenefits.map((benefit, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span className="text-2xl">{benefit.icon}</span>
-                  {benefit.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      {/* Intro Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <Tabs defaultValue="concept1" className="w-full mb-8">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="concept1">Overview</TabsTrigger>
+              <TabsTrigger value="concept2">Hosting</TabsTrigger>
+              <TabsTrigger value="concept3">Solutions</TabsTrigger>
+            </TabsList>
+            <TabsContent value="concept1">
+              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/saas-concept-collage.webp"
+                  alt="SaaS concept collage"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </TabsContent>
+            <TabsContent value="concept2">
+              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/website-hosting-concept-with-cloud.webp"
+                  alt="Website hosting concept with cloud"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </TabsContent>
+            <TabsContent value="concept3">
+              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/benefits-of-cloud.png"
+                  alt="SaaS concept collage alternative view"
+                  fill
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+
+          <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
+            Cloud technology offers unparalleled flexibility, collaboration, and
+            security for businesses. Our Cloud Services make transitioning to the
+            cloud simple and efficient, empowering small and medium businesses to
+            work smarter, not harder.
+          </p>
         </div>
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Cloud Migration Assistance
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {migrationSteps.map((step, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span className="text-2xl text-primary">{index + 1}</span>
-                  {step.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{step.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      {/* Benefits Section - Secondary */}
+      <section className="bg-secondary py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Cloud?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {cloudBenefits.map((benefit, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <span className="text-2xl">{benefit.icon}</span>
+                    {benefit.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mb-16">
-        <Card className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4">Cloud Security Assessment</h3>
-              <p className="mb-6">
-                Moving to the cloud? Ensure your migration is secure with our free security assessment.
+      {/* Migration Steps Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Cloud Migration Assistance
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {migrationSteps.map((step, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <span className="text-2xl text-primary">{index + 1}</span>
+                    {step.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Security Assessment Section - Secondary */}
+      <section className="bg-secondary py-16">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-3xl mx-auto">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-4">Cloud Security Assessment</h3>
+                <p className="mb-6">
+                  Moving to the cloud? Ensure your migration is secure with our free security assessment.
+                </p>
+                <SecurityAssessmentCTA />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Features Section - Light */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Work With Us?</h2>
+          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-secondary rounded-lg">
+            {features.map((feature, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger>{feature.title}</AccordionTrigger>
+                <AccordionContent>{feature.description}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* CTA Section - Secondary */}
+      <section className="bg-secondary py-16">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-3xl mx-auto border-none">
+            <CardContent className="pt-6">
+              <p className="text-lg text-center">
+                Embrace the future with secure, flexible cloud solutions designed for
+                your business.
               </p>
-              <SecurityAssessmentCTA />
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Why Work With Us?</h2>
-        <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-          {features.map((feature, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger>{feature.title}</AccordionTrigger>
-              <AccordionContent>{feature.description}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
-
-      <section className="mt-16 text-center">
-        <Card className="max-w-3xl mx-auto bg-primary/5">
-          <CardContent className="pt-6">
-            <p className="text-lg">
-              Embrace the future with secure, flexible cloud solutions designed for
-              your business.
-            </p>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </section>
     </div>
   );

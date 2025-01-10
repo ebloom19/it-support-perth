@@ -23,11 +23,11 @@ export function PostItem({
   tags,
 }: PostItemProps) {
   return (
-    <ShineBorder
-      className="bg-white dark:bg-muted p-5 py-3 rounded-lg hover:shadow-lg"
-      color={['#000000', '#5600D1', '#F8F3FF']}
-    >
-      <article className="flex flex-col gap-3 border-border max-w-sm">
+    <article className="flex flex-col gap-3 py-3 border-border max-w-sm">
+        <ShineBorder
+          className="bg-white dark:bg-muted p-5 rounded-lg"
+          color={['#000000', '#5600D1', '#F8F3FF']}
+        >
         <div>
           <h2 className="text-2xl font-bold">
             <Link href={'/' + slug}>{title}</Link>
@@ -52,7 +52,7 @@ export function PostItem({
             Read more →
           </Link>
         </div>
-      </article>
     </ShineBorder>
+      </article>
   );
 }
