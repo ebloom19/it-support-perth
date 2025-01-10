@@ -107,7 +107,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex flex-col items-center justify-center px-5 md:px-0">
       <div className="container flex h-auto py-2 md:h-25 items-center justify-between">
         <div className="flex flex-row items-center space-x-2 md:space-x-4">
-          <Link href="/" className="flex items-center space-x-2 md:space-x-6 pr-2 md:pr-4">
+          <Link href="/" title="IT Support Perth" className="flex items-center space-x-2 md:space-x-6 pr-2 md:pr-4">
             <ITSupportPerthLogo
               width={60}
               height={80}
@@ -118,8 +118,8 @@ export default function Header() {
             <ITSupportPerthText
               width={140}
               height={70}
-              className="w-[110px] h-[70px] md:w-[200px] md:h-[100px]"
-              fill="#000"
+              className="w-[110px] h-[70px] md:w-[200px] md:h-[100px] text-foreground"
+              fill="currentColor"
               alt="IT Support Perth"
             />
           </Link>
@@ -130,14 +130,15 @@ export default function Header() {
             >
               (08) 9325 1196
             </a>
-            <a
+            <Link
               href="https://www.facebook.com/computermechanicsperth/"
+              title="IT Support Perth Facebook"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-foreground/80 text-foreground/60"
             >
               <Facebook className="w-4 h-4 md:w-5 md:h-5" />
-            </a>
+            </Link>
           </div>
         </div>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">

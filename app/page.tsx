@@ -192,7 +192,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-12 text-center">Our Partners</h2>
           <div className="flex flex-row items-center justify-center gap-8 flex-wrap">
             {[
-              { src: "/images/partners/microsoft.svg", alt: "Microsoft" },
+              { src: "/images/partners/microsoft-partner.png", alt: "Microsoft" },
               { src: "/images/partners/synnex.svg", alt: "Synnex" },
               { src: "/images/partners/leader.png", alt: "Leader Computer" },
               { src: "/images/partners/veeam.svg", alt: "Veeam" },

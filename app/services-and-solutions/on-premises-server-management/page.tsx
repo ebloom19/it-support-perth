@@ -1,84 +1,98 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Shield, 
+  Settings, 
+  Zap, 
+  Eye, 
+  Wrench, 
+  HardDrive,
+  Lock,
+  LineChart,
+  Server,
+  Network,
+  Clock,
+  Users
+} from "lucide-react";
 
 export default function OnPremisesServerManagement() {
   const benefits = [
     {
       title: "Compliance and Security",
-      description:
-        "Industries like healthcare, legal, and finance often require on-premises servers to meet strict data protection regulations.",
-      icon: "🔒",
+      description: "Meet strict data protection regulations for healthcare, legal, and finance industries",
+      icon: Shield,
+      color: "text-red-500"
     },
     {
       title: "Customizability",
-      description:
-        "On-prem servers allow complete control over configurations, ensuring they meet the unique demands of your business.",
-      icon: "⚙️",
+      description: "Complete control over configurations to meet your unique business demands",
+      icon: Settings,
+      color: "text-blue-500"
     },
     {
       title: "Reliable Performance",
-      description:
-        "On-prem solutions reduce reliance on external factors, such as internet speeds, making them ideal for resource-intensive applications.",
-      icon: "⚡",
+      description: "Reduced reliance on external factors for resource-intensive applications",
+      icon: Zap,
+      color: "text-amber-500"
     },
+    {
+      title: "Data Control",
+      description: "Keep sensitive data within your physical infrastructure",
+      icon: Lock,
+      color: "text-green-500"
+    },
+    {
+      title: "Network Performance",
+      description: "Optimized local network speeds and reduced latency",
+      icon: Network,
+      color: "text-purple-500"
+    },
+    {
+      title: "Resource Management",
+      description: "Direct control over hardware resources and allocation",
+      icon: Server,
+      color: "text-indigo-500"
+    }
   ];
 
   const services = [
     {
       title: "Proactive Monitoring",
-      description:
-        "We monitor your servers 24/7 to detect and resolve issues before they affect your operations.",
-      icon: "👁️",
+      description: "24/7 server monitoring to detect and resolve issues before they affect operations",
+      icon: Eye,
+      features: ["Real-time Alerts", "Performance Tracking", "Issue Prevention"]
     },
     {
       title: "Regular Maintenance",
-      description:
-        "Avoid downtime with regular patching, updates, and performance optimization.",
-      icon: "🔧",
+      description: "Scheduled maintenance to prevent downtime and optimize performance",
+      icon: Wrench,
+      features: ["Updates", "Patching", "Optimization"]
     },
     {
-      title: "Data Backup and Recovery",
-      description:
-        "Ensure quick recovery from hardware failures or accidental deletions with integrated on-premises backup solutions.",
-      icon: "💾",
+      title: "Data Management",
+      description: "Comprehensive data backup and recovery solutions",
+      icon: HardDrive,
+      features: ["Backup", "Recovery", "Storage Management"]
     },
     {
-      title: "Advanced Security",
-      description:
-        "Protect your servers with robust firewalls, intrusion detection, and antivirus solutions.",
-      icon: "🛡️",
+      title: "Performance Optimization",
+      description: "Continuous monitoring and improvement of server performance",
+      icon: LineChart,
+      features: ["Resource Optimization", "Load Balancing", "Capacity Planning"]
     },
     {
-      title: "Scalable Infrastructure",
-      description:
-        "We assist with upgrades and expansions, ensuring your servers grow with your business needs.",
-      icon: "📈",
-    },
-  ];
-
-  const features = [
-    {
-      title: "Local Expertise",
-      description:
-        "With more than 15 years of experience supporting businesses in the region, we provide solutions tailored to your industry.",
+      title: "Support Services",
+      description: "Round-the-clock technical support and assistance",
+      icon: Users,
+      features: ["24/7 Support", "Remote Assistance", "On-site Support"]
     },
     {
-      title: "End-to-End Support",
-      description:
-        "From initial setup to ongoing management, we handle every aspect of your on-prem environment.",
-    },
-    {
-      title: "Hybrid Solutions Available",
-      description:
-        "Interested in combining on-prem reliability with cloud scalability? We design hybrid systems that offer the best of both worlds.",
-    },
+      title: "Scheduled Maintenance",
+      description: "Regular maintenance windows to ensure system reliability",
+      icon: Clock,
+      features: ["Planned Updates", "Security Patches", "Health Checks"]
+    }
   ];
 
   return (
@@ -95,78 +109,31 @@ export default function OnPremisesServerManagement() {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">On-Premises Server Management</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Still Using On-Premises Servers? We&apos;ve Got You Covered.
+            Expert Management of Your On-Site Infrastructure
           </p>
         </div>
       </div>
 
-      {/* Intro Section - Light */}
+      {/* Intro Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="service" className="w-full mb-8">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="service">Service</TabsTrigger>
-              <TabsTrigger value="server">Server Room</TabsTrigger>
-              <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
-            </TabsList>
-            <TabsContent value="service">
-              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-                <Image
-                  src="/images/young-it-service-man-repairing-computer.webp"
-                  alt="IT service technician repairing computer"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </TabsContent>
-            <TabsContent value="server">
-              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-                <Image
-                  src="/images/young-engineer-in-server-room.webp"
-                  alt="Engineer working in server room"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </TabsContent>
-            <TabsContent value="maintenance">
-              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-                <Image
-                  src="/images/young-engineer-writing-in-clipboard-medium-shot.webp"
-                  alt="Engineer performing maintenance checks"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </TabsContent>
-          </Tabs>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6">Why On-Premises Servers?</h2>
+            <p className="text-lg text-muted-foreground mb-12">
+              On-premises servers remain vital for businesses requiring maximum control,
+              security, and performance. Our management services ensure your infrastructure
+              runs at peak efficiency while meeting compliance requirements.
+            </p>
+          </div>
 
-          <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            On-premises servers are still a vital component for many businesses,
-            offering unmatched control and reliability for critical operations.
-            However, maintaining and securing these systems can be complex.
-            That&apos;s where we come in. Our On-Premises Server Management Services
-            ensure your servers run smoothly, securely, and efficiently, allowing you
-            to focus on what matters—your business.
-          </p>
-        </div>
-      </section>
-
-      {/* Benefits Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why On-Premises Servers Still Matter
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <span className="text-2xl">{benefit.icon}</span>
-                    {benefit.title}
-                  </CardTitle>
+                  <div className="flex items-center gap-4">
+                    <benefit.icon className={`w-8 h-8 ${benefit.color}`} />
+                    <CardTitle>{benefit.title}</CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{benefit.description}</p>
@@ -177,23 +144,28 @@ export default function OnPremisesServerManagement() {
         </div>
       </section>
 
-      {/* Services Section - Light */}
-      <section className="py-16">
+      {/* Services Section */}
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our Comprehensive Services
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-3xl font-bold mb-12 text-center">Our Management Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <span className="text-2xl">{service.icon}</span>
-                    {service.title}
-                  </CardTitle>
+                  <div className="flex items-center gap-4 mb-4">
+                    <service.icon className="w-8 h-8 text-primary" />
+                    <CardTitle>{service.title}</CardTitle>
+                  </div>
+                  <p className="text-muted-foreground">{service.description}</p>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {service.features.map((feature, fIndex) => (
+                      <Badge key={fIndex} variant="secondary">
+                        {feature}
+                      </Badge>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -201,31 +173,16 @@ export default function OnPremisesServerManagement() {
         </div>
       </section>
 
-      {/* Features Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-background rounded-lg">
-            {features.map((feature, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger>{feature.title}</AccordionTrigger>
-                <AccordionContent>{feature.description}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA Section - Light */}
+      {/* CTA Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <Card className="max-w-3xl mx-auto border-none bg-secondary">
             <CardContent className="pt-6">
-              <p className="text-lg text-center">
-                Whether you&apos;re sticking with on-prem or considering a hybrid
-                approach, our team has the expertise to keep your systems secure and
-                optimized. Let us handle your servers so you can focus on growing
-                your business.
+              <h3 className="text-2xl font-bold text-center mb-4">Ready to Optimize Your Infrastructure?</h3>
+              <p className="text-lg text-center text-muted-foreground">
+                Whether you're maintaining existing servers or planning new deployments,
+                our team has the expertise to ensure your infrastructure performs at its best.
+                Let us handle the complexity while you focus on your business.
               </p>
             </CardContent>
           </Card>
