@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ToastProvider } from "@/components/ui/toast";
 import ChatwootWidget from "@/components/ChatwootWidget";
 import { GoogleTagManager } from '@next/third-parties/google';
+import { FormbricksProvider } from "@/components/formbricks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId="G-4K8XLY0JKX" />
+      <FormbricksProvider />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
