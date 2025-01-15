@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@formbricks/js':
+        specifier: ^3.0.2
+        version: 3.0.2(zod@3.24.1)
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.10.0(react-hook-form@7.54.2(react@18.2.0))
@@ -992,6 +995,11 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@formbricks/js@3.0.2':
+    resolution: {integrity: sha512-AMKScnuFI2LkBP2GhN3JabuxRV9wftiLtTl33DlLhj42iem+FqWyKOs9o8jx7f+moqbB5qga5J378yx49yt9NQ==}
+    peerDependencies:
+      zod: 3.x
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -5677,6 +5685,10 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@formbricks/js@3.0.2(zod@3.24.1)':
+    dependencies:
+      zod: 3.24.1
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@18.2.0))':
     dependencies:

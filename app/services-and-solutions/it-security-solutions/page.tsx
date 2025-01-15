@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function ITSecuritySolutions() {
   const cyberCrimes = [
@@ -192,7 +193,7 @@ export default function ITSecuritySolutions() {
 
               <div className="bg-secondary/50 rounded-lg p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-4">Why Take This Assessment?</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-3">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">✓</span>
                     <span>Identify potential security vulnerabilities in your systems</span>
@@ -206,14 +207,7 @@ export default function ITSecuritySolutions() {
                     <span>Understand your compliance with security best practices</span>
                   </li>
                 </ul>
-              </div>
-
-              <div className="aspect-[4/3] w-full bg-card rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://forms.office.com/Pages/ResponsePage.aspx?id=QuKxWHZ-AEWJ-NIJQSYA07MbXfU3rFVIhNmb98Pd1GFUNU9QS1dBTkNXMUM2QUFWQ0ZRVFNCQlFGUS4u&embed=true"
-                  className="w-full h-full border-0"
-                  allowFullScreen
-                />
+                <SecurityAssessmentCTA />
               </div>
             </CardContent>
           </Card>

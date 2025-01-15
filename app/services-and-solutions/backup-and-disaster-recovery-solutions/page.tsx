@@ -135,7 +135,7 @@ export default function BackupAndDisasterRecovery() {
         <div className="container mx-auto px-4">
           <Card className="max-w-3xl mx-auto">
             <CardContent className="pt-6">
-              <div className="text-center">
+              <div className="text-center flex flex-col items-center">
                 <h3 className="text-xl font-semibold mb-4">Security First Recovery Planning</h3>
                 <p className="mb-6">
                   Ensure your disaster recovery plan includes robust security measures. Take our assessment today.

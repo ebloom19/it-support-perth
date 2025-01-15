@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
+import formbricks from "@formbricks/js";
 
 interface SecurityAssessmentCTAProps {
   variant?: "default" | "outline" | "secondary";
@@ -9,11 +12,11 @@ interface SecurityAssessmentCTAProps {
 
 export function SecurityAssessmentCTA({ variant = "default", className = "" }: SecurityAssessmentCTAProps) {
   return (
-    <Button variant={variant} asChild className={`flex items-center gap-2 ${className}`}>
-      <Link href="/services-and-solutions/it-security-solutions#free-security-assessment">
+    <Button variant={variant} onClick={() => formbricks.track("security_assesment")} asChild className={`flex items-center gap-2 ${className}`}>
+      <Button>
         <Shield className="w-4 h-4" />
         Take Free Security Assessment
-      </Link>
+      </Button>
     </Button>
   );
 } 
