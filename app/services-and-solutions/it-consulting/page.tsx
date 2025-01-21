@@ -6,6 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function ITConsulting() {
   const coreServices = [
@@ -50,11 +53,13 @@ export default function ITConsulting() {
   const features = [
     {
       title: "Personalized Approach",
-      description: "We focus on understanding your business, goals, and challenges.",
+      description:
+        "We focus on understanding your business, goals, and challenges.",
     },
     {
       title: "Local Expertise",
-      description: "Our team has extensive experience supporting businesses in the region.",
+      description:
+        "Our team has extensive experience supporting businesses in the region.",
     },
     {
       title: "Affordable and Effective",
@@ -79,6 +84,12 @@ export default function ITConsulting() {
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Strategic IT Guidance for Small and Medium Businesses
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -87,9 +98,9 @@ export default function ITConsulting() {
         <div className="container mx-auto px-4">
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
             Navigating the fast-paced world of technology can be overwhelming,
-            especially for small and medium businesses. Our IT Consulting Services
-            provide the expertise you need to align your IT infrastructure with your
-            business goals, ensuring long-term success.
+            especially for small and medium businesses. Our IT Consulting
+            Services provide the expertise you need to align your IT
+            infrastructure with your business goals, ensuring long-term success.
           </p>
         </div>
       </section>
@@ -97,7 +108,9 @@ export default function ITConsulting() {
       {/* Core Services Section - Secondary */}
       <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Core Services</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Our Core Services
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {coreServices.map((service, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -140,8 +153,14 @@ export default function ITConsulting() {
       {/* Features Section - Secondary */}
       <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-background rounded-lg">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose Us?
+          </h2>
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl px-4 mx-auto bg-background rounded-lg"
+          >
             {features.map((feature, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>{feature.title}</AccordionTrigger>
@@ -158,9 +177,9 @@ export default function ITConsulting() {
           <Card className="max-w-3xl mx-auto border-none bg-secondary">
             <CardContent className="pt-6">
               <p className="text-lg text-center">
-                Simplify your IT and focus on your core objectives with the right
-                technology strategy. Let us guide you to smarter decisions and better
-                outcomes.
+                Simplify your IT and focus on your core objectives with the
+                right technology strategy. Let us guide you to smarter decisions
+                and better outcomes.
               </p>
             </CardContent>
           </Card>
@@ -168,4 +187,4 @@ export default function ITConsulting() {
       </section>
     </div>
   );
-} 
+}

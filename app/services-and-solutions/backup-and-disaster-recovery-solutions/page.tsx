@@ -7,6 +7,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function BackupAndDisasterRecovery() {
   const statistics = [
@@ -65,7 +67,8 @@ export default function BackupAndDisasterRecovery() {
     },
     {
       title: "Cost-Effective Protection",
-      description: "Avoid the high costs of downtime with affordable, proactive solutions.",
+      description:
+        "Avoid the high costs of downtime with affordable, proactive solutions.",
     },
     {
       title: "Expert Support",
@@ -86,10 +89,18 @@ export default function BackupAndDisasterRecovery() {
           className="opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Backup & Disaster Recovery Solutions</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Backup & Disaster Recovery Solutions
+          </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Be Prepared for Anything with Reliable Data Protection
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -97,11 +108,11 @@ export default function BackupAndDisasterRecovery() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            Data loss can strike at any time—whether due to cyberattacks, hardware
-            failure, or human error. Without a solid backup and disaster recovery
-            plan, the consequences can be devastating. Our Backup & Disaster Recovery
-            Solutions ensure your business stays protected and operational, no matter
-            what happens.
+            Data loss can strike at any time—whether due to cyberattacks,
+            hardware failure, or human error. Without a solid backup and
+            disaster recovery plan, the consequences can be devastating. Our
+            Backup & Disaster Recovery Solutions ensure your business stays
+            protected and operational, no matter what happens.
           </p>
         </div>
       </section>
@@ -136,9 +147,12 @@ export default function BackupAndDisasterRecovery() {
           <Card className="max-w-3xl mx-auto">
             <CardContent className="pt-6">
               <div className="text-center flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-4">Security First Recovery Planning</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Security First Recovery Planning
+                </h3>
                 <p className="mb-6">
-                  Ensure your disaster recovery plan includes robust security measures. Take our assessment today.
+                  Ensure your disaster recovery plan includes robust security
+                  measures. Take our assessment today.
                 </p>
                 <SecurityAssessmentCTA />
               </div>
@@ -174,8 +188,14 @@ export default function BackupAndDisasterRecovery() {
       {/* Features Section - Light */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-secondary rounded-lg">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose Us?
+          </h2>
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl px-4 mx-auto bg-secondary rounded-lg"
+          >
             {features.map((feature, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>{feature.title}</AccordionTrigger>
@@ -191,12 +211,14 @@ export default function BackupAndDisasterRecovery() {
         <div className="container mx-auto px-4">
           <Card className="max-w-3xl mx-auto border-none">
             <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-4 text-center">Protect Your Business Today</h3>
+              <h3 className="text-xl font-semibold mb-4 text-center">
+                Protect Your Business Today
+              </h3>
               <p className="text-lg text-center">
-                Don&apos;t wait for a disaster to strike. With our backup and disaster
-                recovery services, you can operate with confidence knowing your data
-                is safe and recoverable. Let&apos;s ensure your business is prepared
-                for anything.
+                Don&apos;t wait for a disaster to strike. With our backup and
+                disaster recovery services, you can operate with confidence
+                knowing your data is safe and recoverable. Let&apos;s ensure
+                your business is prepared for anything.
               </p>
             </CardContent>
           </Card>
@@ -204,4 +226,4 @@ export default function BackupAndDisasterRecovery() {
       </section>
     </div>
   );
-} 
+}

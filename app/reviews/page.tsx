@@ -8,7 +8,7 @@ const reviews = [
   {
     name: "Matt Clark",
     rating: 5,
-    text: "Handy location in Northbridge. The guys at Computer Mechanics were prompt at fixing my laptop on the same day, and went the extra mile to reset my laptop password. Very helpful and reasonably priced. Would highly recommend!"
+    text: "Handy location in Northbridge. The guys at IT Support Perth were prompt at fixing my laptop on the same day, and went the extra mile to reset my laptop password. Very helpful and reasonably priced. Would highly recommend!"
   },
   {
     name: "Jake Murray",
@@ -43,7 +43,7 @@ const reviews = [
   {
     name: "Ryan Dosselli",
     rating: 5,
-    text: "Amazing efficiency, the issue on my laptop was identified almost immediately and fixed as fast as you could expect. I also got clear explanations of what was going on and what needed to be done. I would recommend Computer Mechanics!"
+    text: "Amazing efficiency, the issue on my laptop was identified almost immediately and fixed as fast as you could expect. I also got clear explanations of what was going on and what needed to be done. I would recommend IT Support Perth!"
   }
 ]
 

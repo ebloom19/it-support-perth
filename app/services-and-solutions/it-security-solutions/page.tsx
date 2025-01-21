@@ -14,7 +14,8 @@ export default function ITSecuritySolutions() {
   const cyberCrimes = [
     {
       title: "Identity Fraud",
-      description: "Protection against identity theft and fraudulent activities",
+      description:
+        "Protection against identity theft and fraudulent activities",
       icon: "🔐",
     },
     {
@@ -65,7 +66,8 @@ export default function ITSecuritySolutions() {
   const features = [
     {
       title: "Expertise You Can Trust",
-      description: "Our team is equipped to handle the latest threats with tailored strategies.",
+      description:
+        "Our team is equipped to handle the latest threats with tailored strategies.",
     },
     {
       title: "Proactive Approach",
@@ -91,10 +93,18 @@ export default function ITSecuritySolutions() {
           className="opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">IT Security Solutions</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            IT Security Solutions
+          </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Comprehensive IT Security Services for Your Business
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -102,10 +112,11 @@ export default function ITSecuritySolutions() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            As cyber threats grow more sophisticated, businesses must take proactive
-            steps to protect their data, systems, and customers. Our IT Security
-            Solutions provide the tools and expertise you need to defend against
-            these threats, ensuring your operations remain secure.
+            As cyber threats grow more sophisticated, businesses must take
+            proactive steps to protect their data, systems, and customers. Our
+            IT Security Solutions provide the tools and expertise you need to
+            defend against these threats, ensuring your operations remain
+            secure.
           </p>
         </div>
       </section>
@@ -119,14 +130,16 @@ export default function ITSecuritySolutions() {
           <Card className="max-w-4xl mx-auto">
             <CardContent className="pt-6">
               <p className="text-lg mb-4">
-                According to the Australian Signals Directorate (ASD) Annual Cyber
-                Threat Report 2023–24:
+                According to the Australian Signals Directorate (ASD) Annual
+                Cyber Threat Report 2023–24:
               </p>
               <p className="text-xl font-semibold mb-4 text-primary">
                 Over 87,400 cybercrime reports were submitted in the past year,
                 averaging one every six minutes.
               </p>
-              <p className="text-lg mb-4">The top three cybercrimes impacting Australians were:</p>
+              <p className="text-lg mb-4">
+                The top three cybercrimes impacting Australians were:
+              </p>
               <div className="grid md:grid-cols-3 gap-4">
                 {cyberCrimes.map((crime, index) => (
                   <div key={index} className="flex items-center gap-2">
@@ -143,7 +156,9 @@ export default function ITSecuritySolutions() {
       {/* Services Section - Light */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">What We Offer</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">
+            What We Offer
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -168,7 +183,11 @@ export default function ITSecuritySolutions() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose Us for IT Security?
           </h2>
-          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-background rounded-lg">
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl px-4 mx-auto bg-background rounded-lg"
+          >
             {features.map((feature, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>{feature.title}</AccordionTrigger>
@@ -185,26 +204,38 @@ export default function ITSecuritySolutions() {
           <Card className="max-w-4xl mx-auto">
             <CardContent className="pt-6">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4">Free Security Assessment</h2>
+                <h2 className="text-3xl font-bold mb-4">
+                  Free Security Assessment
+                </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Take our comprehensive security assessment to evaluate your organization&apos;s security posture
+                  Take our comprehensive security assessment to evaluate your
+                  organization&apos;s security posture
                 </p>
               </div>
 
               <div className="bg-secondary/50 rounded-lg p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-4">Why Take This Assessment?</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Why Take This Assessment?
+                </h3>
                 <ul className="space-y-3 mb-3">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">✓</span>
-                    <span>Identify potential security vulnerabilities in your systems</span>
+                    <span>
+                      Identify potential security vulnerabilities in your
+                      systems
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">✓</span>
-                    <span>Get personalized recommendations for improvement</span>
+                    <span>
+                      Get personalized recommendations for improvement
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">✓</span>
-                    <span>Understand your compliance with security best practices</span>
+                    <span>
+                      Understand your compliance with security best practices
+                    </span>
                   </li>
                 </ul>
                 <SecurityAssessmentCTA />
@@ -215,4 +246,4 @@ export default function ITSecuritySolutions() {
       </section>
     </div>
   );
-} 
+}

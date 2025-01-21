@@ -1,17 +1,20 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Cloud, 
-  Server, 
-  Shield, 
-  Users, 
-  Clock, 
+import {
+  Cloud,
+  Server,
+  Shield,
+  Users,
+  Clock,
   ArrowUpDown,
   Laptop,
   Database,
-  Coins
+  Coins,
 } from "lucide-react";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CloudServices() {
   const cloudBenefits = [
@@ -19,56 +22,71 @@ export default function CloudServices() {
       title: "Scalability",
       description: "Scale your IT infrastructure up or down based on demand",
       icon: ArrowUpDown,
-      color: "text-blue-500"
+      color: "text-blue-500",
     },
     {
       title: "Cost-Effective",
-      description: "Pay only for what you use with no upfront infrastructure costs",
+      description:
+        "Pay only for what you use with no upfront infrastructure costs",
       icon: Coins,
-      color: "text-green-500"
+      color: "text-green-500",
     },
     {
       title: "Reliability",
       description: "99.9% uptime with automatic failover and redundancy",
       icon: Clock,
-      color: "text-purple-500"
+      color: "text-purple-500",
     },
     {
       title: "Security",
-      description: "Enterprise-grade security with regular updates and monitoring",
+      description:
+        "Enterprise-grade security with regular updates and monitoring",
       icon: Shield,
-      color: "text-red-500"
+      color: "text-red-500",
     },
     {
       title: "Collaboration",
       description: "Enable seamless teamwork with anywhere, anytime access",
       icon: Users,
-      color: "text-orange-500"
+      color: "text-orange-500",
     },
     {
       title: "Flexibility",
       description: "Access your data and applications from any device",
       icon: Laptop,
-      color: "text-indigo-500"
-    }
+      color: "text-indigo-500",
+    },
   ];
 
   const cloudSolutions = [
     {
       title: "Microsoft 365",
-      description: "Complete cloud productivity suite with Teams, Exchange, and SharePoint",
-      features: ["Email", "Collaboration", "File Storage", "Video Conferencing"]
+      description:
+        "Complete cloud productivity suite with Teams, Exchange, and SharePoint",
+      features: [
+        "Email",
+        "Collaboration",
+        "File Storage",
+        "Video Conferencing",
+      ],
     },
     {
       title: "Azure Cloud",
-      description: "Enterprise-grade cloud infrastructure and platform services",
-      features: ["Virtual Machines", "Backup", "Disaster Recovery", "Web Hosting"]
+      description:
+        "Enterprise-grade cloud infrastructure and platform services",
+      features: [
+        "Virtual Machines",
+        "Backup",
+        "Disaster Recovery",
+        "Web Hosting",
+      ],
     },
     {
       title: "Cloud Storage",
-      description: "Secure and scalable storage solutions for your business data",
-      features: ["File Sharing", "Backup", "Sync", "Version Control"]
-    }
+      description:
+        "Secure and scalable storage solutions for your business data",
+      features: ["File Sharing", "Backup", "Sync", "Version Control"],
+    },
   ];
 
   return (
@@ -83,10 +101,18 @@ export default function CloudServices() {
           className="opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Cloud Services</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Cloud Services
+          </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Transform your business with secure and scalable cloud solutions
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -96,16 +122,19 @@ export default function CloudServices() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Why Move to the Cloud?</h2>
             <p className="text-lg text-muted-foreground mb-12">
-              Cloud technology offers unparalleled flexibility, collaboration, and
-              security for businesses. Our Cloud Services make transitioning to the
-              cloud simple and efficient, empowering small and medium businesses to
-              work smarter, not harder.
+              Cloud technology offers unparalleled flexibility, collaboration,
+              and security for businesses. Our Cloud Services make transitioning
+              to the cloud simple and efficient, empowering small and medium
+              businesses to work smarter, not harder.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             {cloudBenefits.map((benefit, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-all duration-300"
+              >
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <benefit.icon className={`w-8 h-8 ${benefit.color}`} />
@@ -124,13 +153,22 @@ export default function CloudServices() {
       {/* Solutions Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Our Cloud Solutions</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            Our Cloud Solutions
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {cloudSolutions.map((solution, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-all duration-300"
+              >
                 <CardHeader>
-                  <CardTitle className="text-xl mb-4">{solution.title}</CardTitle>
-                  <p className="text-muted-foreground">{solution.description}</p>
+                  <CardTitle className="text-xl mb-4">
+                    {solution.title}
+                  </CardTitle>
+                  <p className="text-muted-foreground">
+                    {solution.description}
+                  </p>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -146,8 +184,6 @@ export default function CloudServices() {
           </div>
         </div>
       </section>
-
-      {/* Rest of your sections... */}
     </div>
   );
-} 
+}

@@ -7,6 +7,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function ManagedITServicesProvider() {
   const services = [
@@ -65,10 +67,18 @@ export default function ManagedITServicesProvider() {
           className="opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Managed IT Services Provider (MSP)</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Managed IT Services Provider (MSP)
+          </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Your IT Partner for Seamless Operations
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -76,10 +86,10 @@ export default function ManagedITServicesProvider() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            Keeping your IT systems running smoothly is critical for the success of your
-            business, but it shouldn&apos;t be your responsibility. Our Managed IT Services
-            ensure your technology is reliable, secure, and optimized, so you can focus on
-            growing your business.
+            Keeping your IT systems running smoothly is critical for the success
+            of your business, but it shouldn&apos;t be your responsibility. Our
+            Managed IT Services ensure your technology is reliable, secure, and
+            optimized, so you can focus on growing your business.
           </p>
         </div>
       </section>
@@ -87,7 +97,9 @@ export default function ManagedITServicesProvider() {
       {/* Services Section - Secondary */}
       <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">What We Offer</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">
+            What We Offer
+          </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -112,9 +124,12 @@ export default function ManagedITServicesProvider() {
           <Card className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20">
             <CardContent className="pt-6">
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-4">Evaluate Your IT Security</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Evaluate Your IT Security
+                </h3>
                 <p className="mb-6">
-                  Not sure about your current security posture? Take our comprehensive security assessment.
+                  Not sure about your current security posture? Take our
+                  comprehensive security assessment.
                 </p>
                 <SecurityAssessmentCTA />
               </div>
@@ -132,12 +147,12 @@ export default function ManagedITServicesProvider() {
           <Card className="max-w-3xl mx-auto">
             <CardContent className="pt-6 space-y-4">
               <p className="text-lg text-muted-foreground">
-                Businesses using managed IT services experience an average 30% reduction in
-                security incidents and 20% savings on IT costs.
+                Businesses using managed IT services experience an average 30%
+                reduction in security incidents and 20% savings on IT costs.
               </p>
               <p className="text-lg text-muted-foreground">
-                Proactive monitoring minimizes disruptions, saving time and money while
-                ensuring optimal performance.
+                Proactive monitoring minimizes disruptions, saving time and
+                money while ensuring optimal performance.
               </p>
             </CardContent>
           </Card>
@@ -147,8 +162,14 @@ export default function ManagedITServicesProvider() {
       {/* Features Section - Light */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <Accordion type="single" collapsible className="max-w-3xl bg-secondary px-4 mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose Us?
+          </h2>
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl bg-secondary px-4 mx-auto"
+          >
             {features.map((feature, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>{feature.title}</AccordionTrigger>
@@ -165,9 +186,9 @@ export default function ManagedITServicesProvider() {
           <Card className="max-w-3xl mx-auto border-none">
             <CardContent className="pt-6">
               <p className="text-lg text-center">
-                Let us handle your IT challenges while you focus on driving success. With our
-                managed services, you&apos;ll enjoy peace of mind knowing your technology is in
-                expert hands.
+                Let us handle your IT challenges while you focus on driving
+                success. With our managed services, you&apos;ll enjoy peace of
+                mind knowing your technology is in expert hands.
               </p>
             </CardContent>
           </Card>
@@ -175,4 +196,4 @@ export default function ManagedITServicesProvider() {
       </section>
     </div>
   );
-} 
+}
