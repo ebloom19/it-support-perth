@@ -12,11 +12,11 @@ interface SecurityAssessmentCTAProps {
 
 export function SecurityAssessmentCTA({ variant = "default", className = "" }: SecurityAssessmentCTAProps) {
   return (
-    <Button variant={variant} onClick={() => formbricks.track("security_assesment")} asChild className={`flex items-center gap-2 ${className}`}>
-      <Button>
+    <Button variant={variant} asChild className={`flex items-center gap-2 ${className}`}>
+      <Link href="https://formbricks-production-8051.up.railway.app/s/cm5w8vrn6000gpc01abgpettm">
         <Shield className="w-4 h-4" />
         Take Free Security Assessment
-      </Button>
+      </Link>
     </Button>
   );
 } 

@@ -6,6 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
 
 export default function AIEnhancedITSupport() {
   const benefits = [
@@ -59,10 +62,18 @@ export default function AIEnhancedITSupport() {
           className="opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">AI-Enhanced IT Support</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            AI-Enhanced IT Support
+          </h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Revolutionize Your IT with AI-Powered Solutions
           </p>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button asChild>
+              <Link href="/contact-us">Get Started</Link>
+            </Button>
+            <SecurityAssessmentCTA variant="secondary" />
+          </div>
         </div>
       </div>
 
@@ -70,10 +81,10 @@ export default function AIEnhancedITSupport() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            Managing IT can be a challenge for small and medium businesses, but it
-            doesn&apos;t have to be. Our AI-Enhanced IT Support brings cutting-edge
-            automation to your systems, saving you time, reducing costs, and
-            improving security.
+            Managing IT can be a challenge for small and medium businesses, but
+            it doesn&apos;t have to be. Our AI-Enhanced IT Support brings
+            cutting-edge automation to your systems, saving you time, reducing
+            costs, and improving security.
           </p>
         </div>
       </section>
@@ -111,8 +122,8 @@ export default function AIEnhancedITSupport() {
               <p className="text-lg text-muted-foreground">
                 Our AI tools integrate seamlessly into your existing
                 infrastructure. They handle routine tasks and monitor for risks,
-                while our human experts step in for complex issues that require a
-                personal touch. This combination of automation and hands-on
+                while our human experts step in for complex issues that require
+                a personal touch. This combination of automation and hands-on
                 expertise ensures a seamless experience.
               </p>
             </CardContent>
@@ -123,8 +134,14 @@ export default function AIEnhancedITSupport() {
       {/* Features Section - Secondary */}
       <section className="bg-secondary py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <Accordion type="single" collapsible className="max-w-3xl px-4 mx-auto bg-background rounded-lg">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose Us?
+          </h2>
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl px-4 mx-auto bg-background rounded-lg"
+          >
             {features.map((feature, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger>{feature.title}</AccordionTrigger>

@@ -51,19 +51,19 @@ export default function AboutUsPage() {
       name: "Garry",
       role: "Senior IT Manager and Computer Repair Specialist",
       description: "Garry brings a wealth of experience with 25 years in IT management and support, spanning both internal and external service provider roles. His expertise covers a broad spectrum of the IT field, demonstrating a seasoned career that includes managing complex IT environments and providing top-tier support.",
-      image: "/images/team/garry.webp"
+      image: "/images/team/garry.png"
     },
     {
       name: "Brett",
       role: "Senior IT Manager and Computer Repair Specialist",
       description: "Brett has been with Computer Mechanics for over 15 years. He has exemplified IT excellence through his comprehensive industry knowledge and ability to rapidly diagnose issues. His dedication and skills have not only enhanced our service quality but have also played a crucial role in building trust and reliability among our valued customers.",
-      image: "/images/team/brett.webp"
+      image: "/images/team/brett.png"
     },
     {
       name: "Amir",
-      role: "Lead Computer Repair Technician",
+      role: "Cloud System Engineer",
       description: "Amir brings over a decade of expertise to the IT industry, specializing in a broad array of technologies including server management, networking, cloud solutions, virtualisation, and troubleshooting computer systems.",
-      image: "/images/team/amir.webp"
+      image: "/images/team/amir.png"
     }
   ];
 
