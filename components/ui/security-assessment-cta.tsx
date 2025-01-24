@@ -13,7 +13,7 @@ interface SecurityAssessmentCTAProps {
 export function SecurityAssessmentCTA({ variant = "default", className = "" }: SecurityAssessmentCTAProps) {
   return (
     <Button variant={variant} asChild className={`flex items-center gap-2 ${className}`}>
-      <Link href="https://formbricks-production-8051.up.railway.app/s/cm5w8vrn6000gpc01abgpettm">
+      <Link href="https://forms.itsupportperth.net.au/s/p2q47gwkk81xuaiwgx8ypdg2">
         <Shield className="w-4 h-4" />
         Take Free Security Assessment
       </Link>
