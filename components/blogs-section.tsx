@@ -35,7 +35,7 @@ export const BlogsSection = () => {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 opacity-30" />
-        <span className="text-sm text-white p-4 z-10 relative">
+        <span className="text-sm p-4 z-10 relative">
           {formattedDate}
         </span>
       </div>
@@ -59,7 +59,7 @@ export const BlogsSection = () => {
                 title={post.title}
                 description={post.description}
                 header={<PostHeader date={post.date} image={post.image} />}
-                className={i === displayPosts.length - 1 ? 'md:col-span-2' : ''}
+                className={`${i === displayPosts.length - 1 ? 'md:col-span-2' : ''} [&_.description]:line-clamp-3`}
                 href={blogUrl}
               />
             );

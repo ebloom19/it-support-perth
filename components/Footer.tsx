@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { posts } from '@/.velite';
-import { sortPosts } from '@/lib/utils';
+import { CustomBlogOrSeoBot, getTitle } from '@/lib/seobot.helpers';
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -51,9 +50,8 @@ const servicesAndSolutions = [
   }
 ];
 
-export default function Footer() {
-  const sortedPosts = sortPosts(posts.filter((post) => post.published));
-  const displayPosts = sortedPosts.slice(0, 4);
+export default function Footer({ posts }: { posts: CustomBlogOrSeoBot[] }) {
+  const displayPosts = posts.slice(0, 4);
 
   return (
     <footer className="bg-secondary p-8 border-t">
@@ -130,7 +128,7 @@ export default function Footer() {
                 href={`/blog/${post.slugAsParams}`}
                 className="text-sm md:text-base hover:underline"
               >
-                {post.title}
+                {getTitle(post)}
               </Link>
             ))}
           </div>

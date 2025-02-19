@@ -2,9 +2,16 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import { defineCollection, defineConfig, s } from 'velite';
 
-const computedFields = <T extends { slug: string }>(data: T) => ({
+const computedFields = <
+  T extends { slug: string; published: boolean; date: string },
+>(
+  data: T,
+) => ({
   ...data,
   slugAsParams: data.slug.split('/').slice(1).join('/'),
+  isPublished:
+    data.published &&
+    new Date(data.date).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0),
 });
 
 const posts = defineCollection({
@@ -18,8 +25,14 @@ const posts = defineCollection({
       date: s.isodate(),
       published: s.boolean().default(true),
       tags: s.array(s.string()).optional(),
+      podcast: s.string().max(200).optional(),
+      podcast_title: s.string().max(200).optional(),
       image: s.string().optional(),
       body: s.mdx(),
+      url: s.string().optional(),
+      author: s.string().optional(),
+      category: s.string().optional(),
+      readingTime: s.number().optional(),
     })
     .transform(computedFields),
 });

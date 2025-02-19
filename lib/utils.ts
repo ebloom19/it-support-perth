@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { slug } from 'github-slugger';
 import { twMerge } from 'tailwind-merge';
+import { type CustomBlogOrSeoBot } from './seobot.helpers';
 
 import { Post } from '@/.velite';
 
@@ -25,12 +26,13 @@ export function sortPosts(posts: Array<Post>) {
   });
 }
 
-export function getAllTags(posts: Array<Post>) {
+export function getAllTags(posts: Array<CustomBlogOrSeoBot>) {
   const tags: Record<string, number> = {};
   posts.forEach((post) => {
-    if (post.published) {
+    if (post.isPublished) {
       post.tags?.forEach((tag) => {
-        tags[tag] = (tags[tag] ?? 0) + 1;
+        const key = typeof tag === 'string' ? tag : tag.title;
+        tags[key] = (tags[key] ?? 0) + 1;
       });
     }
   });

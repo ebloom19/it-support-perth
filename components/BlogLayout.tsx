@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 import {
   EmailIcon,
   EmailShareButton,
@@ -12,36 +12,42 @@ import {
   TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-} from 'next-share';
-import React from 'react';
+} from "next-share";
 
-import { Card, CardContent } from '@/components/ui/card';
-import { getAllTags, sortPosts } from '@/lib/utils';
-import { posts } from '@/.velite';
+import { Card, CardContent } from "@/components/ui/card";
+import { CustomBlogOrSeoBot, getTitle } from "@/lib/seobot.helpers";
+import { getAllTags } from "@/lib/utils";
 
-import { Tag } from './Tag';
+import { PodcastEmbed } from "./PodcastEmbed";
+import { Tag } from "./Tag";
 
 type BlogLayoutProps = {
   children: React.ReactNode;
   title: string;
   slug: string;
+  allPosts: CustomBlogOrSeoBot[];
   tags?: string[];
   description?: string;
+  podcast?: string;
+  podcastTitle?: string;
 };
 
 const BlogLayout: React.FC<BlogLayoutProps> = ({
   children,
   title,
   tags,
+  allPosts,
   description,
   slug,
+  podcast,
+  podcastTitle,
 }) => {
-  const latestPosts = sortPosts(posts).slice(0, 5);
-  const allTags = getAllTags(posts);
-  const shareUrl = `https://www.itsupportperth.net.au/${slug}`;
+  const latestPosts = allPosts.slice(0, 5);
+  const allTags = getAllTags(allPosts);
+  const shareUrl = `https://www.acedit.ai/${slug}`;
 
   return (
-    <div className="container mx-auto px-4 md:px-20 py-8">
+    <div className="container pt-24 md:pt-32 mx-auto px-4 md:px-20 py-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Card>
@@ -83,6 +89,16 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
         </div>
         <div className="md:col-span-1">
           <div className="sticky top-32">
+            {/* Podcast Embed for Desktop */}
+            {podcast && (
+              <div className="mb-6">
+                <PodcastEmbed
+                  title={podcastTitle || title}
+                  spotifyPodcastId={podcast}
+                  size="compact"
+                />
+              </div>
+            )}
             <Card className="mb-6 bg-white dark:bg-muted bg-opacity-80 rounded-lg">
               <CardContent>
                 <h2 className="text-xl font-semibold mb-4 py-2">
@@ -92,11 +108,11 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   {latestPosts.map((post) => (
                     <li key={post.slug} className="list-none">
                       <Link
-                        title={post.title}
-                        href={'/' + post.slug}
+                        title={getTitle(post)}
+                        href={"/" + post.slug}
                         className="hover:underline"
                       >
-                        {post.title}
+                        {getTitle(post)}
                       </Link>
                     </li>
                   ))}

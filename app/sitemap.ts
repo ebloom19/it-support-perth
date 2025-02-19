@@ -84,8 +84,38 @@ type ChangeFrequency =
   | "yearly"
   | "never";
 
+  async function getSeoBotSitemap() {
+    const key = process.env.SEOBOT_API_KEY;
+    if (!key) {
+      throw Error('SEOBOT_API_KEY environment variable must be set');
+    }
+  
+    try {
+      const res = await fetch(`https://app.seobotai.com/api/sitemap?key=${key}`, {
+        cache: 'no-store',
+      });
+      const result = await res.json();
+  
+      // Transform SeoBot sitemap data to match MetadataRoute.Sitemap format
+      return result.data.articles.map(
+        (article: { slug: string; lastmod: string }) => ({
+          url: `${siteConfig.url}/blog/${article.slug}`,
+          priority: 0.8,
+          changeFrequency: 'weekly' as const,
+          lastModified: article.lastmod,
+        }),
+      );
+    } catch (error) {
+      console.error('Failed to fetch SeoBot sitemap:', error);
+      return [];
+    }
+  }
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const sitemapPost = posts.map((post) => ({
+  const publishedPosts = posts.filter((post) => post.isPublished);
+  const seoBotPosts = await getSeoBotSitemap();
+
+  const sitemapPost = publishedPosts.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slugAsParams}`,
     lastModified: new Date(post.date),
     changeFrequency: "weekly" as ChangeFrequency,
@@ -126,6 +156,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     ...sitemapPost,
+    ...seoBotPosts,
     ...sitemapRoutes,
   ];
 }
