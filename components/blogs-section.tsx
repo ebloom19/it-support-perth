@@ -1,25 +1,25 @@
-import { format } from 'date-fns';
-import Image from 'next/image';
+import { format } from "date-fns";
+import Image from "next/image";
 
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
-import { sortPosts } from '@/lib/utils';
-import { posts } from '@/.velite';
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { getNormalizedPosts } from "@/lib/seobot.server";
+import { getDate, getDescription, getTitle } from "@/lib/seobot.helpers";
 
-export const BlogsSection = () => {
-  const sortedPosts = sortPosts(posts.filter((post) => post.published));
+export const BlogsSection = async () => {
+  const posts = await getNormalizedPosts();
 
-  const targetPost = sortedPosts.find(
-    (post) => post.slug === 'blog/ai-interview-answer-generator',
+  const targetPost = posts.find(
+    (post) => post.slug === "blog/ai-interview-answer-generator"
   );
-  const otherPosts = sortedPosts.filter(
-    (post) => post.slug !== 'blog/ai-interview-answer-generator',
+  const otherPosts = posts.filter(
+    (post) => post.slug !== "blog/ai-interview-answer-generator"
   );
   const displayPosts = targetPost
     ? [targetPost, ...otherPosts.slice(0, 3)]
-    : sortedPosts.slice(0, 5);
+    : posts.slice(0, 5);
 
   const PostHeader = ({ date, image }: { date: string; image?: string }) => {
-    const formattedDate = format(new Date(date), 'MMMM dd, yyyy');
+    const formattedDate = format(new Date(date), "MMMM dd, yyyy");
 
     return (
       <div className="flex flex-1 w-full h-1/2 min-h-[6rem] rounded-xl relative overflow-hidden">
@@ -35,9 +35,7 @@ export const BlogsSection = () => {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 opacity-30" />
-        <span className="text-sm p-4 z-10 relative">
-          {formattedDate}
-        </span>
+        <span className="text-sm p-4 z-10 relative">{formattedDate}</span>
       </div>
     );
   };
@@ -47,19 +45,22 @@ export const BlogsSection = () => {
       <BentoGrid className="max-w-7xl mx-auto mb-8">
         {displayPosts?.length > 0 ? (
           displayPosts.map((post, i) => {
-            const blogUrl = post.slug.startsWith('/')
+            const blogUrl = post.slug.startsWith("/")
               ? post.slug
-              : post.slug.startsWith('blog/')
-                ? `/${post.slug}`
-                : `/blog/${post.slug}`;
+              : post.slug.startsWith("blog/")
+              ? `/${post.slug}`
+              : `/blog/${post.slug}`;
 
             return (
               <BentoGridItem
                 key={post.slug}
-                title={post.title}
-                description={post.description}
-                header={<PostHeader date={post.date} image={post.image} />}
-                className={`${i === displayPosts.length - 1 ? 'md:col-span-2' : ''} [&_.description]:line-clamp-3`}
+                title={getTitle(post)}
+                description={getDescription(post)}
+                header={<PostHeader date={getDate(post)} image={post.image} />}
+                overrideBackgroundColor="bg-background"
+                className={`${
+                  i === displayPosts.length - 1 ? "md:col-span-2" : ""
+                } [&_.description]:line-clamp-3`}
                 href={blogUrl}
               />
             );

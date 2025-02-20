@@ -44,11 +44,11 @@
 }
 
 .seobot-content td {
-  @apply p-3 border border-gray-700 text-gray-300;
+  @apply p-3 border border-gray-700 text-gray-700;
 }
 
 .seobot-content tr:nth-child(even) {
-  @apply bg-gray-800;
+  @apply bg-gray-300;
 }
 
 .seobot-content tr:hover {

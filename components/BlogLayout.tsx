@@ -47,7 +47,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
   const shareUrl = `https://www.acedit.ai/${slug}`;
 
   return (
-    <div className="container pt-24 md:pt-32 mx-auto px-4 md:px-20 py-8">
+    <div className="container mx-auto px-4 md:px-20 py-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Card>
