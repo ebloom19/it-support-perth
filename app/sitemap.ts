@@ -112,7 +112,7 @@ type ChangeFrequency =
   }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const publishedPosts = posts.filter((post) => post.isPublished);
+  const publishedPosts = posts.filter((post) => post.published);
   const seoBotPosts = await getSeoBotSitemap();
 
   const sitemapPost = publishedPosts.map((post) => ({

@@ -65,7 +65,6 @@ export async function normalizePost(
       published: article.published,
       body: article.markdown,
       html: article.html,
-      isPublished: article.published,
       image: article.image,
       tags: article.tags.map((tag) => tag.title),
       // Add additional mappings as needed to satisfy the Post type
@@ -91,7 +90,7 @@ export async function getNormalizedPosts() {
   const combinedPosts = [...normalizedArticles, ...posts];
 
   const sortedPosts = sortPosts(
-    combinedPosts.filter((post) => post.isPublished),
+    combinedPosts.filter((post) => post.published),
   );
 
   return sortedPosts;

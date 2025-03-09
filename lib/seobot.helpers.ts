@@ -28,7 +28,7 @@ export function getDate(post: { date?: string; publishedAt?: string }): string {
 
 export type CustomBlogOrSeoBot =
   | Post
-  | (IArticle & { slugAsParams: string; isPublished: boolean });
+  | (IArticle & { slugAsParams: string; published: boolean });
 
 export function sortPosts(posts: Array<CustomBlogOrSeoBot>) {
   return posts.sort((a, b) => {

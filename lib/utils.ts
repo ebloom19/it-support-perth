@@ -29,7 +29,7 @@ export function sortPosts(posts: Array<Post>) {
 export function getAllTags(posts: Array<CustomBlogOrSeoBot>) {
   const tags: Record<string, number> = {};
   posts.forEach((post) => {
-    if (post.isPublished) {
+    if (post.published) {
       post.tags?.forEach((tag) => {
         const key = typeof tag === 'string' ? tag : tag.title;
         tags[key] = (tags[key] ?? 0) + 1;
