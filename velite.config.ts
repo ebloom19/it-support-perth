@@ -9,9 +9,6 @@ const computedFields = <
 ) => ({
   ...data,
   slugAsParams: data.slug.split('/').slice(1).join('/'),
-  isPublished:
-    data.published &&
-    new Date(data.date).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0),
 });
 
 const posts = defineCollection({

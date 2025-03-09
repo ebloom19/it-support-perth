@@ -101,7 +101,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const post = (await getPostFromParams(params)) as CustomBlogOrSeoBot;
   const posts = await getNormalizedPosts();
 
-  if (!post || !post.isPublished) {
+  if (!post || !post.published) {
     notFound();
   }
 
