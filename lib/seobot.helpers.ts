@@ -29,11 +29,3 @@ export function getDate(post: { date?: string; publishedAt?: string }): string {
 export type CustomBlogOrSeoBot =
   | Post
   | (IArticle & { slugAsParams: string; published: boolean });
-
-export function sortPosts(posts: Array<CustomBlogOrSeoBot>) {
-  return posts.sort((a, b) => {
-    if (getDate(a) > getDate(b)) return -1;
-    if (getDate(a) < getDate(b)) return 1;
-    return 0;
-  });
-}

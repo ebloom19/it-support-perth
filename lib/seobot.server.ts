@@ -1,10 +1,10 @@
-import { BlogClient } from 'seobot';
-import type { IArticle, IArticleIndex } from 'seobot/dist/types/blog';
+import { BlogClient } from "seobot";
+import type { IArticle, IArticleIndex } from "seobot/dist/types/blog";
 
 import { posts, type Post } from "@/.velite";
 
-import { CustomBlogOrSeoBot, sortPosts } from './seobot.helpers';
-import { siteConfig } from '@/config/site';
+import { CustomBlogOrSeoBot } from "./seobot.helpers";
+import { siteConfig } from "@/config/site";
 
 /**
  * Create a SeoBot client using a secure, server‐side API key.
@@ -13,7 +13,7 @@ function getSeoBotClient(): BlogClient {
   // Use a server side-only env variable.
   const apiKey = process.env.SEOBOT_API_KEY;
   if (!apiKey) {
-    throw new Error('SEOBOT_API_KEY environment variable must be set');
+    throw new Error("SEOBOT_API_KEY environment variable must be set");
   }
   return new BlogClient(apiKey);
 }
@@ -22,7 +22,7 @@ function getSeoBotClient(): BlogClient {
  * Retrieves SeoBot articles (optionally for a given page).
  */
 export async function getSeoBotPosts(
-  page?: number,
+  page?: number
 ): Promise<{ articles: IArticleIndex[]; total: number }> {
   const client = getSeoBotClient();
   return client.getArticles(page || 0);
@@ -47,9 +47,9 @@ export async function getSeoBotArticle(slug: string): Promise<IArticle | null> {
  * @returns The normalized article object.
  */
 export async function normalizePost(
-  post: Post | IArticleIndex,
+  post: Post | IArticleIndex
 ): Promise<CustomBlogOrSeoBot> {
-  if ('headline' in post) {
+  if ("headline" in post) {
     const article = await getSeoBotArticle(post.slug);
 
     if (!article) {
@@ -83,15 +83,9 @@ export async function getNormalizedPosts() {
   // Get and normalize SeoBot posts
   const { articles } = await getSeoBotPosts();
   const normalizedArticles = await Promise.all(
-    articles.map(async (article) => normalizePost(article)),
+    articles.map(async (article) => normalizePost(article))
   );
 
   // Combine both sources
-  const combinedPosts = [...normalizedArticles, ...posts];
-
-  const sortedPosts = sortPosts(
-    combinedPosts.filter((post) => post.published),
-  );
-
-  return sortedPosts;
+  return [...normalizedArticles, ...posts];
 }
