@@ -33,22 +33,22 @@ export default function SecurityAdvicePage() {
                 
                 <div className="space-y-4">
                   <p className="text-lg">
-                    People avoid thinking about this stuff. But most actions cost nothing and are quick and easy.
+                    People generally avoid thinking about IT security. But your first actions cost nothing and are quick and easy.
                   </p>
                   <p className="text-lg">
-                    Who are the people that take action? We&apos;ve learned that they&apos;re the people who make a phone call. We do our best to be jargon-free.
+                  Who are the people that take action? We’ve learned they’re the people who make a phone call.
                   </p>
                   <p className="text-lg font-medium">
-                    Try Amir on <a href="tel:0893251196" className="text-primary hover:underline">9325 1196</a> and mention the Sitting Duck ad.
+                  We do our best to be jargon-free. Try Amir on <a href="tel:0893251196" className="text-primary hover:underline">9325 1196</a> and mention the Sitting Duck ad.
                   </p>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4 pt-6">
-                  <Button variant="outline" size="lg">
-                    Email: support@computermechanics.com.au
-                  </Button>
                   <Button size="lg" className="bg-primary hover:bg-primary/90">
                     Call: (08) 9325 1196
+                  </Button>
+                  <Button variant="outline" size="lg">
+                    Email: support@computermechanics.com.au
                   </Button>
                 </div>
               </div>
