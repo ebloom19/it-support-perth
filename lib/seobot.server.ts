@@ -1,5 +1,3 @@
-"use server";
-
 import { BlogClient } from "seobot";
 import type { IArticle, IArticleIndex } from "seobot/dist/types/blog";
 

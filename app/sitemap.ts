@@ -73,6 +73,10 @@ const routes: Route[] = [
     name: "Reviews",
     href: "/reviews",
   },
+  {
+    name: "Free IT Security Advice",
+    href: "/free-it-security-advice",
+  },
 ];
 
 type ChangeFrequency =
@@ -158,5 +162,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...sitemapPost,
     ...seoBotPosts,
     ...sitemapRoutes,
+    {
+      url: `${siteConfig.url}/free-it-security-advice`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 }
