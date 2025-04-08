@@ -13,22 +13,15 @@ export default function SecurityAdvicePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="container mx-auto px-4 py-16">
-        {/* Hero Section */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Stop Being a Sitting Duck!
-          </h1>
-        </div>
-
         {/* CTA Section */}
         <Card className="mb-16 bg-secondary">
           <CardContent className="p-8">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 space-y-6">
                 <div className="text-center md:text-left">
-                  <h2 className="text-3xl font-bold mb-4">
-                    Take Action Today - It&apos;s Quick & Easy
-                  </h2>
+                  <h1 className="text-3xl font-bold mb-4">
+                    Congrats on taking an action
+                  </h1>
                 </div>
                 
                 <div className="space-y-4">
