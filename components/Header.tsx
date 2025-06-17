@@ -30,52 +30,39 @@ export default function Header() {
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger className="font-medium text-left transition-colors hover:text-foreground/80 text-foreground/60">
-            <Link href="/services-and-solutions">Services & Solutions</Link>
+            <Link href="/services-and-solutions">Our Services</Link>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-              <Link href="/services-and-solutions/ai-enhanced-it-support" className="w-full">
-                AI-Enhanced IT Support
-              </Link>
-            </DropdownMenuItem>
+          <DropdownMenuContent className="w-64">
             <DropdownMenuItem>
               <Link href="/services-and-solutions/managed-it-services-provider" className="w-full">
-              Managed IT Services Provider
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/services-and-solutions/it-consulting" className="w-full">
-                IT Consulting
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/services-and-solutions/cloud-services" className="w-full">
-                Cloud Services
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/services-and-solutions/on-premises-server-management" className="w-full">
-                On-Premises Server Management
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/services-and-solutions/backup-and-disaster-recovery-solutions" className="w-full">
-                Backup & Disaster Recovery Solutions
+                <div>
+                  <div className="font-medium">Managed IT Services</div>
+                  <div className="text-xs text-muted-foreground">24/7 proactive support</div>
+                </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/services-and-solutions/it-security-solutions" className="w-full">
-                IT Security Solutions
+                <div>
+                  <div className="font-medium">IT Security Solutions</div>
+                  <div className="text-xs text-muted-foreground">Comprehensive cybersecurity</div>
+                </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/services-and-solutions/email-protection-service" className="w-full">
-                Email Protection Services
+              <Link href="/services-and-solutions/cloud-services" className="w-full">
+                <div>
+                  <div className="font-medium">Cloud Services</div>
+                  <div className="text-xs text-muted-foreground">Scalable cloud solutions</div>
+                </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/services-and-solutions/firewall-service" className="w-full">
-                Firewall Services
+              <Link href="/services-and-solutions/backup-and-disaster-recovery-solutions" className="w-full">
+                <div>
+                  <div className="font-medium">Backup & Disaster Recovery</div>
+                  <div className="text-xs text-muted-foreground">Business continuity planning</div>
+                </div>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
