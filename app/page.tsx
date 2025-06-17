@@ -2,17 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Shield, Award } from 'lucide-react';
-import { AnimatedHero } from '@/components/AnimatedHero';
-import { AnimatedServices } from '@/components/AnimatedServices';
+import { EnhancedHeroSection } from '@/components/EnhancedHeroSection';
+import { InteractiveServiceShowcase } from '@/components/InteractiveServiceShowcase';
 import { AnimatedTestimonials } from '@/components/AnimatedTestimonials';
 import { BlogsSection } from '@/components/blogs-section';
+import { SocialProofSection } from '@/components/SocialProofSection';
 
 export default function Home() {
 
   return (
     <div>
-      <AnimatedHero />
-      <AnimatedServices />
+      <EnhancedHeroSection />
+      <InteractiveServiceShowcase />
+      
+      {/* Social Proof Section */}
+      <SocialProofSection variant="stats" />
       
       {/* About Section */}
       <section className="py-16">
@@ -84,7 +88,7 @@ export default function Home() {
         </div>
       </section>
 
-      <AnimatedTestimonials />
+      <SocialProofSection variant="testimonials" />
       <BlogsSection />
 
       {/* Trust & Certifications Section */}

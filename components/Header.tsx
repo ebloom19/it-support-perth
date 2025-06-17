@@ -32,36 +32,88 @@ export default function Header() {
           <DropdownMenuTrigger className="font-medium text-left transition-colors hover:text-foreground/80 text-foreground/60">
             <Link href="/services-and-solutions">Our Services</Link>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-64">
+          <DropdownMenuContent className="w-72">
+            {/* Core Services - Prominent */}
+            <div className="px-2 py-1">
+              <div className="text-xs font-semibold text-[#3c91e6] uppercase tracking-wide mb-2">Core Services</div>
+            </div>
             <DropdownMenuItem>
               <Link href="/services-and-solutions/managed-it-services-provider" className="w-full">
                 <div>
-                  <div className="font-medium">Managed IT Services</div>
-                  <div className="text-xs text-muted-foreground">24/7 proactive support</div>
+                  <div className="font-semibold text-foreground">Managed IT Services</div>
+                  <div className="text-xs text-muted-foreground">24/7 proactive support & monitoring</div>
                 </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/services-and-solutions/it-security-solutions" className="w-full">
                 <div>
-                  <div className="font-medium">IT Security Solutions</div>
-                  <div className="text-xs text-muted-foreground">Comprehensive cybersecurity</div>
+                  <div className="font-semibold text-foreground">IT Security Solutions</div>
+                  <div className="text-xs text-muted-foreground">Comprehensive cybersecurity protection</div>
                 </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/services-and-solutions/cloud-services" className="w-full">
                 <div>
-                  <div className="font-medium">Cloud Services</div>
-                  <div className="text-xs text-muted-foreground">Scalable cloud solutions</div>
+                  <div className="font-semibold text-foreground">Cloud Services & Migration</div>
+                  <div className="text-xs text-muted-foreground">Scalable Microsoft 365 & Azure solutions</div>
                 </div>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/services-and-solutions/backup-and-disaster-recovery-solutions" className="w-full">
                 <div>
-                  <div className="font-medium">Backup & Disaster Recovery</div>
-                  <div className="text-xs text-muted-foreground">Business continuity planning</div>
+                  <div className="font-semibold text-foreground">Backup & Disaster Recovery</div>
+                  <div className="text-xs text-muted-foreground">Business continuity & data protection</div>
+                </div>
+              </Link>
+            </DropdownMenuItem>
+            
+            {/* Divider */}
+            <div className="border-t border-border my-2"></div>
+            
+            {/* Additional Services - Less Prominent */}
+            <div className="px-2 py-1">
+              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">Additional Services</div>
+            </div>
+            <DropdownMenuItem>
+              <Link href="/services-and-solutions/it-consulting" className="w-full">
+                <div>
+                  <div className="font-medium text-muted-foreground">IT Consulting</div>
+                  <div className="text-xs text-muted-foreground/70">Strategic technology guidance</div>
+                </div>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services-and-solutions/on-premises-server-management" className="w-full">
+                <div>
+                  <div className="font-medium text-muted-foreground">Server Management</div>
+                  <div className="text-xs text-muted-foreground/70">On-premises infrastructure support</div>
+                </div>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services-and-solutions/firewall-service" className="w-full">
+                <div>
+                  <div className="font-medium text-muted-foreground">Firewall Services</div>
+                  <div className="text-xs text-muted-foreground/70">Network security & protection</div>
+                </div>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services-and-solutions/email-protection-service" className="w-full">
+                <div>
+                  <div className="font-medium text-muted-foreground">Email Protection</div>
+                  <div className="text-xs text-muted-foreground/70">Anti-spam & email security</div>
+                </div>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services-and-solutions/ai-enhanced-it-support" className="w-full">
+                <div>
+                  <div className="font-medium text-muted-foreground">AI-Enhanced Support</div>
+                  <div className="text-xs text-muted-foreground/70">Smart automation & monitoring</div>
                 </div>
               </Link>
             </DropdownMenuItem>

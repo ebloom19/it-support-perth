@@ -1,190 +1,138 @@
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
+import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 
 export default function ITConsulting() {
-  const coreServices = [
+  const features = [
     {
       title: "Strategic IT Planning",
-      description:
-        "We evaluate your current systems and develop a tailored roadmap to enhance productivity, security, and scalability.",
+      description: "Comprehensive evaluation of your current systems and development of a tailored roadmap to enhance productivity, security, and scalability for your business.",
       icon: "📋",
+      color: "text-[#3c91e6]"
     },
     {
-      title: "Cloud and Security Consulting",
-      description:
-        "Considering a move to the cloud? Worried about data security? We'll guide you through the best options for your business.",
+      title: "Cloud Strategy & Migration",
+      description: "Expert guidance for cloud adoption, including platform selection, migration planning, and hybrid cloud solutions tailored to your business needs.",
       icon: "☁️",
+      color: "text-[#01042b]"
     },
     {
-      title: "Simplified Solutions",
-      description:
-        "We explain IT in plain terms, empowering you to make confident, informed decisions without jargon.",
-      icon: "🎯",
+      title: "Technology Assessment",
+      description: "Thorough analysis of your IT infrastructure, identifying bottlenecks, security gaps, and opportunities for improvement and cost optimization.",
+      icon: "🔍",
+      color: "text-[#3c91e6]"
     },
+    {
+      title: "Digital Transformation",
+      description: "Guidance through digital transformation initiatives, helping you leverage technology to improve processes and competitive advantage.",
+      icon: "🚀",
+      color: "text-[#01042b]"
+    },
+    {
+      title: "Vendor Selection & Management",
+      description: "Objective advice on technology vendors and solutions, ensuring you choose the right tools and partners for your business requirements.",
+      icon: "⚖️",
+      color: "text-[#3c91e6]"
+    },
+    {
+      title: "IT Budget Planning",
+      description: "Strategic planning for IT investments, helping you allocate resources effectively and avoid unnecessary expenses while meeting business goals.",
+      icon: "💰",
+      color: "text-[#01042b]"
+    }
   ];
 
   const benefits = [
     {
+      title: "Objective Expert Advice",
+      description: "Unbiased recommendations from experienced IT professionals who understand Perth business challenges and regulatory requirements.",
+      icon: "🎯"
+    },
+    {
       title: "Cost Optimization",
-      description:
-        "Avoid overspending on unnecessary tools and software by choosing solutions that truly fit your needs.",
+      description: "Avoid overspending on unnecessary tools and software by choosing solutions that truly fit your needs and budget constraints.",
+      icon: "💡"
     },
     {
-      title: "Future-Proofing",
-      description:
-        "Stay ahead of technological advancements with systems that grow alongside your business.",
+      title: "Future-Proof Strategy",
+      description: "Stay ahead of technological advancements with systems that grow alongside your business and adapt to changing market conditions.",
+      icon: "🔮"
     },
     {
-      title: "Custom Strategies",
-      description:
-        "Every business is unique. We design solutions tailored to your specific challenges, ensuring maximum impact.",
+      title: "Risk Mitigation",
+      description: "Identify and address potential IT risks before they impact your business, including security vulnerabilities and compliance issues.",
+      icon: "🛡️"
     },
+    {
+      title: "Plain English Communication",
+      description: "We explain complex IT concepts in simple terms, empowering you to make confident, informed decisions without technical jargon.",
+      icon: "🗣️"
+    },
+    {
+      title: "Local Market Knowledge",
+      description: "Deep understanding of Perth and Western Australian business environment, regulations, and technology ecosystem.",
+      icon: "🏢"
+    }
   ];
 
-  const features = [
+  const processSteps = [
     {
-      title: "Personalized Approach",
-      description:
-        "We focus on understanding your business, goals, and challenges.",
+      step: 1,
+      title: "Business Analysis",
+      description: "Comprehensive assessment of your business objectives, current challenges, and growth plans to understand your unique requirements."
     },
     {
-      title: "Local Expertise",
-      description:
-        "Our team has extensive experience supporting businesses in the region.",
+      step: 2,
+      title: "Technology Audit",
+      description: "Detailed evaluation of your existing IT infrastructure, applications, and processes to identify strengths and improvement opportunities."
     },
     {
-      title: "Affordable and Effective",
-      description:
-        "We deliver high-quality consulting at a cost that works for small and medium businesses.",
+      step: 3,
+      title: "Strategic Recommendations",
+      description: "Development of customized IT strategy with prioritized recommendations, timelines, and budget considerations aligned with your goals."
     },
+    {
+      step: 4,
+      title: "Implementation Planning",
+      description: "Creation of detailed implementation roadmap with phases, resource requirements, and risk mitigation strategies for smooth execution."
+    },
+    {
+      step: 5,
+      title: "Ongoing Support",
+      description: "Continued guidance and support during implementation, with regular reviews and adjustments to ensure successful outcomes."
+    }
+  ];
+
+  const stats = [
+    {
+      number: "25%",
+      label: "Average Cost Savings",
+      description: "Clients achieve through strategic planning"
+    },
+    {
+      number: "90%",
+      label: "Project Success Rate",
+      description: "For our consulting implementations"
+    },
+    {
+      number: "20+",
+      label: "Years Experience",
+      description: "Supporting Perth businesses"
+    }
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative h-[calc(40vh-4rem)] bg-black">
-        <Image
-          src="/images/close-up-smiling-person-conference-room.webp"
-          alt="Close up on smiling person in conference room"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">IT Consulting</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Strategic IT Guidance for Small and Medium Businesses
-          </p>
-          <div className="flex gap-4 flex-wrap justify-center">
-            <Button asChild>
-              <Link href="/contact-us">Get Started</Link>
-            </Button>
-            <SecurityAssessmentCTA variant="secondary" />
-          </div>
-        </div>
-      </div>
-
-      {/* Intro Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            Navigating the fast-paced world of technology can be overwhelming,
-            especially for small and medium businesses. Our IT Consulting
-            Services provide the expertise you need to align your IT
-            infrastructure with your business goals, ensuring long-term success.
-          </p>
-        </div>
-      </section>
-
-      {/* Core Services Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our Core Services
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {coreServices.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <span className="text-2xl">{service.icon}</span>
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            How IT Consulting Helps Your Business
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle>{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose Us?
-          </h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="max-w-3xl px-4 mx-auto bg-background rounded-lg"
-          >
-            {features.map((feature, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger>{feature.title}</AccordionTrigger>
-                <AccordionContent>{feature.description}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-3xl mx-auto border-none bg-secondary">
-            <CardContent className="pt-6">
-              <p className="text-lg text-center">
-                Simplify your IT and focus on your core objectives with the
-                right technology strategy. Let us guide you to smarter decisions
-                and better outcomes.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </div>
+    <ServicePageTemplate
+      title="IT Consulting Services"
+      subtitle="Strategic Technology Guidance for Perth Businesses"
+      heroDescription="Navigate the complex world of technology with confidence. Our IT consulting services provide the strategic guidance you need to align your technology investments with your business goals and drive sustainable growth."
+      heroImage="/images/close-up-smiling-person-conference-room.webp"
+      heroImageAlt="IT consultant meeting with client in conference room"
+      introText="Make informed technology decisions that drive your business forward. Our experienced consultants work with you to develop strategies that optimize costs, improve efficiency, and position your business for future growth."
+      features={features}
+      benefits={benefits}
+      processSteps={processSteps}
+      stats={stats}
+      primaryCTA="Schedule Consultation"
+      secondaryCTA="Learn More"
+    />
   );
 }

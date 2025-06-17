@@ -1,229 +1,231 @@
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { Database, AlertTriangle } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function BackupAndDisasterRecovery() {
-  const statistics = [
-    {
-      title: "94% of Businesses",
-      description:
-        "Companies that experience major data loss often don't survive beyond two years.",
-      icon: "📊",
-    },
-    {
-      title: "Rising Cyber Threats",
-      description:
-        "Small businesses are increasingly targeted by ransomware, with the average cost of a cyberattack reaching $200,000 per incident.",
-      icon: "⚠️",
-    },
-  ];
-
-  const services = [
-    {
-      title: "Automatic Backups",
-      description:
-        "Your data is backed up regularly to secure locations, including on-premises servers and cloud platforms like Azure and OneDrive.",
-      icon: "🔄",
-    },
-    {
-      title: "Fast Disaster Recovery",
-      description:
-        "Restore systems quickly to minimize downtime and ensure continuity.",
-      icon: "⚡",
-    },
-    {
-      title: "Customized Recovery Plans",
-      description:
-        "We develop recovery strategies tailored to your specific business needs, ensuring minimal disruption during a crisis.",
-      icon: "📋",
-    },
-    {
-      title: "Proactive Monitoring",
-      description:
-        "Identify potential risks before they impact your data with our advanced monitoring systems.",
-      icon: "👁️",
-    },
-    {
-      title: "Testing and Updates",
-      description:
-        "Regularly test and update your recovery plans to ensure they work when needed.",
-      icon: "✅",
-    },
-  ];
-
   const features = [
     {
-      title: "Tailored Solutions",
-      description:
-        "From small businesses to larger enterprises, we adapt our backup and recovery strategies to meet your unique requirements.",
+      title: "Automated Cloud Backup",
+      description: "Continuous, automated backups to secure cloud storage with military-grade encryption. Your data is protected 24/7 without manual intervention.",
+      icon: "☁️",
+      color: "text-[#3c91e6]"
     },
     {
-      title: "Cost-Effective Protection",
-      description:
-        "Avoid the high costs of downtime with affordable, proactive solutions.",
+      title: "Ransomware Protection",
+      description: "Immutable backup storage that prevents ransomware from corrupting your data. Air-gapped backups ensure recovery even from sophisticated attacks.",
+      icon: "🛡️",
+      color: "text-[#01042b]"
     },
     {
-      title: "Expert Support",
-      description:
-        "Our team handles every aspect, from setup to recovery, so you can focus on running your business.",
+      title: "Rapid Recovery Solutions",
+      description: "Get back online fast with instant recovery options. Restore entire systems, individual files, or specific applications in minutes, not hours.",
+      icon: "🔄",
+      color: "text-[#3c91e6]"
     },
+    {
+      title: "Business Continuity Planning",
+      description: "Comprehensive disaster recovery plans tailored to your business operations. Documented procedures ensure swift response during emergencies.",
+      icon: "✅",
+      color: "text-[#01042b]"
+    },
+    {
+      title: "Hybrid Backup Strategy",
+      description: "Combine local and cloud backup for optimal protection and recovery speed. Local copies for quick restore, cloud copies for disaster recovery.",
+      icon: "💾",
+      color: "text-[#3c91e6]"
+    },
+    {
+      title: "24/7 Monitoring & Testing",
+      description: "Continuous monitoring of backup health with regular recovery testing. Proactive alerts ensure your backups are always ready when needed.",
+      icon: "⏰",
+      color: "text-[#01042b]"
+    },
+    {
+      title: "Version Control & Retention",
+      description: "Multiple backup versions with flexible retention policies. Recover from any point in time with granular restore capabilities.",
+      icon: "📋",
+      color: "text-[#3c91e6]"
+    },
+    {
+      title: "Offsite Storage Solutions",
+      description: "Geographic redundancy with multiple secure data centers. Protect against local disasters with distributed backup infrastructure.",
+      icon: "🏢",
+      color: "text-[#01042b]"
+    },
+    {
+      title: "Recovery Testing & Validation",
+      description: "Regular disaster recovery drills and backup validation to ensure your data can be restored when you need it most.",
+      icon: "🧪",
+      color: "text-[#3c91e6]"
+    }
   ];
 
-  return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative h-[calc(40vh-4rem)] bg-black">
-        <Image
-          src="/images/cloud-backup-download-network.webp"
-          alt="Cloud Backup Download Network"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Backup & Disaster Recovery Solutions
-          </h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Be Prepared for Anything with Reliable Data Protection
-          </p>
-          <div className="flex gap-4 flex-wrap justify-center">
-            <Button asChild>
-              <Link href="/contact-us">Get Started</Link>
-            </Button>
-            <SecurityAssessmentCTA variant="secondary" />
-          </div>
-        </div>
-      </div>
+  const benefits = [
+    {
+      title: "99.99% Data Recovery Rate",
+      description: "Industry-leading recovery success rate with multiple backup layers and redundancy across geographic locations.",
+      icon: "📊"
+    },
+    {
+      title: "Sub-15 Minute RTO",
+      description: "Achieve Recovery Time Objectives under 15 minutes for critical systems using instant recovery technology and virtualization.",
+      icon: "⚡"
+    },
+    {
+      title: "Compliance Ready",
+      description: "Meet Australian data protection and retention requirements with automated compliance reporting and audit trails.",
+      icon: "📋"
+    },
+    {
+      title: "Cost Predictability",
+      description: "Fixed monthly pricing with no hidden costs. Dramatically lower than the cost of data loss or extended downtime.",
+      icon: "💰"
+    },
+    {
+      title: "Local Perth Expertise",
+      description: "Perth-based disaster recovery specialists who understand local business challenges and regulatory requirements.",
+      icon: "🏢"
+    },
+    {
+      title: "Proactive Risk Management",
+      description: "Regular vulnerability assessments and backup validation to identify and address potential recovery issues before they occur.",
+      icon: "🔮"
+    }
+  ];
 
-      {/* Intro Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <p className="max-w-3xl mx-auto text-lg text-muted-foreground text-center">
-            Data loss can strike at any time—whether due to cyberattacks,
-            hardware failure, or human error. Without a solid backup and
-            disaster recovery plan, the consequences can be devastating. Our
-            Backup & Disaster Recovery Solutions ensure your business stays
-            protected and operational, no matter what happens.
-          </p>
-        </div>
-      </section>
+  const processSteps = [
+    {
+      step: 1,
+      title: "Business Impact Analysis",
+      description: "Comprehensive assessment of your critical systems, data dependencies, and recovery requirements to design optimal protection strategy."
+    },
+    {
+      step: 2,
+      title: "Backup Architecture Design",
+      description: "Custom backup and recovery solution design based on your RTO/RPO requirements, budget, and compliance needs."
+    },
+    {
+      step: 3,
+      title: "Implementation & Testing",
+      description: "Professional deployment of backup systems with comprehensive testing to ensure reliable recovery capabilities."
+    },
+    {
+      step: 4,
+      title: "Documentation & Training",
+      description: "Complete disaster recovery documentation and staff training to ensure your team knows how to respond during emergencies."
+    },
+    {
+      step: 5,
+      title: "Ongoing Management",
+      description: "Continuous monitoring, regular testing, and proactive maintenance to ensure your backup and recovery systems remain effective."
+    }
+  ];
 
-      {/* Statistics Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Backup & Recovery Matter
+  const stats = [
+    {
+      number: "94%",
+      label: "Business Failure Rate",
+      description: "After major data loss without backup"
+    },
+    {
+      number: "$200k",
+      label: "Average Ransomware Cost",
+      description: "Impact on small businesses"
+    },
+    {
+      number: "15 min",
+      label: "Recovery Time",
+      description: "Average system restoration"
+    }
+  ];
+
+  const dataLossSection = (
+    <section className="py-20 bg-gradient-to-b from-red-50 to-orange-50 dark:from-red-900/10 dark:to-orange-900/10">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-red-800 dark:text-red-400">
+            The Reality of Data Loss
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {statistics.map((stat, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <span className="text-2xl">{stat.icon}</span>
-                    {stat.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{stat.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Don't become another statistic - protect your business before disaster strikes
+          </p>
         </div>
-      </section>
 
-      {/* Security Assessment Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-3xl mx-auto">
-            <CardContent className="pt-6">
-              <div className="text-center flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-4">
-                  Security First Recovery Planning
-                </h3>
-                <p className="mb-6">
-                  Ensure your disaster recovery plan includes robust security
-                  measures. Take our assessment today.
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <Card className="border-red-200 dark:border-red-800">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <AlertTriangle className="w-8 h-8 text-red-600" />
+                <h3 className="text-2xl font-bold text-red-800 dark:text-red-400">Common Causes</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-3 bg-white dark:bg-background rounded-lg shadow-sm">
+                  <span className="text-2xl">🔥</span>
+                  <div>
+                    <div className="font-semibold">Hardware Failure</div>
+                    <div className="text-sm text-muted-foreground">40% of all data loss incidents</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-white dark:bg-background rounded-lg shadow-sm">
+                  <span className="text-2xl">🦠</span>
+                  <div>
+                    <div className="font-semibold">Ransomware Attacks</div>
+                    <div className="text-sm text-muted-foreground">Growing threat to all businesses</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-white dark:bg-background rounded-lg shadow-sm">
+                  <span className="text-2xl">👤</span>
+                  <div>
+                    <div className="font-semibold">Human Error</div>
+                    <div className="text-sm text-muted-foreground">Accidental deletion or corruption</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-red-200 dark:border-red-800">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Database className="w-8 h-8 text-red-600" />
+                <h3 className="text-2xl font-bold text-red-800 dark:text-red-400">Business Impact</h3>
+              </div>
+              <div className="bg-red-100 dark:bg-red-900/20 rounded-lg p-4 mb-4">
+                <p className="text-xl font-bold text-red-800 dark:text-red-400 mb-2">
+                  93% of companies that lose data for 10+ days file for bankruptcy within a year
                 </p>
-                <SecurityAssessmentCTA />
+                <p className="text-red-700 dark:text-red-300">
+                  The cost of prevention is always less than the cost of recovery
+                </p>
+              </div>
+              <div className="space-y-2 text-muted-foreground">
+                <div>• Lost productivity and revenue</div>
+                <div>• Customer trust and reputation damage</div>
+                <div>• Compliance violations and fines</div>
+                <div>• Emergency recovery costs</div>
               </div>
             </CardContent>
           </Card>
         </div>
-      </section>
+      </div>
+    </section>
+  );
 
-      {/* Services Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our Comprehensive Services
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <span className="text-2xl">{service.icon}</span>
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Light */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose Us?
-          </h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="max-w-3xl px-4 mx-auto bg-secondary rounded-lg"
-          >
-            {features.map((feature, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger>{feature.title}</AccordionTrigger>
-                <AccordionContent>{feature.description}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA Section - Secondary */}
-      <section className="bg-secondary py-16">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-3xl mx-auto border-none">
-            <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-4 text-center">
-                Protect Your Business Today
-              </h3>
-              <p className="text-lg text-center">
-                Don&apos;t wait for a disaster to strike. With our backup and
-                disaster recovery services, you can operate with confidence
-                knowing your data is safe and recoverable. Let&apos;s ensure
-                your business is prepared for anything.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </div>
+  return (
+    <ServicePageTemplate
+      title="Backup & Disaster Recovery"
+      subtitle="Comprehensive Data Protection for Perth Businesses"
+      heroDescription="Don't gamble with your business data. Our enterprise-grade backup and disaster recovery solutions ensure your business survives any crisis - from ransomware attacks to natural disasters."
+      heroImage="/images/cloud-backup-download-network.webp"
+      heroImageAlt="Cloud backup and data recovery network illustration"
+      introText="Data loss can destroy a business in minutes, but recovery doesn't have to take days. Our proactive backup and disaster recovery solutions provide the peace of mind that comes with knowing your business can survive and thrive through any crisis."
+      features={features}
+      benefits={benefits}
+      processSteps={processSteps}
+      stats={stats}
+      primaryCTA="Protect Your Data Now"
+      secondaryCTA="Get Recovery Assessment"
+      additionalSections={dataLossSection}
+    />
   );
 }
