@@ -10,8 +10,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ToastProvider } from "@/components/ui/toast";
 import ChatwootWidget from "@/components/ChatwootWidget";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { FormbricksProvider } from "@/components/formbricks";
+import { PostHogSurveyProvider } from "@/components/PostHogSurveyProvider";
 import { getNormalizedPosts } from "@/lib/seobot.server";
+import { PostHogProvider } from "@/components/PostHogProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,24 +32,26 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId="G-4K8XLY0JKX" />
-      <FormbricksProvider />
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <main>
-            <Analytics />
-            <SpeedInsights />
-            {children}
-          </main>
-          <Footer posts={posts} />
-          <ToastProvider />
-          <ChatwootWidget />
-        </ThemeProvider>
+        <PostHogProvider>
+          <PostHogSurveyProvider />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            <main>
+              <Analytics />
+              <SpeedInsights />
+              {children}
+            </main>
+            <Footer posts={posts} />
+            <ToastProvider />
+            <ChatwootWidget />
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
