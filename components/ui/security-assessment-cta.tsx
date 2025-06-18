@@ -1,35 +1,27 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Shield } from "lucide-react";
+import { SecurityAssessmentCTA as ComprehensiveSecurityAssessmentCTA } from "@/components/SecurityAssessmentCTA";
 
 interface SecurityAssessmentCTAProps {
-  variant?: "default" | "outline" | "secondary";
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  size?: "sm" | "default" | "lg";
   className?: string;
+  children?: React.ReactNode;
 }
 
-export function SecurityAssessmentCTA({ variant = "default", className = "" }: SecurityAssessmentCTAProps) {
-  const handleSecurityAssessmentClick = () => {
-    // Scroll to the persistent survey if it exists
-    const surveyContainer = document.getElementById('persistent-survey-container');
-    if (surveyContainer) {
-      surveyContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // Add a subtle highlight animation
-      surveyContainer.style.animation = 'pulse 0.5s ease-in-out';
-      setTimeout(() => {
-        surveyContainer.style.animation = '';
-      }, 500);
-    }
-  };
-
+export function SecurityAssessmentCTA({ 
+  variant = "default", 
+  size = "default", 
+  className = "",
+  children
+}: SecurityAssessmentCTAProps) {
   return (
-    <Button 
-      variant={variant} 
-      onClick={handleSecurityAssessmentClick}
-      className={`flex items-center gap-2 ${className}`}
+    <ComprehensiveSecurityAssessmentCTA 
+      variant={variant}
+      size={size}
+      className={className}
     >
-      <Shield className="w-4 h-4" />
-      Take Free Security Assessment
-    </Button>
+      {children}
+    </ComprehensiveSecurityAssessmentCTA>
   );
 } 

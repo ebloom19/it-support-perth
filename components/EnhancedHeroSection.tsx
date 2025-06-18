@@ -306,9 +306,13 @@ export function EnhancedHeroSection() {
                     </motion.div>
                     <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-2">Free IT Security Assessment</h3>
                     <p className="text-gray-200 text-xs sm:text-sm mb-3 sm:mb-4">Valued at $500 - Get yours today!</p>
-                    <Button size="sm" className="bg-white text-red-700 hover:bg-red-50 font-semibold shadow-md hover:shadow-lg transition-all duration-300 min-h-[40px] px-4 py-2 text-xs sm:text-sm">
+                    <SecurityAssessmentCTA 
+                      variant="secondary"
+                      size="sm"
+                      className="bg-white text-red-700 hover:bg-red-50 font-semibold shadow-md hover:shadow-lg transition-all duration-300 min-h-[40px] px-4 py-2 text-xs sm:text-sm"
+                    >
                       Claim Now
-                    </Button>
+                    </SecurityAssessmentCTA>
                   </div>
                 </CardContent>
               </Card>
