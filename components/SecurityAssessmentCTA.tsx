@@ -136,7 +136,7 @@ const SURVEY_QUESTIONS = [
     id: "5cb9658b-6a54-4eb0-998b-ea1d9c4232d1",
     question: "Have you tested your disaster recovery plan in the past year?",
     type: "single_choice",
-    choices: ["Yes","No","We don't have a plan","Not sure"]
+    choices: ["Yes","No","We don\\'t have a plan","Not sure"]
   },
   {
     id: "1ae121fd-0114-4b6e-b317-2b6d33ae00e3",

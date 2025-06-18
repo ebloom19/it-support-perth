@@ -68,7 +68,7 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
         <h3 style="color: ${data.securityScore.riskLevel === 'Low' ? '#92400e' : '#dc2626'}; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">⚠️ Important Security Notice</h3>
         <p style="margin: 0; color: ${data.securityScore.riskLevel === 'Low' ? '#78350f' : '#991b1b'}; font-size: 14px; line-height: 1.5;">
           ${data.securityScore.riskLevel === 'Low' 
-            ? 'While your assessment shows a relatively low risk level, cybersecurity threats are constantly evolving. A high score does not guarantee complete protection against all security threats. We strongly recommend regular security audits, ongoing monitoring, and proactive security measures to maintain your organization\'s safety.'
+            ? 'While your assessment shows a relatively low risk level, cybersecurity threats are constantly evolving. A high score does not guarantee complete protection against all security threats. We strongly recommend regular security audits, ongoing monitoring, and proactive security measures to maintain your organization\\\'s safety.'
             : 'Your assessment indicates significant security vulnerabilities that require immediate attention. These gaps in your cybersecurity posture could expose your organization to data breaches, ransomware attacks, and other serious threats. Professional intervention is strongly recommended.'
           }
         </p>
@@ -92,9 +92,9 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
         <h3 style="color: ${brandColor}; margin: 0 0 15px 0; font-size: 18px;">What Happens Next?</h3>
         <ul style="margin: 0; padding-left: 20px; color: #475569;">
           <li style="margin-bottom: 8px;">Our cybersecurity expert will review your detailed responses</li>
-          <li style="margin-bottom: 8px;">We'll prepare a comprehensive security report with specific recommendations</li>
+          <li style="margin-bottom: 8px;">We\'ll prepare a comprehensive security report with specific recommendations</li>
           <li style="margin-bottom: 8px;">A member of our team will contact you within one business day</li>
-          <li style="margin-bottom: 8px;">We'll schedule a free consultation to discuss your security strategy</li>
+          <li style="margin-bottom: 8px;">We\'ll schedule a free consultation to discuss your security strategy</li>
         </ul>
       </div>
       
