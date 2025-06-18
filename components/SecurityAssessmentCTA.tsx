@@ -27,7 +27,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { 
   Shield, 
   CheckCircle, 
-  AlertTriangle,
+  TriangleAlert,
   Users,
   ArrowRight,
   TrendingUp,
@@ -820,7 +820,7 @@ export function SecurityAssessmentCTA({
                       : 'bg-red-50 border-red-200'
                   }`}>
                     <div className="flex items-start gap-2">
-                      <AlertTriangle className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
+                      <TriangleAlert className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
                         securityScore.riskLevel === 'Low' ? 'text-amber-600' : 'text-red-600'
                       }`} />
                       <div>
@@ -845,7 +845,7 @@ export function SecurityAssessmentCTA({
                   {securityScore.recommendations.length > 0 && (
                     <div>
                       <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <AlertTriangle className="w-4 h-4" />
+                        <TriangleAlert className="w-4 h-4" />
                         Priority Recommendations
                       </h4>
                       <ul className="space-y-2">

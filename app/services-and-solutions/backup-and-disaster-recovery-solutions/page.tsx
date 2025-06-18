@@ -1,6 +1,6 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
-import { Database, AlertTriangle } from 'lucide-react';
+import { Database, TriangleAlert } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function BackupAndDisasterRecovery() {
@@ -156,7 +156,7 @@ export default function BackupAndDisasterRecovery() {
           <Card className="border-red-200 dark:border-red-800">
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-4">
-                <AlertTriangle className="w-8 h-8 text-red-600" />
+                <TriangleAlert className="w-8 h-8 text-red-600" />
                 <h3 className="text-2xl font-bold text-red-800 dark:text-red-400">Common Causes</h3>
               </div>
               <div className="space-y-3">

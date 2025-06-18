@@ -1,6 +1,6 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
-import { AlertTriangle } from 'lucide-react';
+import { TriangleAlert } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function ITSecuritySolutions() {
@@ -157,7 +157,7 @@ export default function ITSecuritySolutions() {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <AlertTriangle className="w-8 h-8 text-red-600" />
+                  <TriangleAlert className="w-8 h-8 text-red-600" />
                   <h3 className="text-2xl font-bold text-red-800 dark:text-red-400">Australian Cyber Threat Report 2024</h3>
                 </div>
                 <p className="text-lg mb-4 text-muted-foreground">
