@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function CloudServices() {
   const features = [
@@ -138,7 +139,16 @@ export default function CloudServices() {
   ];
 
   return (
-    <ServicePageTemplate
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Cloud Services & Migration",
+          description: "Microsoft 365 migration, Azure cloud infrastructure, and hybrid cloud solutions for Perth businesses. Scalable cloud services with expert support.",
+          url: "https://itsupportperth.com.au/services-and-solutions/cloud-services"
+        }}
+      />
+      <ServicePageTemplate
       title="Cloud Services & Migration"
       subtitle="Transform Your Business with Scalable Cloud Solutions"
       heroDescription="Modernize your IT infrastructure with secure, scalable cloud solutions that reduce costs and increase productivity. Our expert team makes cloud migration simple and stress-free for Perth businesses."
@@ -151,6 +161,7 @@ export default function CloudServices() {
       stats={stats}
       primaryCTA="Start Your Cloud Journey"
       secondaryCTA="Book Cloud Consultation"
-    />
+      />
+    </>
   );
 }

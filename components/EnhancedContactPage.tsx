@@ -79,21 +79,14 @@ export function EnhancedContactPage() {
       });
 
       if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you within 2 hours during business hours.",
-        });
+        toast.success("Message sent successfully! We'll get back to you within 2 hours during business hours.");
         reset();
         setSelectedService('');
       } else {
         throw new Error('Failed to submit form');
       }
     } catch (error) {
-      toast({
-        title: "Failed to send message",
-        description: "Please try again or call us directly at (08) 9325 1196",
-        variant: "destructive"
-      });
+      toast.error("Failed to send message. Please try again or call us directly at (08) 9325 1196");
     } finally {
       setIsSubmitting(false);
     }
@@ -126,7 +119,7 @@ export function EnhancedContactPage() {
           />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col items-center justify-center text-center text-white min-h-[60vh]">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center text-center text-white min-h-[60vh]">
           <motion.div 
             className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +135,7 @@ export function EnhancedContactPage() {
               <span className="text-sm font-medium">Emergency IT Support Available 24/7</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Get Expert IT Help
               <br />
               <span className="bg-gradient-to-r from-[#3c91e6] to-[#5ba7f7] bg-clip-text text-transparent">
@@ -150,7 +143,7 @@ export function EnhancedContactPage() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200">
               Same-day response • Free consultation • No obligation quote
             </p>
 
@@ -192,7 +185,7 @@ export function EnhancedContactPage() {
 
       {/* Contact Methods Section */}
       <section className="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -277,7 +270,7 @@ export function EnhancedContactPage() {
 
       {/* Contact Form Section */}
       <section id="contact-form" className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Form */}
             <motion.div
@@ -375,7 +368,7 @@ export function EnhancedContactPage() {
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full bg-[#3c91e6] hover:bg-[#2a7bc4] font-semibold py-4 text-lg"
+                      className="w-full bg-[#3c91e6] hover:bg-[#2a7bc4] font-semibold min-h-[56px] py-3 sm:py-4 text-base sm:text-lg"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Get Free Consultation"}

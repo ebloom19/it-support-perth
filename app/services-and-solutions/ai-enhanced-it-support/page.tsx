@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function AIEnhancedITSupport() {
   const features = [
@@ -120,19 +121,29 @@ export default function AIEnhancedITSupport() {
   ];
 
   return (
-    <ServicePageTemplate
-      title="AI-Enhanced IT Support"
-      subtitle="Revolutionize Your IT with AI-Powered Solutions"
-      heroDescription="Transform your IT operations with cutting-edge AI technology. Proactive monitoring, automated processes, and intelligent threat detection combined with expert human support for the ultimate IT experience."
-      heroImage="/images/person-working-html-computer.webp"
-      heroImageAlt="Person working on computer"
-      introText="Managing IT doesn't have to be a challenge for small and medium businesses. Our AI-Enhanced IT Support brings cutting-edge automation to your systems, saving you time, reducing costs, and improving security while maintaining the human touch when you need it most."
-      features={features}
-      benefits={benefits}
-      processSteps={processSteps}
-      stats={stats}
-      primaryCTA="Start AI Transformation"
-      secondaryCTA="Schedule AI Assessment"
-    />
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "AI-Enhanced IT Support",
+          description: "Revolutionize your IT with AI-powered solutions. Transform your IT operations with cutting-edge AI technology including proactive monitoring, automated processes, and intelligent threat detection.",
+          url: "https://itsupportperth.com.au/services-and-solutions/ai-enhanced-it-support"
+        }}
+      />
+      <ServicePageTemplate
+        title="AI-Enhanced IT Support"
+        subtitle="Revolutionize Your IT with AI-Powered Solutions"
+        heroDescription="Transform your IT operations with cutting-edge AI technology. Proactive monitoring, automated processes, and intelligent threat detection combined with expert human support for the ultimate IT experience."
+        heroImage="/images/person-working-html-computer.webp"
+        heroImageAlt="Person working on computer"
+        introText="Managing IT doesn't have to be a challenge for small and medium businesses. Our AI-Enhanced IT Support brings cutting-edge automation to your systems, saving you time, reducing costs, and improving security while maintaining the human touch when you need it most."
+        features={features}
+        benefits={benefits}
+        processSteps={processSteps}
+        stats={stats}
+        primaryCTA="Start AI Transformation"
+        secondaryCTA="Schedule AI Assessment"
+      />
+    </>
   );
 }

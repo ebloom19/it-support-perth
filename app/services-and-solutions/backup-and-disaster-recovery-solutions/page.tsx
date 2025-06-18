@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 import { Database, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -212,7 +213,16 @@ export default function BackupAndDisasterRecovery() {
   );
 
   return (
-    <ServicePageTemplate
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Backup & Disaster Recovery",
+          description: "Enterprise-grade backup and disaster recovery solutions for Perth businesses. Comprehensive data protection with rapid recovery capabilities.",
+          url: "https://itsupportperth.com.au/services-and-solutions/backup-and-disaster-recovery-solutions"
+        }}
+      />
+      <ServicePageTemplate
       title="Backup & Disaster Recovery"
       subtitle="Comprehensive Data Protection for Perth Businesses"
       heroDescription="Don't gamble with your business data. Our enterprise-grade backup and disaster recovery solutions ensure your business survives any crisis - from ransomware attacks to natural disasters."
@@ -226,6 +236,7 @@ export default function BackupAndDisasterRecovery() {
       primaryCTA="Protect Your Data Now"
       secondaryCTA="Get Recovery Assessment"
       additionalSections={dataLossSection}
-    />
+      />
+    </>
   );
 }

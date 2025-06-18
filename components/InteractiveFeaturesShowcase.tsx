@@ -240,27 +240,6 @@ export function InteractiveFeaturesShowcase({
                   animate={{ opacity: activeFeature === index ? 1 : 0 }}
                   transition={{ duration: 0.5 }}
                 />
-                
-                {/* Highlight Badge */}
-                {feature.highlight && (
-                  <motion.div
-                    className="absolute top-4 right-4 z-20"
-                    animate={{ 
-                      y: [0, -2, 0],
-                      rotate: [0, 3, -3, 0]
-                    }}
-                    transition={{ 
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-0 shadow-lg">
-                      <Sparkles className="w-3 h-3 mr-1" />
-                      Most Popular
-                    </Badge>
-                  </motion.div>
-                )}
 
                 <CardHeader className="pb-4 relative z-10">
                   <div className="flex items-center gap-4 mb-4">

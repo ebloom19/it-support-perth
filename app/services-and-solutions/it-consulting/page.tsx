@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function ITConsulting() {
   const features = [
@@ -120,19 +121,29 @@ export default function ITConsulting() {
   ];
 
   return (
-    <ServicePageTemplate
-      title="IT Consulting Services"
-      subtitle="Strategic Technology Guidance for Perth Businesses"
-      heroDescription="Navigate the complex world of technology with confidence. Our IT consulting services provide the strategic guidance you need to align your technology investments with your business goals and drive sustainable growth."
-      heroImage="/images/close-up-smiling-person-conference-room.webp"
-      heroImageAlt="IT consultant meeting with client in conference room"
-      introText="Make informed technology decisions that drive your business forward. Our experienced consultants work with you to develop strategies that optimize costs, improve efficiency, and position your business for future growth."
-      features={features}
-      benefits={benefits}
-      processSteps={processSteps}
-      stats={stats}
-      primaryCTA="Schedule Consultation"
-      secondaryCTA="Learn More"
-    />
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "IT Consulting Services",
+          description: "Strategic technology guidance for Perth businesses. Navigate the complex world of technology with confidence through comprehensive IT planning, cloud strategy, technology assessment, and digital transformation services.",
+          url: "https://itsupportperth.com.au/services-and-solutions/it-consulting"
+        }}
+      />
+      <ServicePageTemplate
+        title="IT Consulting Services"
+        subtitle="Strategic Technology Guidance for Perth Businesses"
+        heroDescription="Navigate the complex world of technology with confidence. Our IT consulting services provide the strategic guidance you need to align your technology investments with your business goals and drive sustainable growth."
+        heroImage="/images/close-up-smiling-person-conference-room.webp"
+        heroImageAlt="IT consultant meeting with client in conference room"
+        introText="Make informed technology decisions that drive your business forward. Our experienced consultants work with you to develop strategies that optimize costs, improve efficiency, and position your business for future growth."
+        features={features}
+        benefits={benefits}
+        processSteps={processSteps}
+        stats={stats}
+        primaryCTA="Schedule Consultation"
+        secondaryCTA="Learn More"
+      />
+    </>
   );
 }

@@ -12,7 +12,7 @@ interface CTAOption {
   description: string;
   icon: React.ReactNode;
   href: string;
-  variant: 'primary' | 'secondary' | 'outline';
+  variant: 'default' | 'secondary' | 'outline';
   external?: boolean;
 }
 
@@ -30,7 +30,7 @@ const ctaOptions: CTAOption[] = [
     description: "Speak with an expert immediately",
     icon: <Phone className="w-5 h-5" />,
     href: "tel:0893251196",
-    variant: "primary",
+    variant: "default",
     external: true
   },
   {
@@ -130,7 +130,7 @@ export function EnhancedCTA({
                       asChild
                       variant={option.variant}
                       className={`w-full ${
-                        option.variant === 'primary' 
+                        option.variant === 'default' 
                           ? 'bg-white text-[#01042b] hover:bg-gray-100' 
                           : option.variant === 'secondary'
                           ? 'bg-[#3c91e6] hover:bg-[#2a7bc4] text-white'

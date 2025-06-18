@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function ManagedITServicesProvider() {
   const features = [
@@ -138,7 +139,16 @@ export default function ManagedITServicesProvider() {
   ];
 
   return (
-    <ServicePageTemplate
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Managed IT Services Provider",
+          description: "24/7 proactive IT support and monitoring services for Perth businesses. Comprehensive IT management that prevents problems before they occur.",
+          url: "https://itsupportperth.com.au/services-and-solutions/managed-it-services-provider"
+        }}
+      />
+      <ServicePageTemplate
       title="Managed IT Services Provider"
       subtitle="Your IT Partner for Seamless Operations"
       heroDescription="Keeping your IT systems running smoothly is critical for the success of your business, but it shouldn't be your responsibility. Our Managed IT Services ensure your technology is reliable, secure, and optimized, so you can focus on growing your business."
@@ -151,6 +161,7 @@ export default function ManagedITServicesProvider() {
       stats={stats}
       primaryCTA="Get Your Free IT Assessment"
       secondaryCTA="View Our Services"
-    />
+      />
+    </>
   );
 }

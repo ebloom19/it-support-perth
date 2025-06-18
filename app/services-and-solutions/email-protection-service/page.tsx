@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function EmailProtectionService() {
   const features = [
@@ -120,19 +121,29 @@ export default function EmailProtectionService() {
   ];
 
   return (
-    <ServicePageTemplate
-      title="Email Protection Services"
-      subtitle="Secure Your Business Communication with Advanced Email Protection"
-      heroDescription="Protect your business from email-based threats with our comprehensive email security solutions. Advanced AI filtering, threat detection, and compliance management to keep your communications safe."
-      heroImage="/images/message-online-chat-social-text-concept.webp"
-      heroImageAlt="Email Protection Services"
-      introText="Email is the backbone of modern business communication, but it's also the primary attack vector for cybercriminals. Our Email Protection Services provide comprehensive defense against spam, phishing, malware, and advanced threats while ensuring your legitimate emails are delivered reliably."
-      features={features}
-      benefits={benefits}
-      processSteps={processSteps}
-      stats={stats}
-      primaryCTA="Secure Your Email Now"
-      secondaryCTA="Get Security Assessment"
-    />
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Email Protection Services",
+          description: "Secure your business communication with advanced email protection. Comprehensive defense against spam, phishing, malware, and advanced threats with AI-powered filtering and compliance management.",
+          url: "https://itsupportperth.com.au/services-and-solutions/email-protection-service"
+        }}
+      />
+      <ServicePageTemplate
+        title="Email Protection Services"
+        subtitle="Secure Your Business Communication with Advanced Email Protection"
+        heroDescription="Protect your business from email-based threats with our comprehensive email security solutions. Advanced AI filtering, threat detection, and compliance management to keep your communications safe."
+        heroImage="/images/message-online-chat-social-text-concept.webp"
+        heroImageAlt="Email Protection Services"
+        introText="Email is the backbone of modern business communication, but it's also the primary attack vector for cybercriminals. Our Email Protection Services provide comprehensive defense against spam, phishing, malware, and advanced threats while ensuring your legitimate emails are delivered reliably."
+        features={features}
+        benefits={benefits}
+        processSteps={processSteps}
+        stats={stats}
+        primaryCTA="Secure Your Email Now"
+        secondaryCTA="Get Security Assessment"
+      />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function OnPremisesServerManagement() {
   const features = [
@@ -120,19 +121,29 @@ export default function OnPremisesServerManagement() {
   ];
 
   return (
-    <ServicePageTemplate
-      title="On-Premises Server Management"
-      subtitle="Expert Management of Your On-Site Infrastructure"
-      heroDescription="Maximize control, security, and performance with our comprehensive on-premises server management services. Perfect for businesses requiring strict compliance and data sovereignty."
-      heroImage="/images/young-it-service-man-repairing-computer.webp"
-      heroImageAlt="IT service technician repairing computer"
-      introText="On-premises servers remain vital for businesses requiring maximum control, security, and performance. Our management services ensure your infrastructure runs at peak efficiency while meeting compliance requirements and providing the reliability your business depends on."
-      features={features}
-      benefits={benefits}
-      processSteps={processSteps}
-      stats={stats}
-      primaryCTA="Get Server Management Quote"
-      secondaryCTA="Schedule Assessment"
-    />
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "On-Premises Server Management",
+          description: "Expert management of your on-site infrastructure. Maximize control, security, and performance with comprehensive server management services including 24/7 monitoring, maintenance, data management, and security compliance.",
+          url: "https://itsupportperth.com.au/services-and-solutions/on-premises-server-management"
+        }}
+      />
+      <ServicePageTemplate
+        title="On-Premises Server Management"
+        subtitle="Expert Management of Your On-Site Infrastructure"
+        heroDescription="Maximize control, security, and performance with our comprehensive on-premises server management services. Perfect for businesses requiring strict compliance and data sovereignty."
+        heroImage="/images/young-it-service-man-repairing-computer.webp"
+        heroImageAlt="IT service technician repairing computer"
+        introText="On-premises servers remain vital for businesses requiring maximum control, security, and performance. Our management services ensure your infrastructure runs at peak efficiency while meeting compliance requirements and providing the reliability your business depends on."
+        features={features}
+        benefits={benefits}
+        processSteps={processSteps}
+        stats={stats}
+        primaryCTA="Get Server Management Quote"
+        secondaryCTA="Schedule Assessment"
+      />
+    </>
   );
 }

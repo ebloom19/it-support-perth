@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 import { AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -206,7 +207,16 @@ export default function ITSecuritySolutions() {
   );
 
   return (
-    <ServicePageTemplate
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "IT Security Solutions",
+          description: "Comprehensive cybersecurity protection for Perth businesses. Enterprise-grade security solutions with 24/7 threat monitoring and incident response.",
+          url: "https://itsupportperth.com.au/services-and-solutions/it-security-solutions"
+        }}
+      />
+      <ServicePageTemplate
       title="IT Security Solutions"
       subtitle="Comprehensive Cybersecurity for Perth Businesses"
       heroDescription="As cyber threats grow more sophisticated, businesses must take proactive steps to protect their data, systems, and customers. Our IT Security Solutions provide enterprise-grade protection with local expertise you can trust."
@@ -220,6 +230,7 @@ export default function ITSecuritySolutions() {
       primaryCTA="Get Free Security Assessment"
       secondaryCTA="Learn About Our Solutions"
       additionalSections={threatLandscapeSection}
-    />
+      />
+    </>
   );
 }

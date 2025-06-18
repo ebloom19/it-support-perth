@@ -91,7 +91,7 @@ export function InteractiveServiceShowcase() {
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-background dark:to-gray-900" ref={ref}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -107,11 +107,11 @@ export function InteractiveServiceShowcase() {
             <span className="text-sm font-medium text-[#3c91e6]">Comprehensive IT Solutions</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#01042b] to-[#3c91e6] bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-[#01042b] to-[#3c91e6] bg-clip-text text-transparent">
             Our Core Services
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From proactive monitoring to cybersecurity - we've got your IT needs covered with expert solutions designed for Perth businesses
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            From proactive monitoring to cybersecurity - we&apos;ve got your IT needs covered with expert solutions designed for Perth businesses
           </p>
         </motion.div>
 
@@ -140,19 +140,6 @@ export function InteractiveServiceShowcase() {
                   onMouseEnter={() => setHoveredService(service.id)}
                   onMouseLeave={() => setHoveredService(null)}
                 >
-                  {service.popular && (
-                    <motion.div
-                      className="absolute top-3 right-3"
-                      animate={{ rotate: [0, 5, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-0">
-                        <Star className="w-3 h-3 mr-1 fill-white" />
-                        Most Popular
-                      </Badge>
-                    </motion.div>
-                  )}
-
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4">
                       <motion.div 

@@ -13,7 +13,6 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { PostHogSurveyProvider } from "@/components/PostHogSurveyProvider";
 import { getNormalizedPosts } from "@/lib/seobot.server";
 import { PostHogProvider } from "@/components/PostHogProvider";
-import StructuredData from "@/components/StructuredData";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,9 +56,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <StructuredData />
-      </head>
+      <head></head>
       <GoogleTagManager gtmId="G-4K8XLY0JKX" />
       <body className={inter.className}>
         <PostHogProvider>

@@ -1,4 +1,5 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function FirewallService() {
   const features = [
@@ -120,19 +121,29 @@ export default function FirewallService() {
   ];
 
   return (
-    <ServicePageTemplate
-      title="Firewall Services (FortiGate)"
-      subtitle="Enterprise-Grade Network Protection for Your Business"
-      heroDescription="Protect your business with industry-leading FortiGate firewall solutions. Advanced AI-powered threat detection, secure remote access, and comprehensive network security for businesses of all sizes."
-      heroImage="/images/firewall-vectors.webp"
-      heroImageAlt="Firewall Services"
-      introText="Your network is the backbone of your business. Our FortiGate Firewall Services provide comprehensive protection against advanced threats, ensuring your operations remain secure and efficient while enabling safe remote work and business growth."
-      features={features}
-      benefits={benefits}
-      processSteps={processSteps}
-      stats={stats}
-      primaryCTA="Get Firewall Protection"
-      secondaryCTA="Schedule Security Assessment"
-    />
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Firewall Services (FortiGate)",
+          description: "Enterprise-grade network protection for your business. Advanced AI-powered threat detection, secure remote access, and comprehensive FortiGate firewall solutions for businesses of all sizes.",
+          url: "https://itsupportperth.com.au/services-and-solutions/firewall-service"
+        }}
+      />
+      <ServicePageTemplate
+        title="Firewall Services (FortiGate)"
+        subtitle="Enterprise-Grade Network Protection for Your Business"
+        heroDescription="Protect your business with industry-leading FortiGate firewall solutions. Advanced AI-powered threat detection, secure remote access, and comprehensive network security for businesses of all sizes."
+        heroImage="/images/firewall-vectors.webp"
+        heroImageAlt="Firewall Services"
+        introText="Your network is the backbone of your business. Our FortiGate Firewall Services provide comprehensive protection against advanced threats, ensuring your operations remain secure and efficient while enabling safe remote work and business growth."
+        features={features}
+        benefits={benefits}
+        processSteps={processSteps}
+        stats={stats}
+        primaryCTA="Get Firewall Protection"
+        secondaryCTA="Schedule Security Assessment"
+      />
+    </>
   );
 }

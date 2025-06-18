@@ -5,7 +5,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-import BlogLayout from "@/components/BlogLayout";
+import EnhancedBlogLayout from "@/components/EnhancedBlogLayout";
+import { StructuredData } from "@/components/StructuredData";
 import { HTMLContent } from "@/components/HTMLContent";
 import { MDXContent } from "@/components/mdx-components";
 import { siteConfig } from "@/config/site";
@@ -55,32 +56,57 @@ export async function generateMetadata({
   const ogSearchParams = new URLSearchParams();
   ogSearchParams.set("title", title);
 
+  const postTags = "tags" in post && post.tags
+    ? post.tags.map((t) => (typeof t === "string" ? t : t.title))
+    : [];
+
   return {
     title: title,
     description: description,
-    metadataBase: new URL("https://www.acedit.ai"),
-    alternates: { canonical: `https://www.acedit.ai/blog/${params.slug}` },
+    keywords: postTags.join(", ") + ", IT Support Perth, Perth IT Services, Technology Blog",
+    metadataBase: new URL("https://itsupportperth.com.au"),
+    alternates: { canonical: `https://itsupportperth.com.au/blog/${params.slug.join("/")}` },
+    authors: [{ name: "IT Support Perth Team" }],
+    publisher: "IT Support Perth",
+    category: "Technology",
     openGraph: {
       title: title,
       description: description,
       type: "article",
-      url: post.slug,
-      images: [
+      url: `https://itsupportperth.com.au${post.slug}`,
+      siteName: "IT Support Perth",
+      locale: "en_AU",
+      images: post.image ? [
         {
-          url: `/api/og?${ogSearchParams.toString()}`,
+          url: post.image,
           width: 1200,
           height: 630,
           alt: title,
         },
-      ],
+      ] : [],
       publishedTime: date,
-      modifiedTime: date, // If you have a separate 'modified' date, use that instead
+      modifiedTime: date,
+      authors: ["IT Support Perth Team"],
+      tags: postTags,
     },
     twitter: {
       card: "summary_large_image",
+      site: "@ITSupportPerth",
+      creator: "@ITSupportPerth",
       title: title,
       description: description,
-      images: [`/api/og?${ogSearchParams.toString()}`],
+      images: post.image ? [post.image] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -107,33 +133,41 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const jsonLd = generateJsonLd(post, siteConfig);
 
+  const postTags = "tags" in post
+    ? post.tags?.map((t) => (typeof t === "string" ? t : t.title))
+    : post.tags;
+
   return (
     <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: getTitle(post),
+          description: getDescription(post),
+          url: `https://itsupportperth.com.au${post.slug}`
+        }}
+      />
       <Script
         id="jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BlogLayout
+      <EnhancedBlogLayout
         title={getTitle(post)}
         allPosts={posts}
         description={getDescription(post)}
         slug={post.slug}
-        tags={
-          "tags" in post
-            ? post.tags?.map((t) => (typeof t === "string" ? t : t.title))
-            : post.tags
-        }
-        {...("podcast" in post
-          ? { podcast: post.podcast, podcastTitle: post.podcast_title }
-          : {})}
+        tags={postTags}
+        publishDate={getDate(post)}
+        readTime="5 min read"
+        author="IT Support Perth Team"
       >
         {"html" in post ? (
           <HTMLContent html={stripFirstH1(post.html)} />
         ) : (
           <MDXContent code={post.body} />
         )}
-      </BlogLayout>
+      </EnhancedBlogLayout>
     </>
   );
 }
