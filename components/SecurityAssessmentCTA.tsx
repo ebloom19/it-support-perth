@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Dialog,
@@ -592,7 +591,12 @@ export function SecurityAssessmentCTA({
               </div>
             ))}
           </div>
-          <Progress value={(currentStep / (steps.length - 1)) * 100} className="h-2" />
+          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-[#2563eb] transition-all duration-300"
+              style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+            />
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
