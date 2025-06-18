@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface SecurityAssessmentData {
   fullName: string;
   phone: string;
@@ -20,6 +18,13 @@ interface SecurityAssessmentData {
     recommendations: string[];
   };
 }
+
+const brandColor = '#2563eb';
+
+const logoSvg = `<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="60" fill="transparent"/>
+  <text x="100" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white">IT Support Perth</text>
+</svg>`;
 
 const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean = false) => {
   const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.29 374.52" style="height: 60px; width: auto;"><defs><style>.cls-1{fill:#3c91e6;}.cls-1,.cls-2{stroke-width:0px;}.cls-3{stroke-width:1.82px;}.cls-3,.cls-4{stroke:#fff;stroke-miterlimit:10;}.cls-3,.cls-2{fill:#fff;}.cls-4{fill:#01042b;stroke-width:11.64px;}</style></defs><path class="cls-4" d="M82.69,5.82h211.91c42.45,0,76.87,33.8,76.87,75.49v211.91c0,41.69-34.41,75.49-76.87,75.49H82.69c-42.45,0-76.87-33.8-76.87-75.49V81.31C5.82,39.62,40.23,5.82,82.69,5.82Z"></path><path class="cls-2" d="M154.24,310.26h-84.08c-2.04,0-4.09-.44-5.87-1.43-8.52-4.8-11.02-14.12-7.21-21.56l36.77-71.7h-.03l4.61-9.03c.95-1.87,2.35-3.52,4.16-4.61,9.34-5.67,19.81-2.19,23.98,5.95l40.71,79.38c3.81,7.45,1.31,16.76-7.21,21.56-1.77,1-3.83,1.43-5.87,1.43h.02ZM107.74,212.11l-.28.55-40.71,79.38c-1.21,2.36-.24,4.36.23,5.12.48.75,1.85,2.49,4.53,2.49h81.39c2.68,0,4.06-1.74,4.53-2.49.48-.75,1.44-2.75.23-5.12l-40.71-79.38c-.93-1.82-2.71-2.9-4.76-2.9-1.84,0-3.45.87-4.44,2.36h-.01Z"></path><path class="cls-2" d="M300.79,169.33h-94.7c-7.4,0-13.4-5.9-13.4-13.16v-65.41c0-7.26,6-13.16,13.4-13.16h94.7c7.4,0,13.4,5.9,13.4,13.16v65.41c0,7.26-6,13.16-13.4,13.16ZM206.08,88.19c-1.44,0-2.6,1.14-2.6,2.55v65.41c0,1.41,1.16,2.55,2.6,2.55h94.7c1.44,0,2.6-1.14,2.6-2.55v-65.41c0-1.41-1.16-2.55-2.6-2.55h-94.7Z"></path><path class="cls-1" d="M284.1,203.32h-53.75c-4.72,0-9.11,2.49-11.65,6.63l-10.28,16.67c-2.99,4.85-2.91,11.08.21,15.83l37.02,56.61c5.47,8.37,17.33,8.4,22.85.07l37.31-56.41c3.14-4.75,3.26-10.99.28-15.86l-10.32-16.88c-2.54-4.16-6.94-6.67-11.68-6.67h.01Z"></path><path class="cls-3" d="M257.1,309.47h-.05c-6-.01-11.58-3.07-14.92-8.18l-37.02-56.61c-3.98-6.08-4.08-14-.27-20.18l10.28-16.67c3.33-5.38,9.02-8.61,15.23-8.61h53.75c6.25,0,11.96,3.24,15.28,8.67l10.32,16.88c3.79,6.22,3.65,14.14-.36,20.21l-37.33,56.41c-3.36,5.08-8.93,8.11-14.91,8.11v-.02ZM230.35,207.43c-3.27,0-6.28,1.73-8.08,4.64l-10.28,16.67c-2.17,3.52-2.11,8.04.15,11.49l37.02,56.61c1.83,2.79,4.71,4.39,7.91,4.41h.02c3.19,0,6.05-1.58,7.89-4.36l37.33-56.41c2.28-3.45,2.36-7.96.2-11.5l-10.32-16.88c-1.79-2.93-4.81-4.68-8.09-4.68h-53.75Z"></path><ellipse class="cls-1" cx="110.19" cy="123.37" rx="41.22" ry="40.48"></ellipse><path class="cls-2" d="M110.19,169.16c-25.71,0-46.62-20.54-46.62-45.79s20.91-45.79,46.62-45.79,46.62,20.54,46.62,45.79-20.91,45.79-46.62,45.79ZM110.19,88.19c-19.75,0-35.82,15.78-35.82,35.18s16.07,35.18,35.82,35.18,35.82-15.78,35.82-35.18-16.07-35.18-35.82-35.18Z"></path></svg>`;
@@ -68,7 +73,7 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
         <h3 style="color: ${data.securityScore.riskLevel === 'Low' ? '#92400e' : '#dc2626'}; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">⚠️ Important Security Notice</h3>
         <p style="margin: 0; color: ${data.securityScore.riskLevel === 'Low' ? '#78350f' : '#991b1b'}; font-size: 14px; line-height: 1.5;">
           ${data.securityScore.riskLevel === 'Low' 
-            ? 'While your assessment shows a relatively low risk level, cybersecurity threats are constantly evolving. A high score does not guarantee complete protection against all security threats. We strongly recommend regular security audits, ongoing monitoring, and proactive security measures to maintain your organization\\\'s safety.'
+            ? 'While your assessment shows a relatively low risk level, cybersecurity threats are constantly evolving. A high score does not guarantee complete protection against all security threats. We strongly recommend regular security audits, ongoing monitoring, and proactive security measures to maintain your organization&apos;s safety.'
             : 'Your assessment indicates significant security vulnerabilities that require immediate attention. These gaps in your cybersecurity posture could expose your organization to data breaches, ransomware attacks, and other serious threats. Professional intervention is strongly recommended.'
           }
         </p>
@@ -92,9 +97,9 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
         <h3 style="color: ${brandColor}; margin: 0 0 15px 0; font-size: 18px;">What Happens Next?</h3>
         <ul style="margin: 0; padding-left: 20px; color: #475569;">
           <li style="margin-bottom: 8px;">Our cybersecurity expert will review your detailed responses</li>
-          <li style="margin-bottom: 8px;">We\'ll prepare a comprehensive security report with specific recommendations</li>
+          <li style="margin-bottom: 8px;">We&apos;ll prepare a comprehensive security report with specific recommendations</li>
           <li style="margin-bottom: 8px;">A member of our team will contact you within one business day</li>
-          <li style="margin-bottom: 8px;">We\'ll schedule a free consultation to discuss your security strategy</li>
+          <li style="margin-bottom: 8px;">We&apos;ll schedule a free consultation to discuss your security strategy</li>
         </ul>
       </div>
       
@@ -212,6 +217,7 @@ export async function POST(req: Request) {
   }
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const data: SecurityAssessmentData = body;
 
@@ -257,22 +263,19 @@ export async function POST(req: Request) {
 
     if (teamEmailResult.error) {
       console.error('Team email error:', teamEmailResult.error);
-      return NextResponse.json({ error: teamEmailResult.error.message }, { status: 400 });
     }
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
-      message: 'Security assessment submitted successfully',
-      clientEmailId: clientEmailResult.data?.id,
-      teamEmailId: teamEmailResult.data?.id,
-      securityScore: data.securityScore.percentage,
-      riskLevel: data.securityScore.riskLevel
+      message: 'Assessment submitted successfully',
+      clientEmailSent: !clientEmailResult.error,
+      teamEmailSent: !teamEmailResult.error,
     });
 
   } catch (error) {
-    console.error('Security assessment API error:', error);
+    console.error('Security assessment error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Failed to process assessment' },
       { status: 500 }
     );
   }
