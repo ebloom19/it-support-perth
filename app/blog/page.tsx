@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { SearchPosts } from "@/components/SearchPosts";
+import { EnhancedBlogPage } from "@/components/EnhancedBlogPage";
+import { StructuredData } from "@/components/StructuredData";
 import { getNormalizedPosts } from "@/lib/seobot.server";
 
 const title = "IT Support Blog | Perth Business Technology News & Tips";
@@ -31,20 +32,16 @@ export default async function BlogPage() {
   const allPosts = await getNormalizedPosts();
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-black lg:text-5xl">
-          Perth IT Support Insights & News
-        </h1>
-        <p className="text-xl text-muted-foreground mt-2">
-          Expert IT tips, cybersecurity updates, and technology solutions for
-          Perth businesses. Stay informed with our latest insights on managed
-          services, cloud computing, and digital transformation strategies.
-        </p>
-      </div>
-      <div className="mb-8 w-3/4 m-auto">
-        <SearchPosts allPosts={allPosts} />
-      </div>
-    </div>
+    <>
+      <StructuredData 
+        type="webpage" 
+        serviceData={{
+          name: "IT Support Blog Perth",
+          description: "Expert IT tips, cybersecurity updates, and technology solutions for Perth businesses",
+          url: "https://itsupportperth.com.au/blog"
+        }}
+      />
+      <EnhancedBlogPage allPosts={allPosts} />
+    </>
   );
 }

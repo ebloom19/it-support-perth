@@ -1,189 +1,167 @@
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Cloud,
-  Server,
-  Shield,
-  Users,
-  Clock,
-  ArrowUpDown,
-  Laptop,
-  Database,
-  Coins,
-} from "lucide-react";
-import { SecurityAssessmentCTA } from "@/components/ui/security-assessment-cta";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { ServicePageTemplate } from '@/components/ServicePageTemplate';
+import { StructuredData } from '@/components/StructuredData';
 
 export default function CloudServices() {
-  const cloudBenefits = [
+  const features = [
     {
-      title: "Scalability",
-      description: "Scale your IT infrastructure up or down based on demand",
-      icon: ArrowUpDown,
-      color: "text-blue-500",
+      title: "Microsoft 365 Migration",
+      description: "Complete transition to Microsoft 365 with Teams, Exchange, SharePoint, and OneDrive. Seamless email migration and full training for your team.",
+      icon: "☁️",
+      color: "text-[#3c91e6]"
     },
     {
-      title: "Cost-Effective",
-      description:
-        "Pay only for what you use with no upfront infrastructure costs",
-      icon: Coins,
-      color: "text-green-500",
+      title: "Azure Cloud Infrastructure", 
+      description: "Enterprise-grade virtual machines, storage, and networking solutions. Scalable infrastructure that grows with your business needs.",
+      icon: "🖥️",
+      color: "text-[#01042b]"
     },
     {
-      title: "Reliability",
-      description: "99.9% uptime with automatic failover and redundancy",
-      icon: Clock,
-      color: "text-purple-500",
+      title: "Hybrid Cloud Solutions",
+      description: "Combine on-premises and cloud resources for optimal performance. Keep sensitive data local while leveraging cloud scalability.",
+      icon: "🌍",
+      color: "text-[#3c91e6]"
     },
     {
-      title: "Security",
-      description:
-        "Enterprise-grade security with regular updates and monitoring",
-      icon: Shield,
-      color: "text-red-500",
+      title: "Cloud Security & Compliance",
+      description: "Multi-layered security with enterprise-grade encryption, backup solutions, and compliance management for Australian regulations.",
+      icon: "🛡️",
+      color: "text-[#01042b]"
     },
     {
-      title: "Collaboration",
-      description: "Enable seamless teamwork with anywhere, anytime access",
-      icon: Users,
-      color: "text-orange-500",
+      title: "Remote Work Enablement",
+      description: "Secure access to files and applications from anywhere. VPN setup, multi-factor authentication, and collaboration tools.",
+      icon: "💻",
+      color: "text-[#3c91e6]"
     },
     {
-      title: "Flexibility",
-      description: "Access your data and applications from any device",
-      icon: Laptop,
-      color: "text-indigo-500",
+      title: "Cost Optimization",
+      description: "Reduce IT costs with pay-as-you-use pricing. No upfront hardware investments, predictable monthly expenses, and automatic scaling.",
+      icon: "💰",
+      color: "text-[#01042b]"
     },
+    {
+      title: "Data Analytics & BI",
+      description: "Power BI integration, data warehousing, and business intelligence solutions to turn your data into actionable insights.",
+      icon: "📊",
+      color: "text-[#3c91e6]"
+    },
+    {
+      title: "Cloud Storage Solutions",
+      description: "Secure file sharing, synchronization, and collaboration with SharePoint Online, OneDrive, and Azure File Storage.",
+      icon: "📁",
+      color: "text-[#01042b]"
+    },
+    {
+      title: "Application Hosting",
+      description: "Host your business applications in the cloud with high availability, automatic scaling, and global reach for optimal performance.",
+      icon: "🌐",
+      color: "text-[#3c91e6]"
+    }
   ];
 
-  const cloudSolutions = [
+  const benefits = [
     {
-      title: "Microsoft 365",
-      description:
-        "Complete cloud productivity suite with Teams, Exchange, and SharePoint",
-      features: [
-        "Email",
-        "Collaboration",
-        "File Storage",
-        "Video Conferencing",
-      ],
+      title: "99.9% Uptime Guarantee",
+      description: "Enterprise-grade reliability with automatic failover and redundancy across multiple data centers for maximum availability.",
+      icon: "⚡"
     },
     {
-      title: "Azure Cloud",
-      description:
-        "Enterprise-grade cloud infrastructure and platform services",
-      features: [
-        "Virtual Machines",
-        "Backup",
-        "Disaster Recovery",
-        "Web Hosting",
-      ],
+      title: "Scalable & Flexible",
+      description: "Instantly scale resources up or down based on demand. Add new users, storage, or applications without hardware constraints.",
+      icon: "📈"
     },
     {
-      title: "Cloud Storage",
-      description:
-        "Secure and scalable storage solutions for your business data",
-      features: ["File Sharing", "Backup", "Sync", "Version Control"],
+      title: "Enhanced Collaboration",
+      description: "Real-time document sharing, video conferencing, and team communication tools that keep your workforce connected.",
+      icon: "🤝"
     },
+    {
+      title: "Automatic Updates",
+      description: "Always stay current with the latest features and security patches. No maintenance windows or manual updates required.",
+      icon: "🔄"
+    },
+    {
+      title: "Disaster Recovery",
+      description: "Built-in backup and recovery solutions protect your data. Geographic redundancy ensures business continuity.",
+      icon: "🛡️"
+    },
+    {
+      title: "Local Perth Support",
+      description: "Expert guidance from our Perth-based team who understand Australian business requirements and compliance needs.",
+      icon: "🏢"
+    }
+  ];
+
+  const processSteps = [
+    {
+      step: 1,
+      title: "Cloud Readiness Assessment",
+      description: "Comprehensive evaluation of your current infrastructure, applications, and data to determine the optimal cloud migration strategy."
+    },
+    {
+      step: 2,
+      title: "Migration Planning",
+      description: "Detailed roadmap with timelines, resource requirements, and risk mitigation strategies tailored to your business operations."
+    },
+    {
+      step: 3,
+      title: "Phased Implementation",
+      description: "Gradual migration with minimal business disruption. Testing and validation at each phase to ensure smooth transition."
+    },
+    {
+      step: 4,
+      title: "Training & Support",
+      description: "Comprehensive user training and documentation. Ongoing support to maximize adoption and productivity gains."
+    },
+    {
+      step: 5,
+      title: "Optimization & Monitoring",
+      description: "Continuous monitoring and optimization of cloud resources for performance, security, and cost efficiency."
+    }
+  ];
+
+  const stats = [
+    {
+      number: "50%",
+      label: "Cost Reduction",
+      description: "Average savings on IT infrastructure"
+    },
+    {
+      number: "3x",
+      label: "Faster Deployment",
+      description: "Quicker setup vs on-premises"
+    },
+    {
+      number: "99.9%",
+      label: "Uptime SLA",
+      description: "Enterprise reliability guarantee"
+    }
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative h-[calc(40vh-4rem)] bg-black">
-        <Image
-          src="/images/saas-concept-collage.webp"
-          alt="Cloud Services"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Cloud Services
-          </h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Transform your business with secure and scalable cloud solutions
-          </p>
-          <div className="flex gap-4 flex-wrap justify-center">
-            <Button asChild>
-              <Link href="/contact-us">Get Started</Link>
-            </Button>
-            <SecurityAssessmentCTA variant="secondary" />
-          </div>
-        </div>
-      </div>
-
-      {/* Intro Section */}
-      <section className="py-16 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Why Move to the Cloud?</h2>
-            <p className="text-lg text-muted-foreground mb-12">
-              Cloud technology offers unparalleled flexibility, collaboration,
-              and security for businesses. Our Cloud Services make transitioning
-              to the cloud simple and efficient, empowering small and medium
-              businesses to work smarter, not harder.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            {cloudBenefits.map((benefit, index) => (
-              <Card
-                key={index}
-                className="hover:shadow-lg transition-all duration-300"
-              >
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <benefit.icon className={`w-8 h-8 ${benefit.color}`} />
-                    <CardTitle>{benefit.title}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Our Cloud Solutions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {cloudSolutions.map((solution, index) => (
-              <Card
-                key={index}
-                className="hover:shadow-lg transition-all duration-300"
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl mb-4">
-                    {solution.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground">
-                    {solution.description}
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {solution.features.map((feature, fIndex) => (
-                      <Badge key={fIndex} variant="secondary">
-                        {feature}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+    <>
+      <StructuredData 
+        type="service" 
+        serviceData={{
+          name: "Cloud Services & Migration",
+          description: "Microsoft 365 migration, Azure cloud infrastructure, and hybrid cloud solutions for Perth businesses. Scalable cloud services with expert support.",
+          url: "https://itsupportperth.com.au/services-and-solutions/cloud-services"
+        }}
+      />
+      <ServicePageTemplate
+      title="Cloud Services & Migration"
+      subtitle="Transform Your Business with Scalable Cloud Solutions"
+      heroDescription="Modernize your IT infrastructure with secure, scalable cloud solutions that reduce costs and increase productivity. Our expert team makes cloud migration simple and stress-free for Perth businesses."
+      heroImage="/images/saas-concept-collage.webp"
+      heroImageAlt="Cloud computing and SaaS concept illustration"
+      introText="Move beyond the limitations of traditional IT infrastructure. Our cloud services provide the flexibility, security, and cost-effectiveness your business needs to thrive in today's digital landscape."
+      features={features}
+      benefits={benefits}
+      processSteps={processSteps}
+      stats={stats}
+      primaryCTA="Start Your Cloud Journey"
+      secondaryCTA="Book Cloud Consultation"
+      />
+    </>
   );
 }

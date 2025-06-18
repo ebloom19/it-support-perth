@@ -35,7 +35,7 @@ export const BlogsSection = async () => {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 opacity-30" />
-        <span className="text-sm p-4 z-10 relative">{formattedDate}</span>
+        <span className="text-sm text-white p-4 z-10 relative">{formattedDate}</span>
       </div>
     );
   };
