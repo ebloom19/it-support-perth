@@ -169,14 +169,16 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
       </div>
       
       <!-- Key Recommendations -->
-      ${data.securityScore.recommendations.length > 0 ? `
-      <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: #92400e; margin: 0 0 15px 0; font-size: 16px;">Priority Recommendations</h3>
-        <ul style="margin: 0; padding-left: 20px; color: #78350f;">
-          ${data.securityScore.recommendations.slice(0, 5).map(rec => `<li style="margin-bottom: 5px; font-size: 14px;">${rec}</li>`).join('')}
-        </ul>
-      </div>
-      ` : ''}
+      ${data.securityScore.recommendations.length > 0 ? 
+        '<div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin-bottom: 25px;">' +
+        '<h3 style="color: #92400e; margin: 0 0 15px 0; font-size: 16px;">Priority Recommendations</h3>' +
+        '<ul style="margin: 0; padding-left: 20px; color: #78350f;">' +
+        data.securityScore.recommendations.slice(0, 5).map(rec => 
+          '<li style="margin-bottom: 5px; font-size: 14px;">' + rec + '</li>'
+        ).join('') +
+        '</ul>' +
+        '</div>'
+        : ''}
       
       <!-- Action Items -->
       <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 20px; margin-bottom: 25px;">
