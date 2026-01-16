@@ -8,7 +8,7 @@ export default {
   },
   images: { unoptimized: true },
   webpack: (config) => {
-    config.plugins.push(new VeliteWebpackPlugin());
+    // config.plugins.push(new VeliteWebpackPlugin());
 
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>

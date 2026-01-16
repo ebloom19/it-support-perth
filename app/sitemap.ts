@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { posts } from "@/.velite";
+import { posts } from '@/content-output';
 
 interface BaseRoute {
   name: string;

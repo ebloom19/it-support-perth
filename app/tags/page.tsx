@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { Tag } from '@/components/Tag';
 import { getAllTags, sortTagsByCount } from '@/lib/utils';
-import { posts } from '@/.velite';
+import { posts } from '@/content-output';
 
 export const metadata: Metadata = {
   title: 'IT Support Perth | Tags',

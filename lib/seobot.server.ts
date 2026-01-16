@@ -1,10 +1,13 @@
+import { cache } from 'react';
 import { BlogClient } from "seobot";
 import type { IArticle, IArticleIndex } from "seobot/dist/types/blog";
-
-import { posts, type Post } from "@/.velite";
-
+import { posts, type Post } from '@/content-output';
 import { CustomBlogOrSeoBot } from "./seobot.helpers";
-import { siteConfig } from "@/config/site";
+import { getAllBlogPosts } from "@/lib/db";
+import { generateHTML } from '@tiptap/html';
+import StarterKit from '@tiptap/starter-kit';
+import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
 
 /**
  * Create a SeoBot client using a secure, server‐side API key.
@@ -38,13 +41,6 @@ export async function getSeoBotArticle(slug: string): Promise<IArticle | null> {
 
 /**
  * Normalizes a SeoBot article object to match the local post schema.
- *
- * This function converts fields such as 'headline' into 'title',
- * 'metaDescription' into 'description', 'publishedAt' into 'date',
- * and so forth. The returned object conforms to the Post type.
- *
- * @param article The raw SeoBot article object.
- * @returns The normalized article object.
  */
 export async function normalizePost(
   post: Post | IArticleIndex
@@ -58,16 +54,15 @@ export async function normalizePost(
 
     return {
       slug: `blog/${article.slug}`,
-      slugAsParams: article.slug, // customize if necessary
+      slugAsParams: article.slug,
       title: article.headline,
       description: article.metaDescription,
       date: article.publishedAt,
       published: article.published,
-      body: article.markdown,
+      body: article.markdown, // Keep markdown if available
       html: article.html,
       image: article.image,
       tags: article.tags.map((tag) => tag.title),
-      // Add additional mappings as needed to satisfy the Post type
     };
   }
 
@@ -75,17 +70,66 @@ export async function normalizePost(
 }
 
 /**
- * Gets all posts (both local and from SeoBot) and normalizes them
+ * Gets all posts (local, SeoBot, and DB) and normalizes them
  */
-export async function getNormalizedPosts() {
-  // Get and sort local posts
+export const getNormalizedPosts = cache(async () => {
+  console.error('DEBUG: Starting getNormalizedPosts...');
+  try {
+    // 1. Get and normalize SeoBot posts
+    console.error('DEBUG: Fetching SeoBot posts...');
+    const { articles } = await getSeoBotPosts();
+    const normalizedSeoBotArticles = await Promise.all(
+      articles.map(async (article) => {
+          try {
+              return await normalizePost(article);
+          } catch (e) {
+              console.error(`Failed to normalize Seobot article ${article.slug}`, e);
+              return null;
+          }
+      })
+    ).then(items => items.filter(Boolean) as CustomBlogOrSeoBot[]); // Filter out failed ones
+    console.error(`DEBUG: Fetched ${normalizedSeoBotArticles.length} Seobot articles.`);
 
-  // Get and normalize SeoBot posts
-  const { articles } = await getSeoBotPosts();
-  const normalizedArticles = await Promise.all(
-    articles.map(async (article) => normalizePost(article))
-  );
+    // 2. Get and normalize DB posts
+    console.error('DEBUG: Fetching DB posts...');
+    const dbPostsRaw = await getAllBlogPosts();
+    console.error(`DEBUG: Fetched ${dbPostsRaw.length} DB posts.`);
+    const normalizedDbPosts: CustomBlogOrSeoBot[] = dbPostsRaw.map(post => {
+        let htmlContent = '';
+        try {
+            if (post.content && Object.keys(post.content).length > 0) {
+                // Convert Tiptap JSON to HTML
+                htmlContent = generateHTML(post.content, [
+                    StarterKit,
+                    Image,
+                    Link
+                ]);
+            }
+        } catch (e) {
+            console.error(`Error rendering content for post ${post.slug}`, e);
+            htmlContent = '<p>Error rendering content</p>';
+        }
 
-  // Combine both sources
-  return [...normalizedArticles, ...posts];
-}
+        return {
+            slug: `blog/${post.slug}`,
+            slugAsParams: post.slug,
+            title: post.title,
+            description: post.description || '',
+            date: post.publishedAt ? new Date(post.publishedAt).toISOString() : new Date(post.createdAt).toISOString(),
+            published: post.published,
+            html: htmlContent, // Provide HTML
+            image: post.image || undefined,
+            tags: post.tags,
+            author: post.author || 'Admin'
+        } as any; // Cast as CustomBlogOrSeoBot
+    });
+
+    // 3. Combine all sources
+    const allPosts = [...normalizedDbPosts, ...normalizedSeoBotArticles, ...posts];
+    console.error(`DEBUG: Total posts: ${allPosts.length}`);
+    return allPosts;
+  } catch (error) {
+      console.error('Crucial error in getNormalizedPosts:', error);
+      throw error;
+  }
+});
