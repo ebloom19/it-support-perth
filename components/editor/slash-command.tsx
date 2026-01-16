@@ -130,15 +130,25 @@ export const suggestionItems = createSuggestionItems([
             input.onchange = async () => {
                 if (input.files?.length) {
                     const file = input.files[0];
-                    // We can handle upload here or just use a local preview for now
-                    // For now, let's just insert a placeholder or if we had an upload API...
-                    // Since I don't have an upload API yet, I'll just alert or do nothing
-                    // Actually, let's just insert a dummy image for now
-                    const url = URL.createObjectURL(file);
-                    editor.chain().focus().deleteRange(range).setImage({ src: url }).run();
+                    const pos = range.from;
+                    
+                    // Show loading toast
+                    const toastId = toast.loading("Uploading image...");
+                    
+                    const url = await uploadImage(file);
+                    
+                    if (url) {
+                        toast.success("Image uploaded", { id: toastId });
+                        editor.chain().focus().deleteRange(range).setImage({ src: url }).run();
+                    } else {
+                        toast.error("Upload failed", { id: toastId });
+                    }
                 }
             };
             input.click();
         },
     },
 ]);
+
+import { uploadImage } from "@/lib/upload";
+import { toast } from "sonner";

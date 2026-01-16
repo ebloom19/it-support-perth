@@ -118,21 +118,8 @@ export default function AssessmentsPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <Shield className="w-8 h-8 text-blue-600" />
-              <h1 className="text-3xl font-bold text-gray-900">Security Assessments</h1>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              disabled={isLoggingOut}
-              className="gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              {isLoggingOut ? 'Logging out...' : 'Logout'}
-            </Button>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Security Assessments</h1>
           </div>
           <p className="text-gray-600">View and manage all submitted security assessments</p>
         </div>

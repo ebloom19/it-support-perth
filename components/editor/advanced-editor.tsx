@@ -16,6 +16,8 @@ import Placeholder from "@tiptap/extension-placeholder";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import { suggestionItems } from "./slash-command";
+import { toast } from "sonner";
+import { uploadImage } from "@/lib/upload";
 
 interface AdvancedEditorProps {
   initialValue?: any;
@@ -68,6 +70,52 @@ export default function AdvancedEditor({
             attributes: {
               class:
                 "prose prose-lg dark:prose-invert focus:outline-none max-w-full min-h-[500px] p-8 border rounded-lg shadow-sm bg-white",
+            },
+            handleDrop: (view, event, _slice, moved) => {
+              if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+                const file = event.dataTransfer.files[0];
+                if (file.type.startsWith("image/")) {
+                    const { schema } = view.state;
+                    const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY });
+                    
+                    if (coordinates) {
+                        const toastId = toast.loading("Uploading image...");
+                        uploadImage(file).then(url => {
+                            if (url) {
+                                toast.success("Image uploaded", { id: toastId });
+                                const node = schema.nodes.image.create({ src: url });
+                                const transaction = view.state.tr.insert(coordinates.pos, node);
+                                view.dispatch(transaction);
+                            } else {
+                                toast.error("Upload failed", { id: toastId });
+                            }
+                        });
+                        return true;
+                    }
+                }
+              }
+              return false;
+            },
+            handlePaste: (view, event) => {
+              if (event.clipboardData && event.clipboardData.files && event.clipboardData.files[0]) {
+                const file = event.clipboardData.files[0];
+                if (file.type.startsWith("image/")) {
+                    const { schema } = view.state;
+                    const toastId = toast.loading("Uploading image...");
+                    uploadImage(file).then(url => {
+                        if (url) {
+                            toast.success("Image uploaded", { id: toastId });
+                            const node = schema.nodes.image.create({ src: url });
+                            const transaction = view.state.tr.replaceSelectionWith(node);
+                            view.dispatch(transaction);
+                        } else {
+                            toast.error("Upload failed", { id: toastId });
+                        }
+                    });
+                    return true;
+                }
+              }
+              return false;
             },
           }}
         >

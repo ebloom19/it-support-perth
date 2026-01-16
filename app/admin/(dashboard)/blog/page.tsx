@@ -70,14 +70,14 @@ export default function AdminBlogPage() {
     };
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
+        <>
+            <div className="flex justify-between items-center mb-8 bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                 <div>
-                    <h1 className="text-3xl font-bold">Blog Management</h1>
-                    <p className="text-gray-500 mt-2">Manage your blog posts</p>
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900 leading-none">Blog Management</h1>
+                    <p className="text-gray-500 mt-3 text-sm font-medium uppercase tracking-wider">Create and manage your articles</p>
                 </div>
-                <Button onClick={handleCreate} className="gap-2">
-                    <Plus className="w-4 h-4" /> New Post
+                <Button onClick={handleCreate} className="gap-2 shadow-md hover:shadow-lg transition-all h-11 px-6">
+                    <Plus className="w-5 h-5" /> New Article
                 </Button>
             </div>
 
@@ -140,6 +140,6 @@ export default function AdminBlogPage() {
                     ))}
                 </div>
             )}
-        </div>
+        </>
     );
 }

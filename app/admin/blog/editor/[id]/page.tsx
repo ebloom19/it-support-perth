@@ -10,8 +10,9 @@ import { Switch } from '@/components/ui/switch';
 import AdvancedEditor from '@/components/editor/advanced-editor';
 import { BlogPost } from '@/lib/db';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Loader2, Globe, Settings, FileText, Image as ImageIcon, Search } from 'lucide-react';
+import { ArrowLeft, Save, Loader2, Globe, Settings, FileText, Image as ImageIcon, Search, X, Upload } from 'lucide-react';
 import Link from 'next/link';
+import { uploadImage } from '@/lib/upload';
 
 export default function EditorPage({ params }: { params: { id: string } }) {
     const router = useRouter();
@@ -225,21 +226,49 @@ export default function EditorPage({ params }: { params: { id: string } }) {
                             </div>
 
                             <div className="space-y-4">
-                                {post.image && (
+                                {post.image ? (
                                     <div className="relative aspect-video rounded-lg overflow-hidden border">
                                         <img src={post.image} alt="Featured" className="object-cover w-full h-full" />
                                         <Button 
                                             variant="destructive" 
                                             size="icon" 
-                                            className="absolute top-2 right-2 h-6 w-6 rounded-full opacity-0 hover:opacity-100 transition-opacity"
+                                            className="absolute top-2 right-2 h-8 w-8 rounded-full shadow-lg"
                                             onClick={() => setPost({ ...post, image: null })}
                                         >
-                                            <span className="text-[10px]">×</span>
+                                            <X className="h-4 w-4" />
                                         </Button>
+                                    </div>
+                                ) : (
+                                    <div 
+                                        className="aspect-video rounded-lg border-2 border-dashed border-gray-200 flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer"
+                                        onClick={() => document.getElementById('image-upload')?.click()}
+                                    >
+                                        <div className="bg-white p-3 rounded-full shadow-sm mb-2">
+                                            <Upload className="h-6 w-6 text-gray-400" />
+                                        </div>
+                                        <p className="text-sm font-medium text-gray-900">Click to upload</p>
+                                        <p className="text-xs text-gray-500 mt-1">PNG, JPG, WEBP up to 10MB</p>
+                                        <input 
+                                            id="image-upload"
+                                            type="file" 
+                                            className="hidden" 
+                                            accept="image/*"
+                                            onChange={async (e) => {
+                                                const file = e.target.files?.[0];
+                                                if (file) {
+                                                    const toastId = toast.loading("Uploading image...");
+                                                    const url = await uploadImage(file);
+                                                    if (url) {
+                                                        setPost({ ...post, image: url });
+                                                        toast.success("Image uploaded", { id: toastId });
+                                                    }
+                                                }
+                                            }}
+                                        />
                                     </div>
                                 )}
                                 <div className="space-y-2">
-                                    <Label htmlFor="image" className="text-xs font-semibold text-gray-500 uppercase tracking-tighter text-left block">Image URL</Label>
+                                    <Label htmlFor="image" className="text-xs font-semibold text-gray-500 uppercase tracking-tighter text-left block">Or Image URL</Label>
                                     <Input 
                                         id="image" 
                                         value={post.image || ''} 
