@@ -26,16 +26,24 @@ interface PostPageProps {
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
+  console.error(`DEBUG: getPostFromParams searching for slug: ${slug}`);
   const posts = await getNormalizedPosts();
+  console.error(`DEBUG: Found ${posts.length} normalized posts.`);
   
   const post = posts.find((post) => post.slugAsParams === slug);
-  if (post) return post;
+  if (post) {
+      console.error(`DEBUG: Found post for slug: ${slug}, published: ${post.published}`);
+      return post;
+  }
 
+  console.error(`DEBUG: Post not found in normalized posts, checking SeoBot for slug: ${slug}`);
   const article = await getSeoBotArticle(slug);
   if (article) {
+    console.error(`DEBUG: Found SeoBot article for slug: ${slug}`);
     return normalizePost(article);
   }
 
+  console.error(`DEBUG: No post or article found for slug: ${slug}`);
   return null;
 }
 

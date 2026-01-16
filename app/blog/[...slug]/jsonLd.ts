@@ -1,7 +1,7 @@
 import { BlogPosting, WithContext } from 'schema-dts';
 
 import { type SiteConfig } from '@/config/site';
-import { type Post } from '@/.velite';
+import { type Post } from '@/content-output';
 import { CustomBlogOrSeoBot, getDate, getDescription, getTitle } from '@/lib/seobot.helpers';
 
 export function generateJsonLd(

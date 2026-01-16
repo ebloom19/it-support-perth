@@ -3,7 +3,7 @@ import { slug } from 'github-slugger';
 import { twMerge } from 'tailwind-merge';
 import { type CustomBlogOrSeoBot } from './seobot.helpers';
 
-import { Post } from '@/.velite';
+import { posts, type Post } from '@/content-output';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
