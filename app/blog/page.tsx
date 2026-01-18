@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export const fetchCache = "force-no-store";
 
 export default async function BlogPage() {
-  const allPosts = await getNormalizedPosts();
+  const allPosts = (await getNormalizedPosts()).filter(post => post.published);
 
   return (
     <>
