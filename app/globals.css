@@ -80,3 +80,32 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Editor prose styles - normalize all text to same color */
+.prose strong,
+.prose b,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose li::marker,
+.prose ul > li::marker,
+.prose ol > li::marker {
+  color: inherit;
+}
+
+.dark .prose-invert strong,
+.dark .prose-invert b,
+.dark .prose-invert h1,
+.dark .prose-invert h2,
+.dark .prose-invert h3,
+.dark .prose-invert h4,
+.dark .prose-invert h5,
+.dark .prose-invert h6,
+.dark .prose-invert li::marker,
+.dark .prose-invert ul > li::marker,
+.dark .prose-invert ol > li::marker {
+  color: inherit;
+}
