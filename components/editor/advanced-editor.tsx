@@ -69,7 +69,7 @@ export default function AdvancedEditor({
           editorProps={{
             attributes: {
               class:
-                "prose prose-lg dark:prose-invert focus:outline-none max-w-full min-h-[500px] p-8 border rounded-lg shadow-sm bg-white",
+                "prose prose-lg dark:prose-invert focus:outline-none max-w-full min-h-[500px] max-h-[70vh] overflow-y-auto p-8 border rounded-lg shadow-sm bg-white",
             },
             handleDrop: (view, event, _slice, moved) => {
               if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {

@@ -108,7 +108,7 @@ const EnhancedBlogLayout: React.FC<EnhancedBlogLayoutProps> = ({
               {publishDate && (
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  <span>{new Date(publishDate).toLocaleDateString()}</span>
+                  <span>{new Date(publishDate).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 </div>
               )}
               <div className="flex items-center gap-2">

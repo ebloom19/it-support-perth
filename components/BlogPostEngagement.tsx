@@ -53,7 +53,7 @@ export function BlogPostEngagement({
         {publishDate && (
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
-            <span>{publishDate}</span>
+            <span>{new Date(publishDate).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           </div>
         )}
         {readTime && (

@@ -20,6 +20,9 @@ import { getNormalizedPosts, getSeoBotArticle, normalizePost } from "@/lib/seobo
 
 import { generateJsonLd } from "./jsonLd";
 
+// Force dynamic rendering so newly published posts are available immediately
+export const dynamic = 'force-dynamic';
+
 interface PostPageProps {
   params: { slug: string[] };
 }
