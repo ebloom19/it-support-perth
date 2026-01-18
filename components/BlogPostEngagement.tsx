@@ -1,11 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, MessageCircle, Bookmark, Clock, User, Calendar, ArrowRight } from 'lucide-react';
+import { Clock, User, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { BlogPostSocialShare } from './BlogPostSocialShare';
 
@@ -35,18 +34,6 @@ export function BlogPostEngagement({
   author,
   relatedPosts = []
 }: BlogPostEngagementProps) {
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
-  const [likeCount, setLikeCount] = useState(12); // Mock data
-
-  const handleLike = () => {
-    setLiked(!liked);
-    setLikeCount(prev => liked ? prev - 1 : prev + 1);
-  };
-
-  const handleBookmark = () => {
-    setBookmarked(!bookmarked);
-  };
 
   return (
     <div className="space-y-8">
@@ -104,41 +91,6 @@ export function BlogPostEngagement({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="flex items-center gap-4">
-          <motion.button
-            onClick={handleLike}
-            className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-              liked 
-                ? 'bg-red-50 text-red-600 dark:bg-red-900/20' 
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Heart className={`w-4 h-4 ${liked ? 'fill-current' : ''}`} />
-            <span className="text-sm font-medium">{likeCount}</span>
-          </motion.button>
-
-          <motion.button
-            onClick={handleBookmark}
-            className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-              bookmarked 
-                ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20' 
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Bookmark className={`w-4 h-4 ${bookmarked ? 'fill-current' : ''}`} />
-            <span className="text-sm font-medium">Save</span>
-          </motion.button>
-
-          <Button variant="ghost" size="sm" className="flex items-center gap-2">
-            <MessageCircle className="w-4 h-4" />
-            <span className="text-sm">Comment</span>
-          </Button>
-        </div>
-
         <BlogPostSocialShare title={title} url={url} excerpt={excerpt} />
       </motion.div>
 

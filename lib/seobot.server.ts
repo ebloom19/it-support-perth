@@ -92,7 +92,7 @@ export const getNormalizedPosts = cache(async () => {
 
     // 2. Get and normalize DB posts
     console.error('DEBUG: Fetching DB posts...');
-    const dbPostsRaw = await getAllBlogPosts();
+    const dbPostsRaw = await getAllBlogPosts(true);
     console.error(`DEBUG: Fetched ${dbPostsRaw.length} DB posts.`);
     const normalizedDbPosts: CustomBlogOrSeoBot[] = dbPostsRaw.map(post => {
         let htmlContent = '';
