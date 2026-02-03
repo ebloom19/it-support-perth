@@ -1,0 +1,63 @@
+---
+description: Code quality, safety, and anti-patterns to follow when writing code
+alwaysApply: true
+---
+
+### Before Writing Code
+
+1. **Check existing codebase first** - Search for existing implementations or partial functionality that can be reused or extended
+2. **Don't generate unnecessary code** - Only write what's strictly needed to fulfill the request
+3. **Reuse existing patterns** - Follow established patterns, utilities, and abstractions already in the project
+4. **Avoid duplication (DRY)** - If similar functionality exists, extend or refactor it rather than creating new code
+5. **Keep changes minimal** - Make the smallest possible change that achieves the goal
+
+### Code Quality Principles
+
+6. **YAGNI (You Aren't Gonna Need It)** - Don't add features, parameters, or abstractions "just in case" - only implement what's explicitly needed
+7. **KISS (Keep It Simple)** - Choose the simplest solution that works; avoid over-engineering
+8. **Single Responsibility** - Each function/class should do one thing well
+9. **Fail Fast** - Validate inputs early and throw meaningful errors immediately
+
+### Security & Safety
+
+10. **Never expose secrets** - No hardcoded credentials, API keys, or sensitive data in code
+11. **Validate all inputs** - Never trust external data; validate at system boundaries
+12. **Sanitize outputs** - Prevent injection attacks (SQL, XSS, etc.)
+
+### Maintainability
+
+13. **Write self-documenting code** - Clear names > comments; add comments only for "why", not "what"
+14. **Handle errors gracefully** - Proper try/catch, meaningful error messages, appropriate logging
+15. **Consider edge cases** - Empty arrays, null values, concurrent access, network failures
+
+### LLM-Specific Anti-Patterns (AVOID THESE)
+
+**Over-engineering:**
+
+- Don't create helper functions for one-time operations
+- Don't add abstraction layers "for flexibility"
+- Don't create utility classes for simple operations
+- Don't add configuration options that aren't requested
+
+**Unnecessary additions:**
+
+- Don't add features beyond what's explicitly requested
+- Don't add "nice to have" error handling for impossible scenarios
+- Don't add logging statements unless the codebase already uses them consistently
+- Don't add comments explaining obvious code
+- Don't add backwards-compatibility shims - just change the code
+
+**Common LLM mistakes:**
+
+- Don't hallucinate imports - verify packages exist in package.json
+- Don't assume APIs or methods exist - check the actual codebase
+- Don't mix coding styles - match the existing codebase exactly
+- Don't leave TODO/FIXME/placeholder comments - implement completely or ask for clarification
+- Don't generate example/sample data unless specifically requested
+
+**Code bloat:**
+
+- A 5-line solution is better than a 20-line "clean" solution
+- Inline simple logic instead of extracting to functions
+- Use existing libraries instead of reimplementing
+- Delete dead code, don't comment it out
