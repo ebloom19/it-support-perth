@@ -1,8 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Star, Quote, Users, Award, Building, CheckCircle } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, Quote, Users, Award, Building, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useCardsPerPage } from '@/hooks/use-cards-per-page';
 
 interface Testimonial {
   name: string;
@@ -64,10 +67,117 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={i}
           className={`w-5 h-5 ${
-            i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+            i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-400 dark:text-gray-500'
           }`}
         />
       ))}
+    </div>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden flex flex-col">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3c91e6] to-[#01042b]" />
+      <CardContent className="p-6 flex flex-col flex-1">
+        <Quote className="w-8 h-8 text-[#3c91e6] mb-4 flex-shrink-0" />
+        <StarRating rating={testimonial.rating} />
+        <blockquote className="text-muted-foreground leading-relaxed mb-6 flex-1">
+          "{testimonial.content}"
+        </blockquote>
+        <div className="border-t pt-4 flex-shrink-0">
+          <div className="font-semibold text-foreground">{testimonial.name}</div>
+          <div className="text-sm text-[#3c91e6] font-medium">{testimonial.role}</div>
+          <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+          {testimonial.industry && (
+            <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+              <Building className="w-3 h-3" />
+              {testimonial.industry}
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function TestimonialsCarousel({ testimonials }: { testimonials: Testimonial[] }) {
+  const cardsPerPage = useCardsPerPage();
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const totalPages = Math.max(1, Math.ceil(testimonials.length / cardsPerPage));
+  const clampedPage = Math.min(currentPage, totalPages - 1);
+  const startIndex = clampedPage * cardsPerPage;
+  const visible = testimonials.slice(startIndex, startIndex + cardsPerPage);
+
+  useEffect(() => {
+    setCurrentPage((p) => Math.min(p, totalPages - 1));
+  }, [totalPages]);
+
+  const goToPage = useCallback((page: number) => {
+    setCurrentPage((p) => Math.max(0, Math.min(page, totalPages - 1)));
+  }, [totalPages]);
+
+  const canGoPrev = clampedPage > 0;
+  const canGoNext = clampedPage < totalPages - 1;
+
+  return (
+    <div className="relative max-w-7xl mx-auto">
+      <div className="flex items-stretch gap-3 sm:gap-4">
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          className="h-10 w-10 rounded-full shrink-0 self-center disabled:opacity-40 hover:bg-[#3c91e6] hover:text-white hover:border-[#3c91e6] transition-colors"
+          onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
+          disabled={!canGoPrev}
+          aria-label="Previous"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </Button>
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={clampedPage}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {visible.map((testimonial, index) => (
+                <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          className="h-10 w-10 rounded-full shrink-0 self-center disabled:opacity-40 hover:bg-[#3c91e6] hover:text-white hover:border-[#3c91e6] transition-colors"
+          onClick={() => setCurrentPage((p) => Math.min(totalPages - 1, p + 1))}
+          disabled={!canGoNext}
+          aria-label="Next"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </Button>
+      </div>
+      <div className="flex justify-center gap-2 mt-6 flex-wrap" role="tablist" aria-label="Testimonials navigation">
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            role="tab"
+            aria-label={`Go to page ${index + 1}`}
+            aria-selected={clampedPage === index}
+            onClick={() => goToPage(index)}
+            className={`h-2 rounded-full transition-all duration-200 ${
+              clampedPage === index ? 'w-6 bg-[#3c91e6]' : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -90,8 +200,8 @@ export function SocialProofSection({
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">{title}</h2>
-            <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-on-dark-strong">{title}</h2>
+            <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed text-shadow-on-dark">
               {description}
             </p>
           </motion.div>
@@ -100,16 +210,16 @@ export function SocialProofSection({
             {trustIndicators.map((indicator, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="text-center text-white"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className="text-4xl mb-3">{indicator.icon}</div>
-                <div className="font-bold text-lg mb-1">{indicator.label}</div>
-                <div className="text-sm text-white/90">{indicator.description}</div>
+                <div className="text-4xl mb-3 text-shadow-on-dark">{indicator.icon}</div>
+                <div className="font-bold text-lg mb-1 text-shadow-on-dark">{indicator.label}</div>
+                <div className="text-sm text-white/90 text-shadow-on-dark">{indicator.description}</div>
               </motion.div>
             ))}
           </div>
@@ -137,41 +247,7 @@ export function SocialProofSection({
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3c91e6] to-[#01042b]" />
-                  
-                  <CardContent className="p-6">
-                    <Quote className="w-8 h-8 text-[#3c91e6] mb-4" />
-                    <StarRating rating={testimonial.rating} />
-                    <blockquote className="text-muted-foreground leading-relaxed mb-6">
-                      "{testimonial.content}"
-                    </blockquote>
-                    <div className="border-t pt-4">
-                      <div className="font-semibold text-foreground">{testimonial.name}</div>
-                      <div className="text-sm text-[#3c91e6] font-medium">{testimonial.role}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.company}</div>
-                      {testimonial.industry && (
-                        <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                          <Building className="w-3 h-3" />
-                          {testimonial.industry}
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} />
         </div>
       </section>
     );
@@ -221,41 +297,7 @@ export function SocialProofSection({
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3c91e6] to-[#01042b]" />
-                  
-                  <CardContent className="p-6">
-                    <Quote className="w-8 h-8 text-[#3c91e6] mb-4" />
-                    <StarRating rating={testimonial.rating} />
-                    <blockquote className="text-muted-foreground leading-relaxed mb-6">
-                      "{testimonial.content}"
-                    </blockquote>
-                    <div className="border-t pt-4">
-                      <div className="font-semibold text-foreground">{testimonial.name}</div>
-                      <div className="text-sm text-[#3c91e6] font-medium">{testimonial.role}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.company}</div>
-                      {testimonial.industry && (
-                        <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                          <Building className="w-3 h-3" />
-                          {testimonial.industry}
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} />
         </div>
       </section>
     </>

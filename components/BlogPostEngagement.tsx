@@ -102,8 +102,8 @@ export function BlogPostEngagement({
       >
         <Card className="bg-gradient-to-r from-[#01042b] to-[#3c91e6] text-white border-0">
           <CardContent className="p-6 text-center">
-            <h3 className="text-xl font-bold mb-2">Stay Updated with IT Insights</h3>
-            <p className="text-gray-200 mb-4">
+            <h3 className="text-xl font-bold mb-2 text-white text-shadow-on-dark-strong">Stay Updated with IT Insights</h3>
+            <p className="text-white/95 mb-4 text-shadow-on-dark">
               Get the latest cybersecurity tips and technology insights delivered to your inbox
             </p>
             <Button variant="secondary" className="bg-white text-[#01042b] hover:bg-gray-100">

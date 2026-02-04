@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Shield, Award } from 'lucide-react';
@@ -7,17 +6,18 @@ import { MobileOptimizedServiceShowcase } from '@/components/MobileOptimizedServ
 import { AnimatedTestimonials } from '@/components/AnimatedTestimonials';
 import { BlogsSection } from '@/components/blogs-section';
 import { SocialProofSection } from '@/components/SocialProofSection';
+import { PartnersCarousel } from '@/components/PartnersCarousel';
 import { StructuredData } from '@/components/StructuredData';
 import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Expert IT Support & Managed Services Perth | Cybersecurity | 24/7 Support',
-  description: 'Perth\'s trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Call (08) 9325 1196 for free consultation.',
+  title: 'Expert IT Support & Managed Services Perth | 24/7 Support',
+  description: "Perth's trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Free consultation.",
   keywords: 'expert IT support Perth, managed IT services Perth, IT experts Perth, cybersecurity Perth, cloud services Perth, computer support Perth, network support Perth, Microsoft 365 Perth, IT consultants Perth',
   openGraph: {
-    title: 'Expert IT Support & Managed Services Perth | Cybersecurity | 24/7 Support',
-    description: 'Perth\'s trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions.',
+    title: 'Expert IT Support & Managed Services Perth | 24/7 Support',
+    description: "Perth's trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Free consultation.",
     type: 'website',
     locale: 'en_AU',
     url: siteConfig.url,
@@ -165,34 +165,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Partners grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center max-w-6xl mx-auto px-2">
-            {[
+          {/* Partners carousel: 3 desktop, 2 tablet, 1 mobile + arrows + dots */}
+          <PartnersCarousel
+            partners={[
               { src: "/images/partners/microsoft-partner.png", alt: "Microsoft Partner" },
               { src: "/images/partners/synnex.svg", alt: "Synnex" },
               { src: "/images/partners/leader.png", alt: "Leader Computer" },
               { src: "/images/partners/veeam.svg", alt: "Veeam" },
               { src: "/images/partners/ingram-micro.svg", alt: "Ingram Micro" },
               { src: "/images/partners/acronis.svg", alt: "Acronis" },
-              { src: "/images/partners/webroot.svg", alt: "Webroot" }
-            ].map((partner, index) => (
-              <div 
-                key={index}
-                className="relative group w-full max-w-[100px] sm:max-w-[120px]"
-              >
-                <div className="absolute -inset-2 sm:-inset-3 bg-gradient-to-r from-[#3c91e6]/20 to-[#01042b]/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                <div className="relative bg-white dark:bg-background rounded-lg p-2 sm:p-3 lg:p-4 shadow-sm group-hover:shadow-md transition-all duration-300">
-                  <Image
-                    src={partner.src}
-                    alt={partner.alt}
-                    width={120}
-                    height={60}
-                    className="w-full h-8 sm:h-10 lg:h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+              { src: "/images/partners/webroot.svg", alt: "Webroot" },
+            ]}
+          />
 
           {/* Additional trust indicators */}
           <div className="text-center mt-12 sm:mt-16 lg:mt-20">

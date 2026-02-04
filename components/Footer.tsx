@@ -17,7 +17,7 @@ const servicesAndSolutions = [
     path: '/services-and-solutions/managed-it-services-provider' 
   },
   { 
-    name: 'IT Security', 
+    name: 'Firewall Services', 
     path: '/services-and-solutions/firewall-service' 
   },
   { 
@@ -41,8 +41,8 @@ const servicesAndSolutions = [
     path: '/services-and-solutions/backup-and-disaster-recovery-solutions' 
   },
   { 
-    name: 'Remote IT Support', 
-    path: '/services-and-solutions/remote-support' 
+    name: 'IT Security Solutions', 
+    path: '/services-and-solutions/it-security-solutions' 
   },
   { 
     name: 'IT Consulting', 
@@ -54,9 +54,9 @@ export default function Footer({ posts }: { posts: CustomBlogOrSeoBot[] }) {
   const displayPosts = posts.slice(0, 4);
 
   return (
-    <footer className="bg-secondary p-8 border-t">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 text-foreground gap-6">
+    <footer className="bg-secondary p-5 sm:p-6 md:p-8 lg:p-10 border-t border-border dark:border-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 text-foreground gap-6 sm:gap-8">
           {/* Contact Information */}
           <div className="flex flex-col gap-2 min-w-[200px]">
             <h6 className="text-lg md:text-xl font-semibold mb-2">
@@ -152,11 +152,11 @@ export default function Footer({ posts }: { posts: CustomBlogOrSeoBot[] }) {
           </div>
         </div>
 
-        <hr className="my-6 border-foreground/20" />
+        <hr className="my-6 sm:my-8 border-border dark:border-gray-800" />
         
-        <div className="text-center text-foreground">
+        <div className="text-center text-foreground text-xs sm:text-sm text-muted-foreground dark:text-gray-400 px-2">
           <p>
-            © 2024 IT Support Perth - Managed IT Support for Small and
+            © {new Date().getFullYear()} IT Support Perth - Managed IT Support for Small and
             Medium Businesses
           </p>
         </div>

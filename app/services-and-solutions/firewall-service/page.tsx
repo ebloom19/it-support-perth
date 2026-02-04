@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/firewall-service`;
+export const metadata: Metadata = {
+  title: 'Perth FortiGate Firewall Services | Network Protection',
+  description: "43% of cyberattacks target SMBs. Stay protected with advanced firewall solutions, AI threat detection, and expert local monitoring from Perth's IT security leaders.",
+  alternates: { canonical: url },
+  openGraph: { title: 'Perth FortiGate Firewall Services | Network Protection', description: "43% of cyberattacks target SMBs. Stay protected with advanced firewall solutions, AI threat detection, and expert local monitoring from Perth's IT security leaders.", url },
+};
 
 export default function FirewallService() {
   const features = [
@@ -127,7 +137,7 @@ export default function FirewallService() {
         serviceData={{
           name: "Firewall Services (FortiGate)",
           description: "Enterprise-grade network protection for your business. Advanced AI-powered threat detection, secure remote access, and comprehensive FortiGate firewall solutions for businesses of all sizes.",
-          url: "https://itsupportperth.com.au/services-and-solutions/firewall-service"
+          url
         }}
       />
       <ServicePageTemplate

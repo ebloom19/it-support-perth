@@ -99,10 +99,11 @@ export function EnhancedContactPage() {
         <Image
           src="/images/IMAG02331-washed1.webp"
           alt="Contact IT Support Perth"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-30 mix-blend-overlay"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-30 mix-blend-overlay"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#01042b]/90 via-[#01042b]/70 to-[#3c91e6]/50" aria-hidden />
         
         <div className="absolute inset-0">
           <motion.div 
@@ -127,7 +128,7 @@ export function EnhancedContactPage() {
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm border border-red-300/30 rounded-full px-6 py-3 mb-8"
+              className="inline-flex items-center gap-2 bg-red-500/25 backdrop-blur-sm border border-red-300/40 rounded-full px-6 py-3 mb-8 text-white text-shadow-on-dark"
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -135,15 +136,15 @@ export function EnhancedContactPage() {
               <span className="text-sm font-medium">Emergency IT Support Available 24/7</span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white text-shadow-on-dark-strong">
               Get Expert IT Help
               <br />
-              <span className="text-foreground">
+              <span className="text-white">
                 Right Now
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 text-white/95 text-shadow-on-dark">
               Same-day response • Free consultation • No obligation quote
             </p>
 
@@ -173,8 +174,8 @@ export function EnhancedContactPage() {
                   Call Now - Emergency
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm px-8 py-4 text-lg">
-                <a href="#contact-form">
+              <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/50 backdrop-blur-sm px-8 py-4 text-lg font-medium">
+                <a href="#contact-form" className="text-inherit">
                   Get Free Quote
                 </a>
               </Button>
@@ -201,7 +202,7 @@ export function EnhancedContactPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16 items-stretch">
             {contactMethods.map((method, index) => (
               <motion.div
                 key={index}
@@ -210,15 +211,16 @@ export function EnhancedContactPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
+                className="h-full flex flex-col"
               >
-                <Card className={`h-full hover:shadow-xl transition-all duration-300 relative overflow-hidden ${method.urgent ? 'ring-2 ring-red-500' : ''}`}>
+                <Card className={`h-full hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col ${method.urgent ? 'ring-2 ring-red-500' : ''}`}>
                   {method.urgent && (
                     <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-xs font-medium text-center py-1">
                       URGENT ISSUES
                     </div>
                   )}
                   
-                  <CardHeader className="pb-4">
+                  <CardHeader className="pb-4 flex-shrink-0">
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`p-3 rounded-xl bg-gradient-to-br from-[#3c91e6]/10 to-[#3c91e6]/5`}>
                         <method.icon className={`w-8 h-8 ${method.color}`} />
@@ -227,9 +229,9 @@ export function EnhancedContactPage() {
                     </div>
                   </CardHeader>
 
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">{method.description}</p>
-                    <Button asChild className={`w-full ${method.urgent ? 'bg-red-600 hover:bg-red-700' : 'bg-[#3c91e6] hover:bg-[#2a7bc4]'}`}>
+                  <CardContent className="flex flex-col flex-1">
+                    <p className="text-muted-foreground mb-4 flex-1">{method.description}</p>
+                    <Button asChild className={`w-full flex-shrink-0 ${method.urgent ? 'bg-red-600 hover:bg-red-700' : 'bg-[#3c91e6] hover:bg-[#2a7bc4]'}`}>
                       <a href={method.href}>
                         {method.value}
                       </a>
@@ -339,7 +341,7 @@ export function EnhancedContactPage() {
                     <div>
                       <select
                         {...register("service")}
-                        className="w-full p-3 border rounded-md"
+                        className="w-full p-3 border rounded-md bg-background text-foreground border-input dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
                         value={selectedService}
                         onChange={(e) => setSelectedService(e.target.value)}
                       >

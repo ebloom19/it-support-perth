@@ -125,8 +125,8 @@ export function RelatedPostsSection({
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 group border-0 bg-white dark:bg-gray-800">
-                  <div className="relative overflow-hidden rounded-t-lg">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 group border-0 bg-white dark:bg-gray-800 flex flex-col">
+                  <div className="relative overflow-hidden rounded-t-lg flex-shrink-0">
                     {post.image && (
                       <div className="relative h-48 w-full">
                         <Image
@@ -151,10 +151,10 @@ export function RelatedPostsSection({
                     )}
                   </div>
                   
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-1">
                     {/* Tags */}
                     {postTags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-3">
+                      <div className="flex flex-wrap gap-2 mb-3 flex-shrink-0">
                         {postTags.map((tag, tagIndex) => (
                           <Badge 
                             key={tagIndex} 
@@ -168,17 +168,17 @@ export function RelatedPostsSection({
                     )}
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-[#3c91e6] transition-colors">
+                    <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-[#3c91e6] transition-colors flex-shrink-0">
                       {getTitle(post)}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
+                    <p className="text-muted-foreground mb-4 line-clamp-3 flex-1">
                       {getDescription(post)}
                     </p>
 
                     {/* Meta info */}
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4 flex-shrink-0">
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4" />
                         <span>5 min read</span>
@@ -187,7 +187,7 @@ export function RelatedPostsSection({
                     </div>
 
                     {/* Read more button */}
-                    <Link href={postUrl}>
+                    <Link href={postUrl} className="flex-shrink-0">
                       <Button 
                         variant="outline" 
                         className="w-full group-hover:bg-[#3c91e6] group-hover:text-white group-hover:border-[#3c91e6] transition-all duration-300"

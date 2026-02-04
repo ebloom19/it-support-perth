@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/email-protection-service`;
+export const metadata: Metadata = {
+  title: 'Perth Email Protection Services | Spam, Phishing & Malware',
+  description: "Don't let email threat disrupt your business. We provide AI-powered filtering & compliance management to secure your communications & block advanced threats.",
+  alternates: { canonical: url },
+  openGraph: { title: 'Perth Email Protection Services | Spam, Phishing & Malware', description: "Don't let email threat disrupt your business. We provide AI-powered filtering & compliance management to secure your communications & block advanced threats.", url, siteName: 'IT Support Perth', type: 'website' },
+};
 
 export default function EmailProtectionService() {
   const features = [
@@ -127,7 +137,7 @@ export default function EmailProtectionService() {
         serviceData={{
           name: "Email Protection Services",
           description: "Secure your business communication with advanced email protection. Comprehensive defense against spam, phishing, malware, and advanced threats with AI-powered filtering and compliance management.",
-          url: "https://itsupportperth.com.au/services-and-solutions/email-protection-service"
+          url
         }}
       />
       <ServicePageTemplate

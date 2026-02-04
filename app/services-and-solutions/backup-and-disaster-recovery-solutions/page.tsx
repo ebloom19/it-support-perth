@@ -7,10 +7,10 @@ import type { Metadata } from 'next';
 
 const url = `${siteConfig.url}/services-and-solutions/backup-and-disaster-recovery-solutions`;
 export const metadata: Metadata = {
-  title: 'Backup & Disaster Recovery Solutions Perth | Cloud Backup',
-  description: 'Automated cloud backup, ransomware protection and rapid recovery for Perth businesses. Business continuity and disaster recovery.',
+  title: 'Data Backup & Disaster Recovery | Data Protection for Perth Businesses',
+  description: "Don't risk losing critical business data. Perth IT Experts provide cloud and local backups, disaster recovery, and ransomware protection for fast recovery.",
   alternates: { canonical: url },
-  openGraph: { title: 'Backup & Disaster Recovery Perth', description: 'Cloud backup and disaster recovery for Perth businesses.', url },
+  openGraph: { title: 'Data Backup & Disaster Recovery | Data Protection for Perth Businesses', description: "Don't risk losing critical business data. Perth IT Experts provide cloud and local backups, disaster recovery, and ransomware protection for fast recovery.", url },
 };
 
 export default function BackupAndDisasterRecovery() {
@@ -229,7 +229,7 @@ export default function BackupAndDisasterRecovery() {
         serviceData={{
           name: "Backup & Disaster Recovery",
           description: "Enterprise-grade backup and disaster recovery solutions for Perth businesses. Comprehensive data protection with rapid recovery capabilities.",
-          url: "https://itsupportperth.com.au/services-and-solutions/backup-and-disaster-recovery-solutions"
+          url
         }}
       />
       <ServicePageTemplate

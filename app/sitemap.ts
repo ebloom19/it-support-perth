@@ -59,22 +59,6 @@ const routes: Route[] = [
         name: "AI-Enhanced IT Support",
         href: "/services-and-solutions/ai-enhanced-it-support",
       },
-      {
-        name: "Business IT Support",
-        href: "/services-and-solutions/business-it-support",
-      },
-      {
-        name: "Computer Repairs",
-        href: "/services-and-solutions/computer-repairs",
-      },
-      {
-        name: "Network Management",
-        href: "/services-and-solutions/network-management",
-      },
-      {
-        name: "Remote IT Support",
-        href: "/services-and-solutions/remote-it-support",
-      },
     ],
   },
   {
@@ -99,6 +83,20 @@ type ChangeFrequency =
   | "monthly"
   | "yearly"
   | "never";
+
+/** Service paths that have actual pages (app/services-and-solutions/[slug]/page.tsx). Ensures sitemap includes all key service URLs. */
+const SERVICE_PATHS = [
+  "/services-and-solutions",
+  "/services-and-solutions/ai-enhanced-it-support",
+  "/services-and-solutions/backup-and-disaster-recovery-solutions",
+  "/services-and-solutions/cloud-services",
+  "/services-and-solutions/email-protection-service",
+  "/services-and-solutions/firewall-service",
+  "/services-and-solutions/it-consulting",
+  "/services-and-solutions/it-security-solutions",
+  "/services-and-solutions/managed-it-services-provider",
+  "/services-and-solutions/on-premises-server-management",
+] as const;
 
   async function getSeoBotSitemap() {
     const key = process.env.SEOBOT_API_KEY;
@@ -164,6 +162,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return routeEntries;
   });
 
+  const sitemapServicePages: MetadataRoute.Sitemap = SERVICE_PATHS.map((path) => ({
+    url: `${siteConfig.url}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as ChangeFrequency,
+    priority: 0.9,
+  }));
+
+  const seenUrls = new Set<string>();
+  const dedupedRoutes = sitemapRoutes.filter((entry) => {
+    if (seenUrls.has(entry.url)) return false;
+    seenUrls.add(entry.url);
+    return true;
+  });
+
   return [
     {
       url: siteConfig.url,
@@ -173,6 +185,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...sitemapPost,
     ...seoBotPosts,
-    ...sitemapRoutes,
+    ...sitemapServicePages,
+    ...dedupedRoutes,
   ];
 }

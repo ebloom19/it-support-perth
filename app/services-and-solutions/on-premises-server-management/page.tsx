@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/on-premises-server-management`;
+export const metadata: Metadata = {
+  title: 'On-Premises Server Management Perth | IT Support Perth',
+  description: 'Ensure your Perth business servers run at peak efficiency. We provide comprehensive on-site infrastructure management, 24/7 support, and guaranteed uptime.',
+  alternates: { canonical: url },
+  openGraph: { title: 'On-Premises Server Management Perth | IT Support Perth', description: 'Ensure your Perth business servers run at peak efficiency. We provide comprehensive on-site infrastructure management, 24/7 support, and guaranteed uptime.', url, siteName: 'IT Support Perth', type: 'website' },
+};
 
 export default function OnPremisesServerManagement() {
   const features = [
@@ -127,7 +137,7 @@ export default function OnPremisesServerManagement() {
         serviceData={{
           name: "On-Premises Server Management",
           description: "Expert management of your on-site infrastructure. Maximize control, security, and performance with comprehensive server management services including 24/7 monitoring, maintenance, data management, and security compliance.",
-          url: "https://itsupportperth.com.au/services-and-solutions/on-premises-server-management"
+          url
         }}
       />
       <ServicePageTemplate

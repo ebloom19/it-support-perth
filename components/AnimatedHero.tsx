@@ -13,9 +13,9 @@ export function AnimatedHero() {
       <Image
         src="/images/landing.webp"
         alt="IT Support Perth - Professional IT Services"
-        layout="fill"
-        objectFit="cover"
-        className="opacity-30 mix-blend-overlay"
+        fill
+        sizes="100vw"
+        className="object-cover opacity-30 mix-blend-overlay"
       />
       
       {/* Animated background elements */}
@@ -108,7 +108,7 @@ export function AnimatedHero() {
                 Get Free Consultation
               </Link>
             </Button>
-            <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm px-8 py-4 text-lg hover:scale-105 transition-all duration-300" />
+            <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 backdrop-blur-sm px-8 py-4 text-lg hover:scale-105 transition-all duration-300" />
           </motion.div>
 
           {/* Trust indicators */}

@@ -44,7 +44,7 @@ export function ProcessFlowDiagram({
           {/* Multi-row layout for better spacing */}
           <div className="space-y-16">
             {/* Row 1: Steps with better spacing */}
-            <div className="flex justify-center items-center gap-8 xl:gap-12">
+            <div className="flex justify-center items-stretch gap-8 xl:gap-12">
               {steps.map((step, index) => (
                 <motion.div
                   key={index}
@@ -57,7 +57,7 @@ export function ProcessFlowDiagram({
                 >
                   {/* Step Circle */}
                   <motion.div 
-                    className="relative mb-6"
+                    className="relative mb-6 flex-shrink-0"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -76,8 +76,8 @@ export function ProcessFlowDiagram({
                     />
                   </motion.div>
 
-                  {/* Content */}
-                  <div className="text-center bg-white dark:bg-background rounded-xl p-6 shadow-lg border min-h-[140px] flex flex-col justify-start">
+                  {/* Content - equal height across all steps */}
+                  <div className="text-center bg-white dark:bg-background rounded-xl p-6 shadow-lg border min-h-[140px] w-full flex flex-col flex-1">
                     <h3 className="text-lg font-semibold mb-3 text-foreground">{step.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed flex-1">{step.description}</p>
                   </div>
@@ -110,7 +110,7 @@ export function ProcessFlowDiagram({
               </div>
               <div className="absolute inset-0 flex justify-center items-center">
                 <motion.div
-                  className="text-center text-sm text-muted-foreground bg-background px-4 py-2 rounded-full border shadow-sm"
+                  className="text-center text-sm text-muted-foreground bg-background dark:bg-gray-800 dark:text-gray-300 px-4 py-2 rounded-full border border-border dark:border-gray-700 shadow-sm"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}

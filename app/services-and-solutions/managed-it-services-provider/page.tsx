@@ -5,10 +5,10 @@ import type { Metadata } from 'next';
 
 const url = `${siteConfig.url}/services-and-solutions/managed-it-services-provider`;
 export const metadata: Metadata = {
-  title: 'Managed IT Services Provider Perth | 24/7 Proactive IT Support',
-  description: '24/7 proactive IT support and monitoring for Perth businesses. Managed IT services that prevent problems before they occur. Free assessment.',
+  title: 'Managed IT Services Perth | Proactive IT Support | 20+ Years Experience',
+  description: "Don't let IT problems slow your business. Reduce downtime, boost security, optimize systems, and ensure business continuity with IT Support Perth's expert solutions.",
   alternates: { canonical: url },
-  openGraph: { title: 'Managed IT Services Provider Perth', description: 'Proactive IT support and monitoring for Perth businesses.', url },
+  openGraph: { title: 'Managed IT Services Perth | Proactive IT Support | 20+ Years Experience', description: "Don't let IT problems slow your business. Reduce downtime, boost security, optimize systems, and ensure business continuity with IT Support Perth's expert solutions.", url },
 };
 
 export default function ManagedITServicesProvider() {

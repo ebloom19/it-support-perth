@@ -88,10 +88,11 @@ export function ServicePageTemplate({
         <Image
           src={heroImage}
           alt={heroImageAlt}
-          layout="fill"
-          objectFit="cover"
-          className="opacity-30 mix-blend-overlay"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-30 mix-blend-overlay"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#01042b]/90 via-[#01042b]/70 to-[#2563eb]/50" aria-hidden />
         
         {/* Background decoration */}
         <div className="absolute inset-0">
@@ -127,7 +128,7 @@ export function ServicePageTemplate({
             </motion.div>
 
             <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white text-shadow-on-dark-strong"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -136,7 +137,7 @@ export function ServicePageTemplate({
             </motion.h1>
 
             <motion.p 
-              className="text-lg sm:text-xl md:text-2xl mb-6 text-white/95 font-medium"
+              className="text-lg sm:text-xl md:text-2xl mb-6 text-white/95 font-medium text-shadow-on-dark"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -145,7 +146,7 @@ export function ServicePageTemplate({
             </motion.p>
 
             <motion.p 
-              className="text-base sm:text-lg mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed text-shadow-on-dark"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -165,7 +166,7 @@ export function ServicePageTemplate({
                   {primaryCTA}
                 </Link>
               </Button>
-              <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover:scale-105 transition-all duration-300" />
+              <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 backdrop-blur-sm min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover:scale-105 transition-all duration-300" />
             </motion.div>
           </motion.div>
         </div>
@@ -238,7 +239,7 @@ export function ServicePageTemplate({
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -246,7 +247,7 @@ export function ServicePageTemplate({
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
+                  className="flex items-stretch gap-4"
                 >
                   <div className="flex-shrink-0">
                     {benefit.icon ? (
@@ -255,7 +256,7 @@ export function ServicePageTemplate({
                       <CheckCircle className="w-6 h-6 text-[#2563eb] mt-1" />
                     )}
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <h3 className="text-xl font-semibold mb-2 text-foreground">{benefit.title}</h3>
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{benefit.description}</p>
                   </div>

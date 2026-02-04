@@ -13,6 +13,16 @@ import {
   Wrench 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions`;
+export const metadata: Metadata = {
+  title: 'Comprehensive Proactive IT solutions in Perth | IT Support Perth',
+  description: 'With over 23 years of experience, IT Support Perth delivers managed IT, cybersecurity, cloud, AI support, backup solutions and more to keep your business secure.',
+  alternates: { canonical: url },
+  openGraph: { title: 'Comprehensive Proactive IT solutions in Perth | IT Support Perth', description: 'With over 23 years of experience, IT Support Perth delivers managed IT, cybersecurity, cloud, AI support, backup solutions and more to keep your business secure.', url },
+};
 
 export default function ServicesPage() {
   const services = [
@@ -24,7 +34,7 @@ export default function ServicesPage() {
       href: "/services-and-solutions/managed-it-services-provider"
     },
     {
-      title: "IT Security",
+      title: "Firewall Services",
       description: "Protect your business with FortiGate firewall solutions",
       icon: Shield,
       color: "text-red-600",
@@ -66,11 +76,11 @@ export default function ServicesPage() {
       href: "/services-and-solutions/backup-and-disaster-recovery-solutions"
     },
     {
-      title: "Remote IT Support",
-      description: "Quick and efficient remote technical assistance",
+      title: "IT Security Solutions",
+      description: "Cybersecurity, data protection and secure remote access",
       icon: Headset,
       color: "text-indigo-600",
-      href: "/services-and-solutions/remote-support"
+      href: "/services-and-solutions/it-security-solutions"
     },
     {
       title: "IT Consulting",
@@ -88,9 +98,9 @@ export default function ServicesPage() {
         <Image
           src="/images/photo-of-people-doing-handshakes-3183197.png"
           alt="People shaking hands"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-50"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
@@ -108,15 +118,15 @@ export default function ServicesPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <Link href={service.href}>
-                  <CardHeader>
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                <Link href={service.href} className="flex flex-col flex-1">
+                  <CardHeader className="flex-shrink-0">
                     <div className="w-full h-48 flex items-center justify-center">
                       <service.icon size={80} className={service.color} />
                     </div>
                     <CardTitle className="text-center">{service.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1">
                     <p className="text-center text-muted-foreground">
                       {service.description}
                     </p>

@@ -72,11 +72,11 @@ export function AnimatedServices() {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden flex flex-col">
                 {/* Gradient background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-gray-50/50 dark:to-gray-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <CardHeader className="pb-6 relative z-10">
+                <CardHeader className="pb-6 relative z-10 flex-shrink-0">
                   <div className="flex items-start gap-6">
                     <motion.div 
                       className={`p-4 rounded-2xl bg-gradient-to-br ${
@@ -97,11 +97,11 @@ export function AnimatedServices() {
                   </div>
                 </CardHeader>
 
-                <CardContent className="pt-0 pb-6 relative z-10">
-                  <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+                <CardContent className="pt-0 pb-6 relative z-10 flex flex-col flex-1">
+                  <p className="text-muted-foreground mb-6 leading-relaxed text-lg flex-shrink-0">
                     {service.description}
                   </p>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="grid grid-cols-1 gap-3 flex-1">
                     {service.features.map((feature, featureIndex) => (
                       <motion.div 
                         key={featureIndex} 
@@ -118,7 +118,7 @@ export function AnimatedServices() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="pt-0 relative z-10">
+                <CardFooter className="pt-0 relative z-10 flex-shrink-0">
                   <Button asChild className="w-full bg-[#3c91e6] hover:bg-[#2a7bc4] text-white font-semibold py-3 group-hover:scale-105 transition-all duration-300">
                     <Link href={service.href}>
                       Learn More

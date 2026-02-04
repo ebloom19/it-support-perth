@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/it-consulting`;
+export const metadata: Metadata = {
+  title: 'IT Consulting Services Perth | Professional Business IT Strategy',
+  description: 'Stop guessing with your IT. Get expert consulting in Perth to align your tech with your budget. Secure, strategic, and local guidance for sustainable growth.',
+  alternates: { canonical: url },
+  openGraph: { title: 'IT Consulting Services Perth | Professional Business IT Strategy', description: 'Stop guessing with your IT. Get expert consulting in Perth to align your tech with your budget. Secure, strategic, and local guidance for sustainable growth.', url },
+};
 
 export default function ITConsulting() {
   const features = [
@@ -127,7 +137,7 @@ export default function ITConsulting() {
         serviceData={{
           name: "IT Consulting Services",
           description: "Strategic technology guidance for Perth businesses. Navigate the complex world of technology with confidence through comprehensive IT planning, cloud strategy, technology assessment, and digital transformation services.",
-          url: "https://itsupportperth.com.au/services-and-solutions/it-consulting"
+          url
         }}
       />
       <ServicePageTemplate

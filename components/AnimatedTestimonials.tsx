@@ -81,20 +81,20 @@ export function AnimatedTestimonials() {
               whileHover={{ y: -5 }}
               className="group"
             >
-              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden flex flex-col">
                 {/* Quote decoration */}
                 <div className="absolute top-6 left-6 text-6xl text-[#3c91e6]/10 font-serif leading-none">"</div>
                 
-                <CardContent className="p-8 relative z-10">
-                  <div className="flex items-center mb-6">
+                <CardContent className="p-8 relative z-10 flex flex-col flex-1">
+                  <div className="flex items-center mb-6 flex-shrink-0">
                     <div className="flex text-yellow-400 text-lg">
                       {"★".repeat(testimonial.rating)}
                     </div>
                   </div>
-                  <blockquote className="text-muted-foreground mb-6 leading-relaxed text-lg italic">
+                  <blockquote className="text-muted-foreground mb-6 leading-relaxed text-lg italic flex-1">
                     {testimonial.review}
                   </blockquote>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-shrink-0">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3c91e6] to-[#01042b] flex items-center justify-center text-white font-semibold">
                       {testimonial.author.charAt(0)}
                     </div>

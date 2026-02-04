@@ -7,10 +7,10 @@ import type { Metadata } from 'next';
 
 const url = `${siteConfig.url}/services-and-solutions/it-security-solutions`;
 export const metadata: Metadata = {
-  title: 'IT Security Solutions Perth | Cybersecurity & Data Protection',
-  description: 'Endpoint protection, firewall, DLP and secure remote access for Perth businesses. Enterprise-grade IT security solutions.',
+  title: 'Proactive IT Security & Cybersecurity Solutions for Perth SMBs',
+  description: 'Protect your business from evolving cyber threats with IT Support Perth. Multi-layered proactive cybersecurity solutions for networks, email, cloud, and data.',
   alternates: { canonical: url },
-  openGraph: { title: 'IT Security Solutions Perth', description: 'Cybersecurity and data protection for Perth businesses.', url },
+  openGraph: { title: 'Proactive IT Security & Cybersecurity Solutions for Perth SMBs', description: 'Protect your business from evolving cyber threats with IT Support Perth. Multi-layered proactive cybersecurity solutions for networks, email, cloud, and data.', url },
 };
 
 export default function ITSecuritySolutions() {
@@ -223,7 +223,7 @@ export default function ITSecuritySolutions() {
         serviceData={{
           name: "IT Security Solutions",
           description: "Comprehensive cybersecurity protection for Perth businesses. Enterprise-grade security solutions with 24/7 threat monitoring and incident response.",
-          url: "https://itsupportperth.com.au/services-and-solutions/it-security-solutions"
+          url
         }}
       />
       <ServicePageTemplate

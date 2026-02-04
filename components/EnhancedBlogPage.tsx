@@ -141,11 +141,11 @@ export function EnhancedBlogPage({ allPosts }: EnhancedBlogPageProps) {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 relative overflow-hidden border-0 bg-white/50 backdrop-blur-sm">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#3c91e6]/5 to-[#01042b]/5" />
-                  <CardContent className="p-6 relative z-10">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Badge variant="secondary" className="bg-[#3c91e6]/10 text-[#3c91e6] border-0">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 relative overflow-hidden border-0 bg-white/50 dark:bg-[#01042b]/90 backdrop-blur-sm flex flex-col">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#3c91e6]/5 to-[#01042b]/5 dark:from-[#3c91e6]/20 dark:to-[#01042b]/60" />
+                  <CardContent className="p-6 relative z-10 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 mb-4 flex-shrink-0">
+                      <Badge variant="secondary" className="bg-[#3c91e6]/10 text-[#3c91e6] border-0 dark:bg-white/20 dark:text-white dark:border dark:border-white/30">
                         {post.category}
                       </Badge>
                       {post.trending && (
@@ -155,14 +155,14 @@ export function EnhancedBlogPage({ allPosts }: EnhancedBlogPageProps) {
                         </Badge>
                       )}
                     </div>
-                    <h3 className="text-xl font-bold mb-3 line-clamp-2">{post.title}</h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <h3 className="text-xl font-bold mb-3 line-clamp-2 text-foreground dark:text-white flex-shrink-0">{post.title}</h3>
+                    <p className="text-muted-foreground dark:text-white/90 mb-4 line-clamp-2 flex-1">{post.excerpt}</p>
+                    <div className="flex items-center justify-between flex-shrink-0">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground dark:text-white/80">
                         <Clock className="w-4 h-4" />
                         {post.readTime}
                       </div>
-                      <Button variant="ghost" size="sm" className="text-[#3c91e6] hover:text-[#2a7bc4]">
+                      <Button variant="ghost" size="sm" className="text-[#3c91e6] hover:text-[#2a7bc4] dark:text-white dark:hover:text-white/90 dark:hover:bg-white/10">
                         Read More →
                       </Button>
                     </div>
@@ -179,14 +179,14 @@ export function EnhancedBlogPage({ allPosts }: EnhancedBlogPageProps) {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold mb-4">Stay Updated with IT Insights</h3>
-            <p className="text-gray-200 mb-6">
+            <h3 className="text-2xl font-bold mb-4 text-white text-shadow-on-dark-strong">Stay Updated with IT Insights</h3>
+            <p className="text-white/95 mb-6 text-shadow-on-dark">
               Get the latest IT tips, security updates, and technology insights delivered to your inbox
             </p>
             <div className="flex gap-4 max-w-md mx-auto">
               <Input 
                 placeholder="Enter your email" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-gray-300"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
               />
               <Button variant="secondary" className="bg-white text-[#01042b] hover:bg-gray-100 font-semibold px-6">
                 Subscribe

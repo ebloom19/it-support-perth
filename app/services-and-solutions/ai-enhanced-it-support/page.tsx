@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/ai-enhanced-it-support`;
+export const metadata: Metadata = {
+  title: 'AI-Enhanced IT Support | 24/7 Intelligent System Monitoring',
+  description: 'Experience the future of IT with predictive analytics and intelligent security. We use machine learning to detect threats and hardware failures before they occur.',
+  alternates: { canonical: url },
+  openGraph: { title: 'AI-Enhanced IT Support | 24/7 Intelligent System Monitoring', description: 'Experience the future of IT with predictive analytics and intelligent security. We use machine learning to detect threats and hardware failures before they occur.', url },
+};
 
 export default function AIEnhancedITSupport() {
   const features = [
@@ -127,7 +137,7 @@ export default function AIEnhancedITSupport() {
         serviceData={{
           name: "AI-Enhanced IT Support",
           description: "Revolutionize your IT with AI-powered solutions. Transform your IT operations with cutting-edge AI technology including proactive monitoring, automated processes, and intelligent threat detection.",
-          url: "https://itsupportperth.com.au/services-and-solutions/ai-enhanced-it-support"
+          url
         }}
       />
       <ServicePageTemplate

@@ -21,9 +21,9 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title:
-    "IT Support Perth | Proactive Managed IT Services | 20+ Years Experience",
+    "Expert IT Support & Managed Services Perth | 24/7 Support",
   description:
-    "Leading IT Support Perth provider with 20+ years experience. Proactive managed IT services, cybersecurity, cloud solutions & disaster recovery for Perth businesses. Free consultation available.",
+    "Perth's trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Free consultation.",
   keywords:
     "IT Support Perth, Managed IT Services Perth, Perth IT Company, Computer Support Perth, IT Security Perth, Cloud Services Perth, Proactive IT Support, Perth Business IT",
   alternates: {
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "IT Support Perth | Proactive Managed IT Services | 20+ Years Experience",
+      "Expert IT Support & Managed Services Perth | 24/7 Support",
     description:
-      "Leading IT Support Perth provider with 20+ years experience. Proactive managed IT services, cybersecurity, cloud solutions & disaster recovery for Perth businesses.",
+      "Perth's trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Free consultation.",
     url: siteConfig.url,
     siteName: "IT Support Perth",
     locale: "en_AU",
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Support Perth | Proactive Managed IT Services",
+    title: "Expert IT Support & Managed Services Perth | 24/7 Support",
     description:
-      "Leading IT Support Perth provider with 20+ years experience. Proactive managed IT services for Perth businesses.",
+      "Perth's trusted IT experts serving 250+ businesses. Expert IT support, managed services, cybersecurity & cloud solutions. 20+ years experience. Free consultation.",
   },
   robots: {
     index: true,
@@ -93,7 +93,7 @@ export default async function RootLayout({
           </ThemeProvider>
         </PostHogProvider>
       </body>
-      <Script id="apollo-tracker" strategy="afterInteractive">
+      <Script id="apollo-tracker" strategy="lazyOnload">
         {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
           o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
           o.onload=function(){window.trackingFunctions.onLoad({appId:"6964975a198d92001162b276"})},

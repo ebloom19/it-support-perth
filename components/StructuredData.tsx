@@ -1,6 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { siteConfig } from '@/config/site';
+
+const baseUrl = siteConfig.url;
 
 interface StructuredDataProps {
   type?: 'organization' | 'service' | 'webpage' | 'contactPage';
@@ -19,8 +22,8 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
     "@type": "Organization",
     "name": "IT Support Perth",
     "alternateName": "Computer Mechanics",
-    "url": "https://itsupportperth.com.au",
-    "logo": "https://itsupportperth.com.au/images/logo.png",
+    "url": baseUrl,
+    "logo": `${baseUrl}/images/logo.png`,
     "description": "Professional IT support services for Perth businesses. Managed IT services, cybersecurity, cloud solutions, and 24/7 technical support.",
     "address": {
       "@type": "PostalAddress",
@@ -98,10 +101,10 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://itsupportperth.com.au/#organization",
+    "@id": `${baseUrl}/#organization`,
     "name": "IT Support Perth",
     "description": "Professional IT support and managed services for Perth businesses",
-    "url": "https://itsupportperth.com.au",
+    "url": baseUrl,
     "telephone": "+61-8-9325-1196",
     "priceRange": "$$",
     "address": {
@@ -136,11 +139,11 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
     "@type": "WebPage",
     "name": serviceData?.name || "IT Support Perth",
     "description": serviceData?.description || "Professional IT support services for Perth businesses",
-    "url": `https://itsupportperth.com.au${pathname}`,
+    "url": `${baseUrl}${pathname}`,
     "isPartOf": {
       "@type": "WebSite",
       "name": "IT Support Perth",
-      "url": "https://itsupportperth.com.au"
+      "url": baseUrl
     },
     "about": {
       "@type": "Organization",
@@ -160,7 +163,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://itsupportperth.com.au"
+        "item": baseUrl
       }
     ]
   };
@@ -177,7 +180,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
         "@type": "ListItem",
         "position": index + 2,
         "name": name,
-        "item": `https://itsupportperth.com.au/${pathSegments.slice(0, index + 1).join('/')}`
+        "item": `${baseUrl}/${pathSegments.slice(0, index + 1).join('/')}`
       });
     });
   }
@@ -187,7 +190,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
     "@type": "ContactPage",
     "name": "Contact IT Support Perth",
     "description": "Get in touch with Perth's leading IT support team for immediate assistance",
-    "url": "https://itsupportperth.com.au/contact-us",
+    "url": `${baseUrl}/contact-us`,
     "mainEntity": {
       "@type": "Organization",
       "name": "IT Support Perth",
@@ -209,7 +212,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
     "provider": {
       "@type": "Organization",
       "name": "IT Support Perth",
-      "url": "https://itsupportperth.com.au"
+      "url": baseUrl
     },
     "areaServed": {
       "@type": "City",

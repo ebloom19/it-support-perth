@@ -61,11 +61,11 @@ export async function generateMetadata({
   }
 
   const title = getTitle(post);
-  const description = getDescription(post);
+  const rawDescription = getDescription(post);
+  const description = rawDescription.length > 160 ? rawDescription.slice(0, 157).trim() + "..." : rawDescription;
   const date = getDate(post);
 
-  const ogSearchParams = new URLSearchParams();
-  ogSearchParams.set("title", title);
+  const canonicalUrl = `${siteConfig.url}/blog/${params.slug.join("/")}`;
 
   const postTags = "tags" in post && post.tags
     ? post.tags.map((t) => (typeof t === "string" ? t : t.title))
@@ -75,8 +75,8 @@ export async function generateMetadata({
     title: title,
     description: description,
     keywords: postTags.join(", ") + ", IT Support Perth, Perth IT Services, Technology Blog",
-    metadataBase: new URL("https://www.itsupportperth.net.au"),
-    alternates: { canonical: `https://www.itsupportperth.net.au/blog/${params.slug.join("/")}` },
+    metadataBase: new URL(siteConfig.url),
+    alternates: { canonical: canonicalUrl },
     authors: [{ name: "IT Support Perth Team" }],
     publisher: "IT Support Perth",
     category: "Technology",
@@ -84,7 +84,7 @@ export async function generateMetadata({
       title: title,
       description: description,
       type: "article",
-      url: `https://itsupportperth.com.au${post.slug}`,
+      url: canonicalUrl,
       siteName: "IT Support Perth",
       locale: "en_AU",
       images: post.image ? [
@@ -155,7 +155,7 @@ export default async function PostPage({ params }: PostPageProps) {
         serviceData={{
           name: getTitle(post),
           description: getDescription(post),
-          url: `https://itsupportperth.com.au${post.slug}`
+          url: `${siteConfig.url}${post.slug}`
         }}
       />
       <Script

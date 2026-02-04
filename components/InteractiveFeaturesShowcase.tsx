@@ -102,7 +102,7 @@ export function InteractiveFeaturesShowcase({
                   onHoverEnd={() => setActiveFeature(null)}
                   className="group cursor-pointer"
                 >
-                  <Card className="h-full border-0 bg-white dark:bg-background shadow-lg relative overflow-hidden">
+                  <Card className="h-full border-0 bg-white dark:bg-background shadow-lg relative overflow-hidden flex flex-col">
                     {/* Animated Background */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-[#3c91e6]/5 to-[#01042b]/5"
@@ -132,7 +132,7 @@ export function InteractiveFeaturesShowcase({
                       </motion.div>
                     )}
 
-                    <CardHeader className="pb-4 relative z-10">
+                    <CardHeader className="pb-4 relative z-10 flex-shrink-0">
                       <div className="flex items-center gap-4 mb-4">
                         <motion.div 
                           className="p-3 rounded-xl bg-gradient-to-br from-[#3c91e6]/10 to-[#3c91e6]/5"
@@ -158,9 +158,9 @@ export function InteractiveFeaturesShowcase({
                       </div>
                     </CardHeader>
 
-                    <CardContent className="relative z-10">
+                    <CardContent className="relative z-10 flex flex-col flex-1">
                       <motion.p 
-                        className="text-muted-foreground leading-relaxed"
+                        className="text-muted-foreground leading-relaxed flex-1"
                         initial={{ opacity: 0.8 }}
                         animate={{ opacity: activeFeature === index ? 1 : 0.8 }}
                         transition={{ duration: 0.3 }}
@@ -169,7 +169,7 @@ export function InteractiveFeaturesShowcase({
                       </motion.p>
                       
                       <motion.div
-                        className="flex items-center gap-2 mt-4 text-[#3c91e6] font-medium"
+                        className="flex items-center gap-2 mt-4 text-[#3c91e6] font-medium flex-shrink-0"
                         initial={{ x: -10, opacity: 0 }}
                         animate={{ 
                           x: activeFeature === index ? 0 : -10,
@@ -232,7 +232,7 @@ export function InteractiveFeaturesShowcase({
               onHoverEnd={() => setActiveFeature(null)}
               className="group"
             >
-              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+              <Card className="h-full border-0 bg-white dark:bg-background shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden flex flex-col">
                 {/* Animated Background Gradient */}
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-gray-50/50 dark:to-gray-800/20"
@@ -241,7 +241,7 @@ export function InteractiveFeaturesShowcase({
                   transition={{ duration: 0.5 }}
                 />
 
-                <CardHeader className="pb-4 relative z-10">
+                <CardHeader className="pb-4 relative z-10 flex-shrink-0">
                   <div className="flex items-center gap-4 mb-4">
                     <motion.div 
                       className="p-3 rounded-xl bg-gradient-to-br from-[#3c91e6]/10 to-[#3c91e6]/5 group-hover:scale-110 transition-transform duration-300"
@@ -267,7 +267,7 @@ export function InteractiveFeaturesShowcase({
                   />
                 </CardHeader>
 
-                <CardContent className="relative z-10">
+                <CardContent className="relative z-10 flex-1">
                   <p className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>

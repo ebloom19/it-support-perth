@@ -109,31 +109,31 @@ export function AnimatedStats({
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="group"
+                className="group h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className="relative overflow-hidden bg-white dark:bg-background rounded-2xl p-8 shadow-lg border group-hover:shadow-xl transition-all duration-500">
+                <div className="relative overflow-hidden bg-white dark:bg-background rounded-2xl p-8 shadow-lg border group-hover:shadow-xl transition-all duration-500 h-full flex flex-col">
                   {/* Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3c91e6]/5 to-[#01042b]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  <div className="relative z-10 text-center">
+                  <div className="relative z-10 text-center flex flex-col flex-1">
                     {stat.icon && (
-                      <div className="text-4xl mb-4">{stat.icon}</div>
+                      <div className="text-4xl mb-4 flex-shrink-0">{stat.icon}</div>
                     )}
-                    <div className="text-4xl md:text-5xl font-bold text-[#3c91e6] mb-3">
+                    <div className="text-4xl md:text-5xl font-bold text-[#3c91e6] mb-3 flex-shrink-0">
                       <CountingNumber 
                         target={stat.number}
                         prefix={stat.prefix}
                         suffix={stat.suffix}
                       />
                     </div>
-                    <div className="text-lg font-semibold text-foreground mb-2">{stat.label}</div>
+                    <div className="text-lg font-semibold text-foreground mb-2 flex-shrink-0">{stat.label}</div>
                     {stat.description && (
-                      <div className="text-sm text-muted-foreground">{stat.description}</div>
+                      <div className="text-sm text-muted-foreground flex-1">{stat.description}</div>
                     )}
                   </div>
                 </div>
@@ -147,7 +147,7 @@ export function AnimatedStats({
 
   if (variant === 'gradient') {
     return (
-      <section className="py-20 bg-gradient-to-r from-[#3c91e6]/10 to-[#01042b]/10">
+      <section className="py-20 bg-gradient-to-r from-[#3c91e6]/10 to-[#01042b]/10 dark:from-[#3c91e6]/15 dark:to-[#01042b]/15">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -164,29 +164,29 @@ export function AnimatedStats({
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="text-center h-full flex flex-col"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 {stat.icon && (
-                  <div className="text-5xl mb-4">{stat.icon}</div>
+                  <div className="text-5xl mb-4 flex-shrink-0">{stat.icon}</div>
                 )}
-                <div className="text-5xl md:text-6xl font-bold text-foreground mb-3">
+                <div className="text-5xl md:text-6xl font-bold text-foreground mb-3 flex-shrink-0">
                   <CountingNumber 
                     target={stat.number}
                     prefix={stat.prefix}
                     suffix={stat.suffix}
                   />
                 </div>
-                <div className="text-xl font-semibold text-foreground mb-2">{stat.label}</div>
+                <div className="text-xl font-semibold text-foreground mb-2 flex-shrink-0">{stat.label}</div>
                 {stat.description && (
-                  <div className="text-muted-foreground">{stat.description}</div>
+                  <div className="text-muted-foreground flex-1">{stat.description}</div>
                 )}
               </motion.div>
             ))}
@@ -198,24 +198,24 @@ export function AnimatedStats({
 
   // Default variant
   return (
-    <section className="py-16 bg-gradient-to-r from-[#3c91e6]/5 to-[#01042b]/5">
+    <section className="py-16 bg-gradient-to-r from-[#3c91e6]/5 to-[#01042b]/5 dark:from-[#3c91e6]/10 dark:to-[#01042b]/10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto items-stretch">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center"
+              className="text-center h-full flex flex-col"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-4xl font-bold text-[#3c91e6] mb-2">
+              <div className="text-4xl font-bold text-[#3c91e6] mb-2 flex-shrink-0">
                 <CountingNumber target={stat.number} />
               </div>
-              <div className="text-lg font-semibold text-foreground mb-2">{stat.label}</div>
+              <div className="text-lg font-semibold text-foreground mb-2 flex-shrink-0">{stat.label}</div>
               {stat.description && (
-                <div className="text-sm text-muted-foreground">{stat.description}</div>
+                <div className="text-sm text-muted-foreground flex-1">{stat.description}</div>
               )}
             </motion.div>
           ))}

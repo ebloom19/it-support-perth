@@ -228,7 +228,7 @@ export default function EditorPage({ params }: { params: { id: string } }) {
                             <div className="space-y-4">
                                 {post.image ? (
                                     <div className="relative aspect-video rounded-lg overflow-hidden border">
-                                        <img src={post.image} alt="Featured" className="object-cover w-full h-full" />
+                                        <img src={post.image} alt="Featured" className="object-cover w-full h-full" width={640} height={360} loading="lazy" />
                                         <Button 
                                             variant="destructive" 
                                             size="icon" 

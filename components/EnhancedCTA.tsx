@@ -103,13 +103,13 @@ export function EnhancedCTA({
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">{title}</h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-on-dark-strong">{title}</h2>
+            <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed mb-8 text-shadow-on-dark">
               {description}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12 items-stretch">
             {ctaOptions.map((option, index) => (
               <motion.div
                 key={index}
@@ -118,29 +118,30 @@ export function EnhancedCTA({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
+                className="h-full flex flex-col"
               >
-                <Card className="bg-white/10 backdrop-blur border-white/20 hover:bg-white/15 transition-all duration-300 h-full">
-                  <CardContent className="p-6 text-center">
-                    <div className="text-white mb-4 flex justify-center">
+                <Card className="bg-white/10 backdrop-blur border-white/20 hover:bg-white/15 transition-all duration-300 h-full flex flex-col">
+                  <CardContent className="p-6 text-center flex flex-col flex-1">
+                    <div className="text-white mb-4 flex justify-center flex-shrink-0">
                       {option.icon}
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{option.title}</h3>
-                    <p className="text-gray-300 text-sm mb-4">{option.description}</p>
+                    <h3 className="text-lg font-semibold text-white mb-2 flex-shrink-0">{option.title}</h3>
+                    <p className="text-white/90 text-sm mb-4 flex-1 text-shadow-on-dark">{option.description}</p>
                     <Button
                       asChild
                       variant={option.variant}
-                      className={`w-full ${
+                      className={`w-full flex-shrink-0 font-medium ${
                         option.variant === 'default' 
                           ? 'bg-white text-[#01042b] hover:bg-gray-100' 
                           : option.variant === 'secondary'
                           ? 'bg-[#3c91e6] hover:bg-[#2a7bc4] text-white'
-                          : 'border-white text-white hover:bg-white hover:text-[#01042b]'
+                          : 'border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#01042b]'
                       }`}
                     >
                       {option.external ? (
-                        <a href={option.href}>{option.title}</a>
+                        <a href={option.href} className="text-inherit">{option.title}</a>
                       ) : (
-                        <Link href={option.href}>{option.title}</Link>
+                        <Link href={option.href} className="text-inherit">{option.title}</Link>
                       )}
                     </Button>
                   </CardContent>
@@ -189,10 +190,10 @@ export function EnhancedCTA({
               <span className="text-sm font-medium">Limited Time: Free Security Assessment</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-on-dark-strong">
               Don't Wait Until It's Too Late
             </h2>
-            <p className="text-xl mb-8 text-gray-100">
+            <p className="text-xl mb-8 text-white/95 text-shadow-on-dark">
               Cyber threats are increasing every day. Protect your business now with our comprehensive IT security solutions.
             </p>
             
@@ -203,15 +204,15 @@ export function EnhancedCTA({
                   Get Protected Now
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-red-600 font-semibold px-8 py-4 text-lg">
-                <a href="tel:0893251196">
+              <Button asChild size="lg" variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-red-600 font-semibold px-8 py-4 text-lg">
+                <a href="tel:0893251196" className="text-inherit">
                   <Phone className="w-5 h-5 mr-2" />
                   Call (08) 9325 1196
                 </a>
               </Button>
             </div>
 
-            <div className="text-sm text-gray-200">
+            <div className="text-sm text-white/90 text-shadow-on-dark">
               ⚡ Fast Response • 🛡️ Expert Protection • 📞 24/7 Support
             </div>
           </motion.div>
@@ -232,7 +233,7 @@ export function EnhancedCTA({
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">{title}</h2>
-          <p className="text-xl mb-8 text-gray-200">{description}</p>
+          <p className="text-xl mb-8 text-white/95 text-shadow-on-dark">{description}</p>
           
           <div className="flex gap-4 flex-wrap justify-center mb-8">
             <Button asChild size="lg" variant="secondary" className="bg-white text-[#01042b] hover:bg-gray-100 font-semibold px-8 py-4 text-lg hover:scale-105 transition-all duration-300">
@@ -243,7 +244,7 @@ export function EnhancedCTA({
             </Button>
             <SecurityAssessmentCTA 
               variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-[#01042b] font-semibold px-8 py-4 text-lg hover:scale-105 transition-all duration-300"
+              className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-[#01042b] font-semibold px-8 py-4 text-lg hover:scale-105 transition-all duration-300"
             />
           </div>
           

@@ -69,7 +69,7 @@ export default function SecurityAdvicePage() {
             "Ransomware Prevention",
             "System Vulnerability Check",
           ].map((benefit, index) => (
-            <Card key={index}>
+            <Card key={index} className="h-full">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-foreground">
                   <CheckCircle className="h-5 w-5 text-primary" />

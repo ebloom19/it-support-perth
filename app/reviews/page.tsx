@@ -3,6 +3,23 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Star, ChevronRight, ChevronLeft } from 'lucide-react'
+import { siteConfig } from '@/config/site'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Customer Reviews & Testimonials | IT Support Perth',
+  description: 'Looking for a reliable IT partner? Read reviews from Perth SMBs regarding our prompt service, reasonable pricing, and expertise in solving complex IT issues.',
+  alternates: {
+    canonical: `${siteConfig.url}/reviews`,
+  },
+  openGraph: {
+    title: 'Customer Reviews & Testimonials | IT Support Perth',
+    description: 'Looking for a reliable IT partner? Read reviews from Perth SMBs regarding our prompt service, reasonable pricing, and expertise in solving complex IT issues.',
+    url: `${siteConfig.url}/reviews`,
+    siteName: 'IT Support Perth',
+    type: 'website',
+  },
+}
 
 const reviews = [
   {
@@ -71,10 +88,10 @@ export default function ReviewsPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {reviews.map((review, index) => (
-          <Card key={index} className="shadow-lg">
-            <CardHeader>
+          <Card key={index} className="shadow-lg h-full flex flex-col">
+            <CardHeader className="flex-shrink-0">
               <CardTitle className="flex justify-between items-center">
                 <span>{review.name}</span>
                 <div className="flex">
@@ -84,7 +101,7 @@ export default function ReviewsPage() {
                 </div>
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1">
               <p className="text-foreground">{review.text}</p>
             </CardContent>
           </Card>

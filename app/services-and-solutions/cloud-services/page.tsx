@@ -1,5 +1,15 @@
 import { ServicePageTemplate } from '@/components/ServicePageTemplate';
 import { StructuredData } from '@/components/StructuredData';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+const url = `${siteConfig.url}/services-and-solutions/cloud-services`;
+export const metadata: Metadata = {
+  title: 'Cloud Services & Migration Perth | Scalable Solutions for Business',
+  description: "Modernize with Perth's trusted IT partner. We offer end-to-end cloud infrastructure, application hosting, and collaboration tools backed by a 100% local support team.",
+  alternates: { canonical: url },
+  openGraph: { title: 'Cloud Services & Migration Perth | Scalable Solutions for Business', description: "Modernize with Perth's trusted IT partner. We offer end-to-end cloud infrastructure, application hosting, and collaboration tools backed by a 100% local support team.", url },
+};
 
 export default function CloudServices() {
   const features = [
@@ -145,7 +155,7 @@ export default function CloudServices() {
         serviceData={{
           name: "Cloud Services & Migration",
           description: "Microsoft 365 migration, Azure cloud infrastructure, and hybrid cloud solutions for Perth businesses. Scalable cloud services with expert support.",
-          url: "https://itsupportperth.com.au/services-and-solutions/cloud-services"
+          url
         }}
       />
       <ServicePageTemplate
