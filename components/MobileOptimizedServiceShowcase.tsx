@@ -518,7 +518,7 @@ export function MobileOptimizedServiceShowcase() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-white text-white hover:bg-white hover:text-[#2563eb] min-h-[48px] sm:min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-lg transition-all duration-300"
+                      className="!border-white !text-white hover:!bg-white hover:!text-[#2563eb] min-h-[48px] sm:min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-lg transition-all duration-300 bg-transparent"
                     >
                       <Link href="/services-and-solutions">View All Services</Link>
                     </Button>

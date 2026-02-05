@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,9 +7,15 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: '/tags',
+        disallow: [
+          '/admin',
+          '/api',
+          '/sitemap-preview',
+          '/llms',
+          '/tags',
+        ],
       },
     ],
-    sitemap: 'https://www.itsupportperth.net.au/sitemap.xml',
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

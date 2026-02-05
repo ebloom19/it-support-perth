@@ -58,13 +58,13 @@ export default function Home() {
   return (
     <div>
       <StructuredData type="organization" />
+      {/* 1. Hero: first impression and primary CTA */}
       <EnhancedHeroSection />
-      <MobileOptimizedServiceShowcase />
-      
-      {/* Social Proof Section */}
+      {/* 2. Stats: quick credibility so visitors stay (ICP: SMBs want proof) */}
       <SocialProofSection variant="stats" />
-      
-      {/* About Section */}
+      {/* 3. Services: what we offer — relevance for ICP */}
+      <MobileOptimizedServiceShowcase />
+      {/* 4. About / Why us: differentiators and service areas */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -134,10 +134,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 5. Testimonials: social proof and decision reinforcement */}
       <SocialProofSection variant="testimonials" />
+      {/* 6. Blog: authority and engagement */}
       <BlogsSection />
-
-      {/* Trust & Certifications Section */}
+      {/* 7. Trust & partners: certifications and partners before footer */}
       <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-b from-white to-gray-50 dark:from-background dark:to-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">

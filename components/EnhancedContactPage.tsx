@@ -174,7 +174,7 @@ export function EnhancedContactPage() {
                   Call Now - Emergency
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/50 backdrop-blur-sm px-8 py-4 text-lg font-medium">
+              <Button asChild size="lg" variant="outline" className="!bg-white/10 hover:!bg-white/20 !text-white !border-white/50 hover:!border-white/60 backdrop-blur-sm px-8 py-4 text-lg font-medium">
                 <a href="#contact-form" className="text-inherit">
                   Get Free Quote
                 </a>

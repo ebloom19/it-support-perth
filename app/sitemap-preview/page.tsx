@@ -4,6 +4,7 @@ import sitemap from "../sitemap";
 export const metadata = {
   title: "Sitemap Preview - IT Support Perth",
   description: "Human-readable sitemap view",
+  robots: { index: false, follow: false },
 };
 
 export default async function SitemapPreviewPage() {

@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { posts } from '@/content-output';
+import { getNormalizedPosts } from "@/lib/seobot.server";
+import { getDate } from "@/lib/seobot.helpers";
 
 interface BaseRoute {
   name: string;
@@ -98,43 +99,18 @@ const SERVICE_PATHS = [
   "/services-and-solutions/on-premises-server-management",
 ] as const;
 
-  async function getSeoBotSitemap() {
-    const key = process.env.SEOBOT_API_KEY;
-    if (!key) {
-      return [];
-    }
-
-    try {
-      const res = await fetch(`https://app.seobotai.com/api/sitemap?key=${key}`, {
-        cache: 'no-store',
-      });
-      const result = await res.json();
-  
-      // Transform SeoBot sitemap data to match MetadataRoute.Sitemap format
-      return result.data.articles.map(
-        (article: { slug: string; lastmod: string }) => ({
-          url: `${siteConfig.url}/blog/${article.slug}`,
-          priority: 0.8,
-          changeFrequency: 'weekly' as const,
-          lastModified: article.lastmod,
-        }),
-      );
-    } catch (error) {
-      console.error('Failed to fetch SeoBot sitemap:', error);
-      return [];
-    }
-  }
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const publishedPosts = posts.filter((post) => post.published);
-  const seoBotPosts = await getSeoBotSitemap();
+  const posts = await getNormalizedPosts();
 
-  const sitemapPost = publishedPosts.map((post) => ({
-    url: `${siteConfig.url}/blog/${post.slugAsParams}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "weekly" as ChangeFrequency,
-    priority: 0.8,
-  }));
+  const sitemapPost: MetadataRoute.Sitemap = posts.map((post) => {
+    const dateStr = getDate(post);
+    return {
+      url: `${siteConfig.url}/blog/${post.slugAsParams}`,
+      lastModified: dateStr ? new Date(dateStr) : new Date(),
+      changeFrequency: "weekly" as ChangeFrequency,
+      priority: 0.8,
+    };
+  });
 
   const sitemapRoutes = routes.flatMap((route) => {
     const routeEntries: MetadataRoute.Sitemap = [];
@@ -176,16 +152,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return true;
   });
 
-  return [
-    {
-      url: siteConfig.url,
-      lastModified: new Date(),
-      changeFrequency: "daily" as ChangeFrequency,
-      priority: 1.0,
-    },
+  const mainPages: MetadataRoute.Sitemap = [
+    { url: siteConfig.url, lastModified: new Date(), changeFrequency: "daily" as ChangeFrequency, priority: 1.0 },
+    { url: `${siteConfig.url}/blog`, lastModified: new Date(), changeFrequency: "daily" as ChangeFrequency, priority: 0.95 },
+    { url: `${siteConfig.url}/about-us`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.9 },
+    { url: `${siteConfig.url}/contact-us`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.9 },
+    { url: `${siteConfig.url}/reviews`, lastModified: new Date(), changeFrequency: "weekly" as ChangeFrequency, priority: 0.85 },
+    { url: `${siteConfig.url}/free-it-security-advice`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.7 },
+  ];
+
+  const allEntries: MetadataRoute.Sitemap = [
+    ...mainPages,
     ...sitemapPost,
-    ...seoBotPosts,
     ...sitemapServicePages,
     ...dedupedRoutes,
   ];
+
+  const seen = new Set<string>();
+  return allEntries.filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }
