@@ -43,7 +43,7 @@ export async function GET(request: Request) {
     .filter((p) => p.published)
     .map((p) => `${siteConfig.url}/blog/${p.slugAsParams}`);
   const seoBotBlogUrls = await getSeoBotBlogUrls();
-  const allBlogUrls = [...new Set([...localBlogUrls, ...seoBotBlogUrls])].sort();
+  const allBlogUrls = Array.from(new Set([...localBlogUrls, ...seoBotBlogUrls])).sort();
 
   const mainSection = mainPages.map((u) => `> ${u}`).join('\n');
   const servicesSection = servicePaths.map((p) => `${siteConfig.url}${p}`).join('\n');

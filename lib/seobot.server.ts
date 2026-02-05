@@ -81,10 +81,7 @@ export async function normalizePost(
  * Gets all posts (local, SeoBot, and DB) and normalizes them
  */
 export const getNormalizedPosts = cache(async () => {
-  console.error('DEBUG: Starting getNormalizedPosts...');
   try {
-    // 1. Get and normalize SeoBot posts
-    console.error('DEBUG: Fetching SeoBot posts...');
     const { articles } = await getSeoBotPosts();
     const normalizedSeoBotArticles = await Promise.all(
       articles.map(async (article) => {
@@ -95,16 +92,12 @@ export const getNormalizedPosts = cache(async () => {
               return null;
           }
       })
-    ).then(items => items.filter(Boolean) as CustomBlogOrSeoBot[]); // Filter out failed ones
-    console.error(`DEBUG: Fetched ${normalizedSeoBotArticles.length} Seobot articles.`);
+    ).then(items => items.filter(Boolean) as CustomBlogOrSeoBot[]);
 
-    // 2. Get and normalize DB posts (optional: skip when DATABASE_URL is not set)
     let normalizedDbPosts: CustomBlogOrSeoBot[] = [];
     try {
       if (process.env.DATABASE_URL) {
-        console.error('DEBUG: Fetching DB posts...');
         const dbPostsRaw = await getAllBlogPosts(true);
-        console.error(`DEBUG: Fetched ${dbPostsRaw.length} DB posts.`);
         normalizedDbPosts = dbPostsRaw.map(post => {
         let htmlContent = '';
         try {
@@ -135,14 +128,11 @@ export const getNormalizedPosts = cache(async () => {
         } as any; // Cast as CustomBlogOrSeoBot
         });
       }
-    } catch (dbError) {
-      console.error('DEBUG: Skipping DB posts (DATABASE_URL not set or DB unavailable):', dbError);
+    } catch (_dbError) {
+      // DATABASE_URL unset or DB unavailable; continue with local + SeoBot posts only
     }
 
-    // 3. Combine all sources
-    const allPosts = [...normalizedDbPosts, ...normalizedSeoBotArticles, ...posts];
-    console.error(`DEBUG: Total posts: ${allPosts.length}`);
-    return allPosts;
+    return [...normalizedDbPosts, ...normalizedSeoBotArticles, ...posts];
   } catch (error) {
       console.error('Crucial error in getNormalizedPosts:', error);
       throw error;

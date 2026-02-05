@@ -7,6 +7,10 @@ export default {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  experimental: {
+    // Avoid bundling undici (used by @vercel/blob); prevents "Unexpected token #target" build error
+    serverComponentsExternalPackages: ['@vercel/blob', 'undici'],
+  },
   webpack: (config) => {
     // config.plugins.push(new VeliteWebpackPlugin());
 

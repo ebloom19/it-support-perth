@@ -100,7 +100,7 @@ export function usePerformanceMonitor() {
     fn();
     const end = performance.now();
     
-    if (typeof window !== 'undefined' && window.console) {
+    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && window.console) {
       console.log(`[Performance] ${name}: ${(end - start).toFixed(2)}ms`);
     }
   };

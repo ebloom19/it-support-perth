@@ -1,10 +1,14 @@
-# it-support-perth
+# IT Support Perth
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/ebloom19/it-support-perth)
+Next.js website for [IT Support Perth](https://www.itsupportperth.net.au) — proactive managed IT services, cybersecurity, cloud solutions, and disaster recovery for Perth and Western Australia businesses.
 
-Next.js website for IT Support Perth (itsupportperth.net.au).
+## Tech stack
 
-## Major Changes
+- **Next.js 13** (App Router), **React 18**, **TypeScript**
+- **Tailwind CSS**, **shadcn/ui**, **Framer Motion**
+- **Vercel** (hosting, Analytics, Speed Insights), **PostHog** (surveys), **SeoBot** (optional blog API)
+
+## Major changes
 
 ### SEO & Canonical URLs
 - Set `metadataBase` and canonical URLs across layout and pages
@@ -32,3 +36,7 @@ Next.js website for IT Support Perth (itsupportperth.net.au).
 
 ### PostHog
 - Event and property names centralized in `SecurityAssessmentCTA` (POSTHOG_EVENTS, POSTHOG_PROPERTIES)
+
+---
+
+**Development:** `npm install && npm run dev`. Optional: [open in StackBlitz](https://stackblitz.com/~/github.com/ebloom19/it-support-perth).

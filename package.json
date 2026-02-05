@@ -1,6 +1,7 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "it-support-perth",
+  "version": "1.0.0",
+  "description": "IT Support Perth — proactive managed IT services, cybersecurity, and cloud solutions for Perth businesses",
   "private": true,
   "scripts": {
     "dev": "next dev",

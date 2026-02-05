@@ -269,4 +269,19 @@ All updated pages have matching `openGraph.title` and `openGraph.description` wh
 
 ---
 
+## 12. Build fix and professional polish
+
+### Deployment (build) fix
+- **next.config.mjs:** Added `experimental.serverComponentsExternalPackages: ['@vercel/blob', 'undici']` so undici (dependency of @vercel/blob) is not bundled by webpack, fixing the "Unexpected token #target" build failure.
+- **app/llms/route.ts:** Replaced `[...new Set(...)]` with `Array.from(new Set(...))` to satisfy TypeScript with `target: "es5"` (downlevelIteration).
+
+### Repo and code polish (senior-level)
+- **package.json:** `name` set to `it-support-perth`, `version` to `1.0.0`, added `description`.
+- **README.md:** Title and intro rewritten for production; added Tech stack section; StackBlitz link moved to Development footer.
+- **app/blog/[...slug]/page.tsx:** Removed all DEBUG `console.error` from `getPostFromParams`; simplified logic.
+- **lib/seobot.server.ts:** Removed DEBUG `console.error` calls; kept only real error logging (normalize failure, crucial error); silent skip when DB unavailable.
+- **components/LazySection.tsx:** Performance `console.log` gated to `process.env.NODE_ENV === 'development'`.
+
+---
+
 *Changelog for Syrus first push. Naming: `changes_syrus_first_push.md` (lowercase, underscores).*
