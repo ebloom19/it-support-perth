@@ -1,242 +1,162 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useState, useRef } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { SearchPosts } from '@/components/SearchPosts';
-import { Search, BookOpen, Clock, TrendingUp, Filter, Calendar } from 'lucide-react';
-import { type CustomBlogOrSeoBot } from '@/lib/seobot.helpers';
+import { useMemo, useState, useCallback } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { format } from 'date-fns';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { FileText, Search, Calendar } from 'lucide-react';
+import { type CustomBlogOrSeoBot, getTitle, getDescription, getDate } from '@/lib/seobot.helpers';
+import { QueryPagination } from '@/components/QueryPagination';
+
+const POSTS_PER_PAGE = 12;
+
+function postHref(post: CustomBlogOrSeoBot): string {
+  const slug = 'slugAsParams' in post ? post.slugAsParams : (post as { slug?: string }).slug?.replace(/^blog\/?/, '') ?? '';
+  return slug.startsWith('blog/') ? `/${slug}` : `/blog/${slug}`;
+}
+
+function postKey(post: CustomBlogOrSeoBot): string {
+  if ('slugAsParams' in post) return post.slugAsParams;
+  const s = (post as { slug?: string }).slug;
+  return (s ?? getTitle(post)) || '';
+}
+
+function BlogCard({ post }: { post: CustomBlogOrSeoBot }) {
+  const href = postHref(post);
+  const title = getTitle(post);
+  const description = getDescription(post);
+  const dateStr = getDate(post);
+  const formattedDate = dateStr ? format(new Date(dateStr), 'MMM d, yyyy') : '';
+  const image = 'image' in post ? post.image : undefined;
+
+  return (
+    <Link href={href} className="block h-full group">
+      <Card className="h-full border border-border/60 bg-card hover:border-[#3c91e6]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
+        <div className="relative w-full aspect-[16/10] bg-muted overflow-hidden">
+          {image ? (
+            <Image
+              src={image}
+              alt=""
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-muted">
+              <FileText className="w-12 h-12 text-muted-foreground/50" />
+            </div>
+          )}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+            <span className="text-xs font-medium text-white/95 flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5" />
+              {formattedDate}
+            </span>
+          </div>
+        </div>
+        <CardContent className="p-4 sm:p-5">
+          <h2 className="font-semibold text-lg text-foreground line-clamp-2 group-hover:text-[#3c91e6] transition-colors mb-2">
+            {title}
+          </h2>
+          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+            {description || 'Read more about this topic.'}
+          </p>
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#3c91e6] mt-3 group-hover:underline">
+            <FileText className="w-4 h-4 shrink-0" />
+            Read article
+          </span>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}
 
 interface EnhancedBlogPageProps {
   allPosts: CustomBlogOrSeoBot[];
 }
 
-const categories = [
-  { name: 'All', count: 0, icon: BookOpen },
-  { name: 'IT Consulting', count: 0, icon: TrendingUp },
-  { name: 'Cybersecurity', count: 0, icon: '🛡️' },
-  { name: 'Cloud Services', count: 0, icon: '☁️' },
-  { name: 'Business Technology', count: 0, icon: '💼' }
-];
-
-const featuredPosts = [
-  {
-    title: "Expert IT Consulting Perth - Solve Your Tech Challenges Fast",
-    excerpt: "Experience fast, reliable solutions for all your tech challenges with our Perth IT consulting experts.",
-    category: "IT Consulting",
-    readTime: "5 min read",
-    trending: true
-  },
-  {
-    title: "Understanding Layers of Security in Computer and Network Systems",
-    excerpt: "Learn about comprehensive security strategies to protect your business infrastructure.",
-    category: "Cybersecurity",
-    readTime: "7 min read",
-    trending: false
-  }
-];
-
 export function EnhancedBlogPage({ allPosts }: EnhancedBlogPageProps) {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
+  const filteredPosts = useMemo(() => {
+    if (!searchTerm.trim()) return allPosts;
+    const term = searchTerm.toLowerCase().trim();
+    return allPosts.filter(
+      (post) =>
+        getTitle(post).toLowerCase().includes(term) ||
+        getDescription(post).toLowerCase().includes(term)
+    );
+  }, [allPosts, searchTerm]);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const goToPage = useCallback((p: number) => setCurrentPage(Math.max(1, Math.min(p, totalPages))), [totalPages]);
+  const paginatedPosts = useMemo(() => {
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    return filteredPosts.slice(start, start + POSTS_PER_PAGE);
+  }, [filteredPosts, currentPage]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-background dark:to-gray-900" ref={ref}>
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <motion.div 
-            className="absolute top-20 right-20 w-40 h-40 bg-[#3c91e6]/10 rounded-full blur-xl"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-20 left-20 w-32 h-32 bg-[#01042b]/10 rounded-full blur-xl"
-            animate={{ 
-              scale: [1.2, 1, 1.2],
-              opacity: [0.6, 0.3, 0.6]
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-        </div>
+    <div className="min-h-screen bg-background">
+      {/* Hero */}
+      <section className="border-b bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+            Blog
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            IT tips, security updates, and expert insights for Perth businesses. Stay informed with practical advice from our team.
+          </p>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 bg-[#3c91e6]/10 rounded-full px-6 py-3 mb-6"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <BookOpen className="w-5 h-5 text-[#3c91e6]" />
-              <span className="text-sm font-medium text-[#3c91e6]">IT Insights & Resources</span>
-            </motion.div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-              Perth IT Support Insights
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Expert IT tips, cybersecurity updates, and technology solutions for Perth businesses. 
-              Stay informed with our latest insights on managed services, cloud computing, and digital transformation strategies.
-            </p>
-          </motion.div>
-
-          {/* Featured Posts Preview */}
-          <motion.div 
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            {featuredPosts.map((post, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 relative overflow-hidden border-0 bg-white/50 dark:bg-[#01042b]/90 backdrop-blur-sm flex flex-col">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#3c91e6]/5 to-[#01042b]/5 dark:from-[#3c91e6]/20 dark:to-[#01042b]/60" />
-                  <CardContent className="p-6 relative z-10 flex flex-col flex-1">
-                    <div className="flex items-center gap-2 mb-4 flex-shrink-0">
-                      <Badge variant="secondary" className="bg-[#3c91e6]/10 text-[#3c91e6] border-0 dark:bg-white/20 dark:text-white dark:border dark:border-white/30">
-                        {post.category}
-                      </Badge>
-                      {post.trending && (
-                        <Badge className="bg-gradient-to-r from-orange-400 to-red-500 text-white border-0">
-                          <TrendingUp className="w-3 h-3 mr-1" />
-                          Trending
-                        </Badge>
-                      )}
-                    </div>
-                    <h3 className="text-xl font-bold mb-3 line-clamp-2 text-foreground dark:text-white flex-shrink-0">{post.title}</h3>
-                    <p className="text-muted-foreground dark:text-white/90 mb-4 line-clamp-2 flex-1">{post.excerpt}</p>
-                    <div className="flex items-center justify-between flex-shrink-0">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground dark:text-white/80">
-                        <Clock className="w-4 h-4" />
-                        {post.readTime}
-                      </div>
-                      <Button variant="ghost" size="sm" className="text-[#3c91e6] hover:text-[#2a7bc4] dark:text-white dark:hover:text-white/90 dark:hover:bg-white/10">
-                        Read More →
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Newsletter Signup */}
-          <motion.div 
-            className="bg-gradient-to-r from-[#01042b] to-[#3c91e6] rounded-2xl p-8 text-white text-center max-w-2xl mx-auto"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <h3 className="text-2xl font-bold mb-4 text-white text-shadow-on-dark-strong">Stay Updated with IT Insights</h3>
-            <p className="text-white/95 mb-6 text-shadow-on-dark">
-              Get the latest IT tips, security updates, and technology insights delivered to your inbox
-            </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <Input 
-                placeholder="Enter your email" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+          {/* Search */}
+          <div className="mt-8 max-w-md">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+              <Input
+                type="search"
+                placeholder="Search articles..."
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setCurrentPage(1);
+                }}
+                className="pl-10 h-11 bg-background border border-border dark:border-gray-600 dark:focus-visible:ring-gray-500"
+                aria-label="Search blog posts"
               />
-              <Button variant="secondary" className="bg-white text-[#01042b] hover:bg-gray-100 font-semibold px-6">
-                Subscribe
-              </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Blog Content Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Category Filter */}
-          <motion.div 
-            className="flex flex-wrap gap-4 justify-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            {categories.map((category) => (
-              <Button
-                key={category.name}
-                variant={selectedCategory === category.name ? "default" : "outline"}
-                className={`${
-                  selectedCategory === category.name 
-                    ? 'bg-[#3c91e6] hover:bg-[#2a7bc4] text-white' 
-                    : 'hover:bg-[#3c91e6]/10'
-                }`}
-                onClick={() => setSelectedCategory(category.name)}
-              >
-                {typeof category.icon === 'string' ? (
-                  <span className="mr-2">{category.icon}</span>
-                ) : (
-                  <category.icon className="w-4 h-4 mr-2" />
-                )}
-                {category.name}
-              </Button>
-            ))}
-          </motion.div>
-
-          {/* Search and Filter */}
-          <motion.div 
-            className="max-w-2xl mx-auto mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <SearchPosts allPosts={allPosts} />
-          </motion.div>
-        </div>
+      {/* All posts grid */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+        {filteredPosts.length === 0 ? (
+          <p className="text-center text-muted-foreground py-12">
+            {searchTerm ? 'No articles match your search.' : 'No posts yet.'}
+          </p>
+        ) : (
+          <>
+            <p className="text-sm text-muted-foreground mb-6">
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+              {searchTerm && ` matching "${searchTerm}"`}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {paginatedPosts.map((post) => (
+                <BlogCard key={postKey(post)} post={post} />
+              ))}
+            </div>
+            {totalPages > 1 && (
+              <div className="mt-12 flex justify-center">
+                <QueryPagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={goToPage}
+                />
+              </div>
+            )}
+          </>
+        )}
       </section>
     </div>
   );

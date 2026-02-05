@@ -132,7 +132,12 @@ export const getNormalizedPosts = cache(async () => {
       // DATABASE_URL unset or DB unavailable; continue with local + SeoBot posts only
     }
 
-    return [...normalizedDbPosts, ...normalizedSeoBotArticles, ...posts];
+    const combined = [...normalizedDbPosts, ...normalizedSeoBotArticles, ...posts];
+    const displayTitle = (p: { title?: string; headline?: string }) =>
+      (p.title || p.headline || '').toLowerCase().trim();
+    return combined
+      .filter((p) => p.published)
+      .filter((p) => displayTitle(p) !== 'test');
   } catch (error) {
       console.error('Crucial error in getNormalizedPosts:', error);
       throw error;

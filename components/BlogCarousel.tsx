@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCardsPerPage } from '@/hooks/use-cards-per-page';
+
+const AUTOPLAY_INTERVAL_MS = 5000;
 
 export type BlogCarouselPost = {
   slug: string;
@@ -73,27 +75,44 @@ function BlogCard({ post }: { post: BlogCarouselPost }) {
 export function BlogCarousel({ posts }: BlogCarouselProps) {
   const cardsPerPage = useCardsPerPage();
   const [currentPage, setCurrentPage] = useState(0);
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const totalPages = Math.max(1, Math.ceil(posts.length / cardsPerPage));
-  const clampedPage = Math.min(currentPage, totalPages - 1);
+  const clampedPage = ((currentPage % totalPages) + totalPages) % totalPages;
   const startIndex = clampedPage * cardsPerPage;
-  const visiblePosts = posts.slice(startIndex, startIndex + cardsPerPage);
+  const visiblePosts = Array.from({ length: cardsPerPage }, (_, i) =>
+    posts[(startIndex + i) % posts.length]
+  );
 
   useEffect(() => {
-    setCurrentPage((p) => Math.min(p, totalPages - 1));
-  }, [totalPages]);
+    setCurrentPage((p) => {
+      const total = Math.max(1, Math.ceil(posts.length / cardsPerPage));
+      return Math.min(Math.max(0, p), total - 1);
+    });
+  }, [posts.length, cardsPerPage]);
 
   const goToPage = useCallback((page: number) => {
-    setCurrentPage((prev) => Math.max(0, Math.min(page, totalPages - 1)));
-  }, [totalPages]);
+    const total = Math.max(1, Math.ceil(posts.length / cardsPerPage));
+    setCurrentPage((total + page) % total);
+  }, [posts.length, cardsPerPage]);
 
   const goPrev = useCallback(() => {
-    setCurrentPage((prev) => Math.max(0, prev - 1));
-  }, []);
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  }, [totalPages]);
 
   const goNext = useCallback(() => {
-    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+    setCurrentPage((prev) => (prev + 1) % totalPages);
   }, [totalPages]);
+
+  useEffect(() => {
+    if (posts.length <= cardsPerPage) return;
+    autoplayRef.current = setInterval(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+    }, AUTOPLAY_INTERVAL_MS);
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [posts.length, cardsPerPage, totalPages]);
 
   if (!posts?.length) {
     return (
@@ -105,8 +124,8 @@ export function BlogCarousel({ posts }: BlogCarouselProps) {
     );
   }
 
-  const canGoPrev = clampedPage > 0;
-  const canGoNext = clampedPage < totalPages - 1;
+  const canGoPrev = totalPages > 1;
+  const canGoNext = totalPages > 1;
 
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-secondary/50 dark:bg-secondary/20 overflow-hidden">
@@ -128,7 +147,7 @@ export function BlogCarousel({ posts }: BlogCarouselProps) {
             Latest from Our Blog
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            IT tips, security updates, and insights for Perth businesses. Stay informed with our expert advice.
+            IT tips, security updates, and expert insights to help businesses stay secure, efficient, and ahead of technology trends. Stay informed with practical advice from industry professionals.
           </p>
         </motion.div>
 
@@ -157,8 +176,8 @@ export function BlogCarousel({ posts }: BlogCarouselProps) {
                   transition={{ duration: 0.25 }}
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                  {visiblePosts.map((post) => (
-                    <BlogCard key={post.slug} post={post} />
+                  {visiblePosts.map((post, i) => (
+                    <BlogCard key={`${clampedPage}-${i}-${post.slug}`} post={post} />
                   ))}
                 </motion.div>
               </AnimatePresence>

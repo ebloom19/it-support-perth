@@ -191,7 +191,7 @@ export function SocialProofSection({
   
   if (variant === 'stats') {
     return (
-      <section className="py-20 bg-gradient-to-b from-[#01042b] to-[#3c91e6] text-white">
+      <section className="py-20 bg-[#3c91e6]/8 dark:bg-[#3c91e6]/15 border-t border-b border-[#3c91e6]/20 dark:border-[#3c91e6]/30">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -200,8 +200,8 @@ export function SocialProofSection({
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-on-dark-strong">{title}</h2>
-            <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed text-shadow-on-dark">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">{title}</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {description}
             </p>
           </motion.div>
@@ -210,16 +210,16 @@ export function SocialProofSection({
             {trustIndicators.map((indicator, index) => (
               <motion.div
                 key={index}
-                className="text-center text-white"
+                className="text-center text-foreground"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className="text-4xl mb-3 text-shadow-on-dark">{indicator.icon}</div>
-                <div className="font-bold text-lg mb-1 text-shadow-on-dark">{indicator.label}</div>
-                <div className="text-sm text-white/90 text-shadow-on-dark">{indicator.description}</div>
+                <div className="text-4xl mb-3">{indicator.icon}</div>
+                <div className="font-bold text-lg mb-1">{indicator.label}</div>
+                <div className="text-sm text-muted-foreground">{indicator.description}</div>
               </motion.div>
             ))}
           </div>

@@ -112,7 +112,7 @@ export async function generateMetadata({
 export async function generateStaticParams(): Promise<
   PostPageProps["params"][]
 > {
-  const posts = (await getNormalizedPosts()).filter(post => post.published);
+  const posts = await getNormalizedPosts();
   return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
 }
 
@@ -123,7 +123,7 @@ const stripFirstH1 = (html: string) => {
 
 export default async function PostPage({ params }: PostPageProps) {
   const post = (await getPostFromParams(params)) as CustomBlogOrSeoBot;
-  const posts = (await getNormalizedPosts()).filter(p => p.published);
+  const posts = await getNormalizedPosts();
 
   if (!post || !post.published) {
     notFound();
