@@ -20,9 +20,8 @@ export async function generateMetadata({
   return {
     title: tag,
     description: `Posts on the topic of ${tag}`,
-    alternates: {
-      canonical: `https://www.itsupportperth.net.au/tags/${tag}`,
-    },
+    alternates: { canonical: `https://www.itsupportperth.net.au/tags/${tag}` },
+    robots: { index: false, follow: true },
   };
 }
 

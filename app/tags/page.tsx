@@ -7,9 +7,8 @@ import { posts } from '@/content-output';
 export const metadata: Metadata = {
   title: 'IT Support Perth | Tags',
   description: "Browse our blog's tags.",
-  alternates: {
-    canonical: 'https://www.itsupportperth.net.au/tags',
-  },
+  alternates: { canonical: 'https://www.itsupportperth.net.au/tags' },
+  robots: { index: false, follow: true },
 };
 
 export default async function TagsPage() {

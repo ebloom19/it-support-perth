@@ -20,6 +20,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     "name": "IT Support Perth",
     "alternateName": "Computer Mechanics",
     "url": baseUrl,
@@ -134,6 +135,22 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
     }
   };
 
+  const webSiteData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    "name": "IT Support Perth",
+    "description": "Expert IT support, managed services, cybersecurity and cloud solutions for Perth businesses. 24/7 support, 20+ years experience.",
+    "url": baseUrl,
+    "publisher": { "@id": `${baseUrl}/#organization` },
+    "inLanguage": "en-AU",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": `${baseUrl}/blog?q={search_term_string}` },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   const webPageData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -240,7 +257,7 @@ export function StructuredData({ type = 'organization', serviceData }: Structure
 
   switch (type) {
     case 'organization':
-      jsonLd = [organizationData, localBusinessData, webPageData, breadcrumbData];
+      jsonLd = [organizationData, localBusinessData, webSiteData, webPageData, breadcrumbData];
       break;
     case 'service':
       jsonLd = [organizationData, webPageData, breadcrumbData];

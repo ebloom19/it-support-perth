@@ -159,7 +159,7 @@ export function EnhancedHeroSection() {
               </Button>
               <SecurityAssessmentCTA 
                 variant="outline" 
-                className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 backdrop-blur-sm h-11 sm:h-12 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-300 w-full sm:w-auto" 
+                className="!bg-white/10 hover:!bg-white/20 !text-white !border-2 !border-white/40 backdrop-blur-sm h-11 sm:h-12 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-300 w-full sm:w-auto" 
               />
             </div>
           </motion.div>

@@ -108,7 +108,7 @@ export function AnimatedHero() {
                 Get Free Consultation
               </Link>
             </Button>
-            <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 backdrop-blur-sm px-8 py-4 text-lg hover:scale-105 transition-all duration-300" />
+            <SecurityAssessmentCTA variant="outline" className="!bg-white/10 hover:!bg-white/20 !text-white !border-white/40 backdrop-blur-sm px-8 py-4 text-lg hover:scale-105 transition-all duration-300" />
           </motion.div>
 
           {/* Trust indicators */}

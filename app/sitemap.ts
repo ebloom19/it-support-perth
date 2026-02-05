@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { getNormalizedPosts } from "@/lib/seobot.server";
+import { getDate } from "@/lib/seobot.helpers";
 
 interface BaseRoute {
   name: string;
@@ -101,12 +102,15 @@ const SERVICE_PATHS = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getNormalizedPosts();
 
-  const sitemapPost: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${siteConfig.url}/blog/${post.slugAsParams}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "weekly" as ChangeFrequency,
-    priority: 0.8,
-  }));
+  const sitemapPost: MetadataRoute.Sitemap = posts.map((post) => {
+    const dateStr = getDate(post);
+    return {
+      url: `${siteConfig.url}/blog/${post.slugAsParams}`,
+      lastModified: dateStr ? new Date(dateStr) : new Date(),
+      changeFrequency: "weekly" as ChangeFrequency,
+      priority: 0.8,
+    };
+  });
 
   const sitemapRoutes = routes.flatMap((route) => {
     const routeEntries: MetadataRoute.Sitemap = [];
@@ -148,13 +152,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return true;
   });
 
+  const mainPages: MetadataRoute.Sitemap = [
+    { url: siteConfig.url, lastModified: new Date(), changeFrequency: "daily" as ChangeFrequency, priority: 1.0 },
+    { url: `${siteConfig.url}/blog`, lastModified: new Date(), changeFrequency: "daily" as ChangeFrequency, priority: 0.95 },
+    { url: `${siteConfig.url}/about-us`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.9 },
+    { url: `${siteConfig.url}/contact-us`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.9 },
+    { url: `${siteConfig.url}/reviews`, lastModified: new Date(), changeFrequency: "weekly" as ChangeFrequency, priority: 0.85 },
+    { url: `${siteConfig.url}/free-it-security-advice`, lastModified: new Date(), changeFrequency: "monthly" as ChangeFrequency, priority: 0.7 },
+  ];
+
   const allEntries: MetadataRoute.Sitemap = [
-    {
-      url: siteConfig.url,
-      lastModified: new Date(),
-      changeFrequency: "daily" as ChangeFrequency,
-      priority: 1.0,
-    },
+    ...mainPages,
     ...sitemapPost,
     ...sitemapServicePages,
     ...dedupedRoutes,

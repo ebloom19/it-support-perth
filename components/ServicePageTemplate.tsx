@@ -166,7 +166,7 @@ export function ServicePageTemplate({
                   {primaryCTA}
                 </Link>
               </Button>
-              <SecurityAssessmentCTA variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 backdrop-blur-sm min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover:scale-105 transition-all duration-300" />
+              <SecurityAssessmentCTA variant="outline" className="!bg-white/10 hover:!bg-white/20 !text-white !border-white/40 backdrop-blur-sm min-h-[56px] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover:scale-105 transition-all duration-300" />
             </motion.div>
           </motion.div>
         </div>
