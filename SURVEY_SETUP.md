@@ -32,12 +32,19 @@ Add these to your `.env.local` file:
 # PostHog Configuration
 NEXT_PUBLIC_POSTHOG_PROJECT_ID=your_project_id_here
 POSTHOG_PERSONAL_API_KEY=your_personal_api_key_here
+
+# hCaptcha Configuration
+NEXT_PUBLIC_HCAPTCHA_SITE_KEY=your_hcaptcha_site_key_here
+HCAPTCHA_SECRET_KEY=your_hcaptcha_secret_key_here
 ```
 
 **How to get these values:**
 1. Go to your PostHog dashboard
 2. **Project ID**: Settings → Project Settings → copy the Project ID
 3. **API Key**: Settings → Personal API Keys → create new key with "surveys" permissions
+4. Go to the hCaptcha dashboard and create a site for your domain
+5. Copy the **Site Key** into `NEXT_PUBLIC_HCAPTCHA_SITE_KEY`
+6. Copy the **Secret Key** into `HCAPTCHA_SECRET_KEY`
 
 ### Step 2: Create the Survey
 
@@ -167,6 +174,8 @@ When someone completes the survey:
 - [ ] Security scoring calculates correctly
 - [ ] Mobile responsiveness works on all devices
 - [ ] PostHog analytics tracking is working
+- [ ] hCaptcha loads on Step 2 and blocks submit until solved
+- [ ] Invalid/expired hCaptcha token is rejected by `/api/security-assessment`
 - [ ] Thank you message displays properly
 - [ ] Survey responses appear in PostHog dashboard
 
@@ -203,10 +212,16 @@ When someone completes the survey:
 - Verify analytics events are firing
 - Test with PostHog debugging tools
 
+### **Captcha Verification Fails**
+- Verify `NEXT_PUBLIC_HCAPTCHA_SITE_KEY` and `HCAPTCHA_SECRET_KEY` are set
+- Confirm the hCaptcha site includes your local/production domain
+- Use hCaptcha test keys in local development to validate end-to-end flow
+
 ## 📚 Additional Resources
 
 - [PostHog Surveys Documentation](https://posthog.com/docs/surveys)
 - [PostHog API Reference](https://posthog.com/docs/api)
+- [hCaptcha Documentation](https://docs.hcaptcha.com/)
 - [React Hook Form Documentation](https://react-hook-form.com/)
 - [Framer Motion Documentation](https://www.framer.com/motion/)
 

@@ -11,6 +11,7 @@ interface SecurityAssessmentData {
   jobTitle: string;
   hearAbout: string;
   responses: Record<string, string>;
+  captchaToken: string;
   securityScore: {
     score: number;
     maxScore: number;
@@ -20,6 +21,12 @@ interface SecurityAssessmentData {
   };
 }
 
+interface HCaptchaVerificationResponse {
+  success: boolean;
+  'error-codes'?: string[];
+}
+
+const HCAPTCHA_VERIFY_URL = 'https://hcaptcha.com/siteverify';
 const brandColor = '#2563eb';
 
 const logoSvg = `<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
@@ -218,6 +225,81 @@ const getEmailTemplate = (data: SecurityAssessmentData, isClientEmail: boolean =
 </html>`;
 };
 
+const getClientIp = (req: Request): string | null => {
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    return forwardedFor.split(',')[0]?.trim() || null;
+  }
+
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp.trim();
+  }
+
+  return null;
+};
+
+const verifyHCaptcha = async (token: string, req: Request): Promise<{ success: boolean; status: number; error?: string }> => {
+  if (!process.env.HCAPTCHA_SECRET_KEY) {
+    console.error('hCaptcha verification skipped: HCAPTCHA_SECRET_KEY is not configured');
+    return {
+      success: false,
+      status: 500,
+      error: 'Captcha service is not configured. Please contact support.',
+    };
+  }
+
+  const params = new URLSearchParams();
+  params.append('secret', process.env.HCAPTCHA_SECRET_KEY);
+  params.append('response', token);
+
+  const clientIp = getClientIp(req);
+  if (clientIp) {
+    params.append('remoteip', clientIp);
+  }
+
+  try {
+    const verificationResponse = await fetch(HCAPTCHA_VERIFY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+    });
+
+    if (!verificationResponse.ok) {
+      console.error(`hCaptcha verification HTTP error: ${verificationResponse.status}`);
+      return {
+        success: false,
+        status: 503,
+        error: 'Captcha verification is temporarily unavailable. Please try again.',
+      };
+    }
+
+    const verificationData = await verificationResponse.json() as HCaptchaVerificationResponse;
+
+    if (!verificationData.success) {
+      console.error('hCaptcha verification failed', {
+        errorCodes: verificationData['error-codes'] || [],
+      });
+      return {
+        success: false,
+        status: 400,
+        error: 'Captcha verification failed. Please try again.',
+      };
+    }
+
+    return { success: true, status: 200 };
+  } catch (error) {
+    console.error('hCaptcha verification request failed', error);
+    return {
+      success: false,
+      status: 503,
+      error: 'Captcha verification is temporarily unavailable. Please try again.',
+    };
+  }
+};
+
 export async function POST(req: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
@@ -230,6 +312,21 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const data: SecurityAssessmentData = body;
+
+    if (!data.captchaToken) {
+      return NextResponse.json(
+        { error: 'Captcha verification failed. Please complete the captcha and try again.' },
+        { status: 400 }
+      );
+    }
+
+    const captchaVerification = await verifyHCaptcha(data.captchaToken, req);
+    if (!captchaVerification.success) {
+      return NextResponse.json(
+        { error: captchaVerification.error || 'Captcha verification failed. Please try again.' },
+        { status: captchaVerification.status }
+      );
+    }
 
     // Validate required fields
     const requiredFields: (keyof SecurityAssessmentData)[] = ['fullName', 'email', 'phone', 'company', 'companySize', 'jobTitle', 'hearAbout'];

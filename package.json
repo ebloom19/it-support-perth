@@ -12,6 +12,7 @@
     "fetch-env": "npx vercel env pull .env.development.local"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.17.4",
     "@hookform/resolvers": "^3.9.0",
     "@neondatabase/serverless": "^1.0.2",
     "@next/swc-wasm-nodejs": "13.5.1",
