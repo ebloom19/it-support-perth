@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { Phone, Mail, MapPin, Clock, CheckCircle, Star, Shield, Users, Award, MessageCircle } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { motion, useInView } from 'framer-motion';
@@ -59,15 +60,38 @@ const urgencyIndicators = [
   "📞 Speak with a real person, not a call center"
 ];
 
+interface ContactFormData {
+  name: string;
+  company?: string;
+  email: string;
+  phone: string;
+  service?: string;
+  message: string;
+}
+
 export function EnhancedContactPage() {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedService, setSelectedService] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaWidgetKey, setCaptchaWidgetKey] = useState(0);
+  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
   const { toast } = useToast();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ContactFormData) => {
+    if (!hcaptchaSiteKey) {
+      toast.error("Spam protection is unavailable right now. Please call us on (08) 9325 1196.");
+      return;
+    }
+
+    if (!captchaToken) {
+      setCaptchaError('Please complete the captcha before submitting.');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const response = await fetch('/api/contact', {
@@ -75,18 +99,29 @@ export function EnhancedContactPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...data, service: selectedService }),
+        body: JSON.stringify({ ...data, service: selectedService, captchaToken }),
       });
+
+      const result = await response.json();
 
       if (response.ok) {
         toast.success("Message sent successfully! We'll get back to you within 2 hours during business hours.");
         reset();
         setSelectedService('');
+        setCaptchaToken(null);
+        setCaptchaError(null);
+        setCaptchaWidgetKey(prev => prev + 1);
       } else {
-        throw new Error('Failed to submit form');
+        throw new Error(result.error || 'Failed to submit form');
       }
     } catch (error) {
-      toast.error("Failed to send message. Please try again or call us directly at (08) 9325 1196");
+      setCaptchaToken(null);
+      setCaptchaError('Please complete the captcha again before retrying.');
+      setCaptchaWidgetKey(prev => prev + 1);
+      const message = error instanceof Error
+        ? error.message
+        : "Failed to send message. Please try again or call us directly at (08) 9325 1196";
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -285,7 +320,7 @@ export function EnhancedContactPage() {
                 <CardHeader>
                   <CardTitle className="text-2xl mb-2">Get Your Free IT Consultation</CardTitle>
                   <p className="text-muted-foreground">
-                    Tell us about your IT challenges and we'll provide a customized solution.
+                    Tell us about your IT challenges and we&apos;ll provide a customized solution.
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -367,17 +402,48 @@ export function EnhancedContactPage() {
                       )}
                     </div>
 
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-2">Spam Protection *</p>
+                      {hcaptchaSiteKey ? (
+                        <div className="overflow-x-auto">
+                          <HCaptcha
+                            key={captchaWidgetKey}
+                            sitekey={hcaptchaSiteKey}
+                            onVerify={(token: string) => {
+                              setCaptchaToken(token);
+                              setCaptchaError(null);
+                            }}
+                            onExpire={() => {
+                              setCaptchaToken(null);
+                              setCaptchaError('Captcha expired. Please complete it again.');
+                            }}
+                            onError={() => {
+                              setCaptchaToken(null);
+                              setCaptchaError('Captcha failed to load. Please refresh and try again.');
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <p className="text-red-600 text-sm">
+                          Spam protection is not configured right now. Please call us on (08) 9325 1196.
+                        </p>
+                      )}
+                      {captchaError && (
+                        <p className="text-red-500 text-sm mt-1">{captchaError}</p>
+                      )}
+                    </div>
+
                     <Button 
                       type="submit" 
                       size="lg" 
                       className="w-full bg-[#3c91e6] hover:bg-[#2a7bc4] font-semibold min-h-[56px] py-3 sm:py-4 text-base sm:text-lg"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !captchaToken || !hcaptchaSiteKey}
                     >
                       {isSubmitting ? "Sending..." : "Get Free Consultation"}
                     </Button>
 
                     <p className="text-center text-sm text-muted-foreground">
-                      * Required fields. We'll respond within 2 hours during business hours.
+                      * Required fields. We&apos;ll respond within 2 hours during business hours.
                     </p>
                   </form>
                 </CardContent>
