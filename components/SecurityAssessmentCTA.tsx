@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { SURVEY_QUESTIONS } from '@/lib/security-assessment-questions';
 
 // PostHog survey configuration
@@ -188,6 +189,14 @@ interface FormData {
   responses: Record<string, string>;
 }
 
+interface SecurityScore {
+  score: number;
+  maxScore: number;
+  percentage: number;
+  riskLevel: 'Low' | 'Medium' | 'High' | 'Critical';
+  recommendations: string[];
+}
+
 interface ValidationErrors {
   fullName?: string;
   phone?: string;
@@ -218,7 +227,11 @@ export function SecurityAssessmentCTA({
     responses: {}
   });
   const [errors, setErrors] = useState<ValidationErrors>({});
-  const [securityScore, setSecurityScore] = useState<any>(null);
+  const [securityScore, setSecurityScore] = useState<SecurityScore | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaWidgetKey, setCaptchaWidgetKey] = useState(0);
+  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
 
   const steps = [
     { title: 'Contact Information', description: 'Tell us about yourself' },
@@ -298,6 +311,16 @@ export function SecurityAssessmentCTA({
     }
 
     if (currentStep === 1) {
+      if (!hcaptchaSiteKey) {
+        setCaptchaError('Spam protection is unavailable right now. Please try again shortly or call (08) 9325 1196.');
+        return;
+      }
+
+      if (!captchaToken) {
+        setCaptchaError('Please complete the captcha before submitting.');
+        return;
+      }
+
       // Calculate security score and auto-submit
       const score = calculateSecurityScore(formData.responses);
       setSecurityScore(score);
@@ -309,7 +332,12 @@ export function SecurityAssessmentCTA({
     }
   };
 
-  const submitAssessmentDirect = async (score: any) => {
+  const submitAssessmentDirect = async (score: SecurityScore) => {
+    if (!captchaToken) {
+      setCaptchaError('Please complete the captcha before submitting.');
+      return;
+    }
+
     try {
       const assessmentData = {
         fullName: formData.fullName,
@@ -320,7 +348,8 @@ export function SecurityAssessmentCTA({
         jobTitle: formData.jobTitle,
         hearAbout: formData.hearAbout,
         responses: formData.responses,
-        securityScore: score
+        securityScore: score,
+        captchaToken
       };
 
       const response = await fetch('/api/security-assessment', {
@@ -391,7 +420,11 @@ export function SecurityAssessmentCTA({
 
     } catch (error) {
       console.error('Error submitting assessment:', error);
-      toast.error('Failed to submit assessment. Please try again.');
+      const message = error instanceof Error ? error.message : 'Failed to submit assessment. Please try again.';
+      toast.error(message);
+      setCaptchaToken(null);
+      setCaptchaError('Please complete the captcha again before retrying.');
+      setCaptchaWidgetKey(prev => prev + 1);
 
       if (typeof window !== 'undefined' && (window as any).posthog) {
         (window as any).posthog.capture(POSTHOG_EVENTS.SECURITY_ASSESSMENT_SUBMISSION_FAILED, {
@@ -429,7 +462,17 @@ export function SecurityAssessmentCTA({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        setIsOpen(open);
+        if (!open) {
+          setCaptchaToken(null);
+          setCaptchaError(null);
+          setCaptchaWidgetKey(prev => prev + 1);
+        }
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant={variant} size={size} className={className}>
           {getTriggerContent()}
@@ -662,6 +705,39 @@ export function SecurityAssessmentCTA({
                       )}
                     </div>
                   ))}
+
+                  <div className="pt-2">
+                    <Label className="text-xs font-medium text-blue-600">Spam Protection *</Label>
+                    {hcaptchaSiteKey ? (
+                      <div className="mt-2 overflow-x-auto">
+                        <HCaptcha
+                          key={captchaWidgetKey}
+                          sitekey={hcaptchaSiteKey}
+                          onVerify={(token: string) => {
+                            setCaptchaToken(token);
+                            setCaptchaError(null);
+                          }}
+                          onExpire={() => {
+                            setCaptchaToken(null);
+                            setCaptchaError('Captcha expired. Please complete it again.');
+                          }}
+                          onError={() => {
+                            setCaptchaToken(null);
+                            setCaptchaError('Captcha failed to load. Please refresh and try again.');
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <Alert className="mt-2 border-red-500/30 bg-red-50">
+                        <AlertDescription className="text-red-700">
+                          Spam protection is not configured right now. Please try again shortly or call (08) 9325 1196.
+                        </AlertDescription>
+                      </Alert>
+                    )}
+                    {captchaError && (
+                      <p className="text-xs text-red-600 mt-1">{captchaError}</p>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -767,7 +843,7 @@ export function SecurityAssessmentCTA({
           {currentStep < 2 ? (
             <Button
               onClick={nextStep}
-              disabled={!isCurrentStepValid}
+              disabled={currentStep === 1 ? (!isCurrentStepValid || !captchaToken || !hcaptchaSiteKey) : !isCurrentStepValid}
               className="bg-[#2563eb] hover:bg-[#1d4ed8] ml-auto"
             >
               {currentStep === 1 ? 'Calculate Score' : 'Next'}
@@ -790,6 +866,9 @@ export function SecurityAssessmentCTA({
                 });
                 setSecurityScore(null);
                 setErrors({});
+                setCaptchaToken(null);
+                setCaptchaError(null);
+                setCaptchaWidgetKey(prev => prev + 1);
               }}
               className="bg-green-600 hover:bg-green-700 ml-auto"
             >
